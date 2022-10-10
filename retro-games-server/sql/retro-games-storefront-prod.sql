@@ -146,13 +146,21 @@ insert into listing (listing_name, listing_description, image_path, listing_type
     ('Sega Genesis', 'The Console that helped start the console War in 1991 in the U.S. and Europe. This system can play classics such as Sonic the Hedgehog and Mortal Kombat', 'imagepath', 'CONSOLE', 1, 79.99),
     ('PlayStation', 'Created as as CD-ROM peripheral for the Super NES, this system has many premier franchises including Crash Bandicoot, Tomb Raider, and Final Fantasy', 'imagepath', 'CONSOLE', 26, 149.99),
     ('GameCube', "Known for it's extensive library of high-quality games, this system had tons of exclusive features for cross system play and exclusive content", 'imagepath', 'CONSOLE', 19, 99.99),
-    ('GameCube Controller', 'Controller for the GameCube with extra joysticks and satisfaction guaranteed', 'imagepath', 'MERCHANDISE', 5, 19.99);
+    ('GameCube Controller', 'Controller for the GameCube with extra joysticks and satisfaction guaranteed', 'imagepath', 'MERCHANDISE', 5, 19.99),
+    ('Nintendo 64 Controller', 'A controller known for causing burns to your palm, we have updated the joystick to prevent this', 'imagepath', 'MERCHANDISE', 25, 45.99),
+    ('Mario Lamp', 'Cool bedside table lamp that shuts off if it overheats', 'imagepath', 'MERCHANDISE', 12, 29.99);
     
-insert into merchandise values
-	('Controller', 11);
+insert into merchandise (merchandise_category, listing_id) values
+	('Controller', 11),
+    ('Controller', 12),
+    ('Decoration', 13);
     
-insert game values
-	('Platformer', 'Nintendo', '2002/07/19', 1);
+insert into game (genre, publisher, release_date, listing_id) values
+	('Platformer', 'Nintendo', '2002-07-19', 1),
+    ('Puzzle-Adventure', 'Nintendo', '2001-09-14', 2);
+    
+insert into console (console_version, company, console_release_date, listing_id) values
+	('2nd Generation', 'Nintendo', '1990-11-21', 7);
     
     
     
