@@ -2,6 +2,7 @@ package learn.retrogames.models;
 
 public class Listing {
 
+    //TODO: add reviews as a thing that can be hydrated here
     private int id;
     private String name;
     private String description;

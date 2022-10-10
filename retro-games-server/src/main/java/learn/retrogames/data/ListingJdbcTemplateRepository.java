@@ -13,6 +13,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 
 public class ListingJdbcTemplateRepository implements ListingRepository {
+    //TODO: add review-getting helper method here
+    //TODO: modify RowMapper for game and console to each have the list of related console or game
 
     private final JdbcTemplate jdbcTemplate;
 

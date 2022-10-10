@@ -3,6 +3,7 @@ package learn.retrogames.models;
 import java.time.LocalDate;
 
 public class Game {
+    //TODO: represent game-console relationship (with array)
     private int id;
     private String genre;
     private String publisher;
