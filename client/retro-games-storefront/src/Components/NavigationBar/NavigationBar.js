@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../AuthContext/AuthContext";
+import "./NavigationBar.css";
 
 function NavigationBar() {
     const authorization = useContext(AuthContext);
@@ -17,7 +18,7 @@ function NavigationBar() {
               </li>
             ) : (
               <>
-                <li>
+                <li class="right-align">
                   <Link to="/login">Login</Link>
                 </li>
                 <li>
