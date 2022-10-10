@@ -8,6 +8,7 @@ import NavigationBar from "./Components/NavigationBar/NavigationBar";
 import Homepage from "./Webpages/Homepage/Homepage";
 import NotFound from "./Webpages/NotFound/NotFound";
 import Login from "./Webpages/LoginPage/LoginPage";
+import AuthContext from "./Components/AuthContext/AuthContext";
 
 
 const LOCAL_STORAGE_TOKEN_KEY = "retroGamesToken";
@@ -20,7 +21,7 @@ const [restoreLoginAttemptCompleted, setRestoreLoginAttemptCompleted] = useState
 useEffect (() => {
   const token = localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY);
   if (token) {
-    Login(token);
+    login(token);
   }
   setRestoreLoginAttemptCompleted(true);
 },
@@ -30,17 +31,17 @@ const login = (token) => {
   localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, token);
 
 
-const {sub: username, authorities: authoritiesString} = jwtDecode(token);
+  const {sub: username, authorities: authoritiesString} = jwtDecode(token);
 
-const roles = authoritiesString.split(',');
+  const roles = authoritiesString.split(',');
 
- user = {
-  username,
-  roles,
-  token,
-  hasRole(role) {
-    return this.roles.includes(role);
-  }
+  const user = {
+    username,
+    roles,
+    token,
+    hasRole(role) {
+      return this.roles.includes(role);
+    }
 };
 
 setUser(user);
@@ -65,6 +66,7 @@ if (!restoreLoginAttemptCompleted) {
 
   return (
     <div className="App container">
+      <AuthContext.Provider value={auth}>
       <BrowserRouter>
         <NavigationBar />
         <Switch>
@@ -81,6 +83,7 @@ if (!restoreLoginAttemptCompleted) {
           </Route>
         </Switch>
       </BrowserRouter>
+      </AuthContext.Provider>
     </div>
   );
 }
