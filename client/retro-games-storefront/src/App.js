@@ -65,13 +65,8 @@ if (!restoreLoginAttemptCompleted) {
 }
 
   return (
-<<<<<<< HEAD
     <div className="App container">
       <AuthContext.Provider value={auth}>
-=======
-    <AuthContext.Provider value ={auth}>
-  
->>>>>>> b650db202ce73ab64ac05ff4f5f8708f9c04faf3
       <BrowserRouter>
         <NavigationBar />
         <Switch>
@@ -89,10 +84,7 @@ if (!restoreLoginAttemptCompleted) {
         </Switch>
       </BrowserRouter>
       </AuthContext.Provider>
-<<<<<<< HEAD
     </div>
-=======
->>>>>>> b650db202ce73ab64ac05ff4f5f8708f9c04faf3
   );
 }
 
