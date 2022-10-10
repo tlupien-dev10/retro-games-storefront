@@ -2,12 +2,12 @@ package learn.retrogames.models;
 
 public class Merchandise {
     private int id;
-    private int name;
+    private String name;
 
     public Merchandise() {
     }
 
-    public Merchandise(int id, int name) {
+    public Merchandise(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -20,11 +20,11 @@ public class Merchandise {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 }

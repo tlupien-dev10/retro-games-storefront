@@ -5,8 +5,8 @@ public class Listing {
     private int id;
     private String name;
     private String description;
-    private String image_path;
-    private String listing_type;
+    private String imagePath;
+    private ListingType listingType;
     private int quantity;
 
     private Console console;
@@ -16,12 +16,12 @@ public class Listing {
     public Listing() {
     }
 
-    public Listing(int id, String name, String description, String image_path, String listing_type, int quantity) {
+    public Listing(int id, String name, String description, String imagePath, ListingType listingType, int quantity) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.image_path = image_path;
-        this.listing_type = listing_type;
+        this.imagePath = imagePath;
+        this.listingType = listingType;
         this.quantity = quantity;
     }
 
@@ -49,20 +49,20 @@ public class Listing {
         this.description = description;
     }
 
-    public String getImage_path() {
-        return image_path;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage_path(String image_path) {
-        this.image_path = image_path;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
-    public String getListing_type() {
-        return listing_type;
+    public ListingType getListingType() {
+        return listingType;
     }
 
-    public void setListing_type(String listing_type) {
-        this.listing_type = listing_type;
+    public void setListingType(ListingType listingType) {
+        this.listingType = listingType;
     }
 
     public int getQuantity() {
