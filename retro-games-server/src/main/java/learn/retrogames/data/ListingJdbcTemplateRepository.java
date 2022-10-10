@@ -45,21 +45,29 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     }
 
     private Console getConsole(int id) {
-        final String sql = "SELECT * FROM console WHERE listing_id = ?";
+        final String sql = "SELECT * FROM console WHERE listing_id = ?;";
         return jdbcTemplate.query(sql, new ConsoleMapper(), id).stream()
                 .findFirst()
                 .orElse(null);
     }
 
     private Game getGame(int id) {
-        final String sql = "SELECT * FROM game WHERE listing_id = ?";
-        return jdbcTemplate.query(sql, new GameMapper(), id).stream()
+        final String sql = "SELECT * FROM game WHERE listing_id = ?;";
+        Game game =  jdbcTemplate.query(sql, new GameMapper(), id).stream()
                 .findFirst()
                 .orElse(null);
+        getConsolesForGame(game);
+        return game;
+    }
+
+    private void getConsolesForGame(Game game) {
+        final String sql = "SELECT * FROM console AS c INNER JOIN game_console AS gc ON c.console_id = gc.console_id "
+                + "WHERE gc.game_id = ?;";
+        game.setConsoles(jdbcTemplate.query(sql, new ConsoleMapper(), game.getId()));
     }
 
     private Merchandise getMerchandise(int id) {
-        final String sql = "SELECT * FROM merchandise WHERE listing_id = ?";
+        final String sql = "SELECT * FROM merchandise WHERE listing_id = ?;";
         return jdbcTemplate.query(sql, new MerchandiseMapper(), id).stream()
                 .findFirst()
                 .orElse(null);

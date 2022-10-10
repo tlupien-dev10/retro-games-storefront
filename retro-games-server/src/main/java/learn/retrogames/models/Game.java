@@ -1,13 +1,15 @@
 package learn.retrogames.models;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Game {
-    //TODO: represent game-console relationship (with array)
     private int id;
     private String genre;
     private String publisher;
     private LocalDate releaseDate;
+
+    private List<Console> consoles;
 
     public Game() {
     }
@@ -50,4 +52,13 @@ public class Game {
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
+
+    public List<Console> getConsoles() {
+        return consoles;
+    }
+
+    public void setConsoles(List<Console> consoles) {
+        this.consoles = consoles;
+    }
+
 }
