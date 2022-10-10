@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-import Error from "./Error";
-import AuthContext from "../context/AuthContext";
+import Error from "../Error/Error";
+import AuthContext from "../../Components/AuthContext/AuthContext";
 
 export default function Login() {
   const [username, setUsername] = useState("");
