@@ -40,7 +40,7 @@ create table listing (
 
 create table merchandise (
 	merchandise_id int primary key auto_increment,
-    merchandise_name varchar(100),
+    merchandise_category varchar(100) not null,
     listing_id int not null,
     constraint fk_merchandise_listing_id
 		foreign key (listing_id)
@@ -145,7 +145,18 @@ insert into listing (listing_name, listing_description, image_path, listing_type
     ('Super Nintendo Entertainment System', 'The successor to the NES, this system introduced advanced graphics compared to other systems at the time. The most popular games it supports are Super Mario World, Super Metroid, Donkey Kong Country, and more!', 'imagepath', 'CONSOLE', 5, 114.99),
     ('Sega Genesis', 'The Console that helped start the console War in 1991 in the U.S. and Europe. This system can play classics such as Sonic the Hedgehog and Mortal Kombat', 'imagepath', 'CONSOLE', 1, 79.99),
     ('PlayStation', 'Created as as CD-ROM peripheral for the Super NES, this system has many premier franchises including Crash Bandicoot, Tomb Raider, and Final Fantasy', 'imagepath', 'CONSOLE', 26, 149.99),
-    ('GameCube', "Known for it's extensive library of high-quality games, this system had tons of exclusive features for cross system play and exclusive content", 'imagepath', 'CONSOLE', 19, 99.99);
+    ('GameCube', "Known for it's extensive library of high-quality games, this system had tons of exclusive features for cross system play and exclusive content", 'imagepath', 'CONSOLE', 19, 99.99),
+    ('GameCube Controller', 'Controller for the GameCube with extra joysticks and satisfaction guaranteed', 'imagepath', 'MERCHANDISE', 5, 19.99);
+    
+insert into merchandise values
+	('Controller', 11);
+    
+insert game values
+	('Platformer', 'Nintendo', '2002/07/19', 1);
+    
+    
+    
+    
     
     
 
