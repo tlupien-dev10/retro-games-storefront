@@ -8,6 +8,7 @@ import NavigationBar from "./Components/NavigationBar/NavigationBar";
 import Homepage from "./Webpages/Homepage/Homepage";
 import NotFound from "./Webpages/NotFound/NotFound";
 import Login from "./Webpages/LoginPage/LoginPage";
+import AuthContext from "./Components/AuthContext/AuthContext";
 
 
 const LOCAL_STORAGE_TOKEN_KEY = "retroGamesToken";
@@ -64,7 +65,8 @@ if (!restoreLoginAttemptCompleted) {
 }
 
   return (
-    <div className="App container">
+    <AuthContext.Provider value ={auth}>
+  
       <BrowserRouter>
         <NavigationBar />
         <Switch>
@@ -81,7 +83,7 @@ if (!restoreLoginAttemptCompleted) {
           </Route>
         </Switch>
       </BrowserRouter>
-    </div>
+      </AuthContext.Provider>
   );
 }
 
