@@ -3,7 +3,10 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
-
+import M from "materialize-css";
+import "materialize-css/dist/css/materialize.min.css";
+// import Carousel from "./Webpages/Homepage/Carousel";
+import Carousel2 from "./Carousel2";
 import NavigationBar from "./Components/NavigationBar/NavigationBar";
 import Homepage from "./Webpages/Homepage/Homepage";
 import NotFound from "./Webpages/NotFound/NotFound";
@@ -13,7 +16,10 @@ import AuthContext from "./Components/AuthContext/AuthContext";
 
 const LOCAL_STORAGE_TOKEN_KEY = "retroGamesToken";
 
+
+
 function App() {
+
 
 const [user, setUser] = useState(null);
 const [restoreLoginAttemptCompleted, setRestoreLoginAttemptCompleted] = useState(false);
@@ -84,8 +90,9 @@ if (!restoreLoginAttemptCompleted) {
         </Switch>
       </BrowserRouter>
       </AuthContext.Provider>
-    </div>
+      </div> 
   );
 }
+
 
 export default App;
