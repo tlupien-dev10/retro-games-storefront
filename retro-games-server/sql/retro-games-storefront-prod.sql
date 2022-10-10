@@ -34,7 +34,8 @@ create table listing (
     listing_description varchar(300) not null,
     image_path varchar(1000) not null,
     listing_type varchar(50) not null,
-    quantity int not null 
+    quantity int not null,
+    price numeric(8, 2)
 );
 
 create table merchandise (
@@ -118,11 +119,36 @@ insert into app_role (`name`) values
     
 insert into app_user (username, password_hash, disabled) values
 	('john@smith.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
-    ('sally@jones.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0);
+    ('sally@jones.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
+    ('tyler@bencs.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
+    ('tim@lupien.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
+    ('jake@frisch.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
+    ('david@smelser.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0),
+    ('irina@cudo.com', '$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa', 0);
     
 insert into app_user_role values 
 	(1, 2),
-    (2, 1);
+    (2, 1),
+    (3, 2),
+    (4, 2),
+    (5, 2),
+    (6, 1),
+    (7, 1);
+    
+insert into listing (listing_name, listing_description, image_path, listing_type, quantity, price) values 
+	('Super Mario Sunshine', 'Explore Isle Delfino as Mario with F.L.U.D.D. to stop Shadow Mario and Rescue Princess Peach', 'imagepath', 'GAME', 14, 69.99),
+    ("Luigi's Mansion", 'Luigi has just inherited a luxury mansion, but it is filled with ghosts! Now Luigi must rescue Mario from King Boo', 'imagepath', 'GAME', 8, 49.99),
+    ('Donkey Kong 64', "Donkey Kong's friends have been kidnapped! It is up to you as DK to stop King K. Rool and maybe pick up some bananas along the way", 'imagepath', 'GAME', 12, 49.99),
+    ('Super Mario 64', "Bowser has hidden Princess Peach somewhere in her castle and it is up to you in Mario's first 3-D game to jump through painting and collect stars to save her!", 'imagepath', 'GAME', 4, 89.99),
+    ('GoldenEye 007', "When a powerful satellite falls into the wrong hands, it is up to you as James Bond to 006 from destroying the world!", 'imagepath', 'GAME', 23, 49.99),
+    ('Nintendo 64', "The successor to the Super NES, this system revolutionized gaming with it's amazing 3-D capabilities", 'imagepath', 'CONSOLE', 14, 149.99),
+    ('Super Nintendo Entertainment System', 'The successor to the NES, this system introduced advanced graphics compared to other systems at the time. The most popular games it supports are Super Mario World, Super Metroid, Donkey Kong Country, and more!', 'imagepath', 'CONSOLE', 5, 114.99),
+    ('Sega Genesis', 'The Console that helped start the console War in 1991 in the U.S. and Europe. This system can play classics such as Sonic the Hedgehog and Mortal Kombat', 'imagepath', 'CONSOLE', 1, 79.99),
+    ('PlayStation', 'Created as as CD-ROM peripheral for the Super NES, this system has many premier franchises including Crash Bandicoot, Tomb Raider, and Final Fantasy', 'imagepath', 'CONSOLE', 26, 149.99),
+    ('GameCube', "Known for it's extensive library of high-quality games, this system had tons of exclusive features for cross system play and exclusive content", 'imagepath', 'CONSOLE', 19, 99.99);
+    
+    
+
     
 
 
