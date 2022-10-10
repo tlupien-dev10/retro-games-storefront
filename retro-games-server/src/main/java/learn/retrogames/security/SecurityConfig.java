@@ -2,19 +2,23 @@ package learn.retrogames.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // Snip! (leave the implementation of this method as it is)
+
+    private final JwtConverter converter;
+
+    public SecurityConfig(JwtConverter converter) {
+        this.converter = converter;
     }
 
     @Override
@@ -27,17 +31,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private PasswordEncoder encoder;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        var userBuilder = User.withUsername("user")
-                .password("user").passwordEncoder(password -> encoder.encode(password))
-                .roles("USER");
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
 
-        var adminBuilder = User.withUsername("admin")
-                .password("admin").passwordEncoder(password -> encoder.encode(password))
-                .roles("ADMIN");
+        http.cors();
 
-        auth.inMemoryAuthentication()
-                .withUser(userBuilder)
-                .withUser(adminBuilder);
+        http.authorizeRequests()
+                .antMatchers("/authenticate").permitAll()
+//                .antMatchers(HttpMethod.GET,
+//                        "/order").permitAll()
+//                .antMatchers(HttpMethod.GET,
+//                        "/sighting", "/sighting/*").permitAll()
+//                .antMatchers(HttpMethod.POST,
+//                        "/sighting").hasAnyRole("USER", "ADMIN")
+//                .antMatchers(HttpMethod.PUT,
+//                        "/sighting/*").hasAnyRole("USER", "ADMIN")
+//                .antMatchers(HttpMethod.DELETE,
+//                        "/sighting/*").hasAnyRole("ADMIN")
+//                .antMatchers("/**").denyAll()
+                .and()
+//                // new ...
+                .addFilter(new JwtRequestFilter(authenticationManager(), converter))
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
+
 }
