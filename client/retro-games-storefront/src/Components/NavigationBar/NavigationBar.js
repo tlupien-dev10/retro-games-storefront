@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import {Link} from "react-router-dom";
-import AuthContext from "./AuthContext/AuthContext";
+import { Link } from "react-router-dom";
+import AuthContext from "../AuthContext/AuthContext";
 
 function NavigationBar() {
     const authorization = useContext(AuthContext);
@@ -11,7 +11,7 @@ function NavigationBar() {
             <li>
               <Link to="/">Home</Link>
             </li>
-            {auth.user ? (
+            {authorization.user ? (
               <li>
                 <Link to="/products">Products</Link>
               </li>
@@ -26,10 +26,10 @@ function NavigationBar() {
               </>
             )}
           </ul>
-          {auth.user && (
+          {authorization.user && (
             <div>
-              Welcome {auth.user.username}!
-              <button onClick={() => auth.logout()}>Logout</button>
+              Welcome {authorization.user.username}!
+              <button onClick={() => authorization.logout()}>Logout</button>
             </div>
           )}
         </nav>
