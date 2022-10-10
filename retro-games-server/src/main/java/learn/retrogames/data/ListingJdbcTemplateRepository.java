@@ -24,11 +24,22 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     public List<Listing> getAll() {
         final String sql = "SELECT * FROM listing LIMIT 1000;";
         List<Listing> all =  jdbcTemplate.query(sql, new ListingMapper());
-        return null;
+        all.forEach(this::getDetails);
+        return all;
     }
 
-    private void getDetails(int id) {
-        //TODO: put a switch here that calls one of the helper methods to hydrate listing
+    private void getDetails(Listing listing) {
+        switch (listing.getListingType()) {
+            case GAME:
+                listing.setGame(getGame(listing.getId()));
+                break;
+            case CONSOLE:
+                listing.setConsole(getConsole(listing.getId()));
+                break;
+            case MERCHANDISE:
+                listing.setMerchandise(getMerchandise(listing.getId()));
+                break;
+        }
     }
 
     private Console getConsole(int id) {
