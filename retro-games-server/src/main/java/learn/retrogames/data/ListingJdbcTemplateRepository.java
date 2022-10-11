@@ -5,6 +5,7 @@ import learn.retrogames.models.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Key;
@@ -13,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ListingJdbcTemplateRepository implements ListingRepository {
     private final JdbcTemplate jdbcTemplate;
 
@@ -134,7 +136,9 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     private void getConsolesForGame(Game game) {
         final String sql = "SELECT * FROM console AS c INNER JOIN game_console AS gc ON c.console_id = gc.console_id "
                 + "WHERE gc.game_id = ?;";
-        game.setConsoles(jdbcTemplate.query(sql, new ConsoleMapper(), game.getId()));
+        if (game != null) {
+            game.setConsoles(jdbcTemplate.query(sql, new ConsoleMapper(), game.getId()));
+        }
     }
 
     private Merchandise getMerchandise(int id) {

@@ -13,8 +13,8 @@ public class ConsoleMapper implements RowMapper<Console> {
         console.setId(resultSet.getInt("console_id"));
         console.setVersion(resultSet.getString("console_version"));
         console.setCompany(resultSet.getString("company"));
-        if (resultSet.getDate("release_date") != null) {
-            console.setReleaseDate(resultSet.getDate("release_date").toLocalDate());
+        if (resultSet.getDate("console_release_date") != null) {
+            console.setReleaseDate(resultSet.getDate("console_release_date").toLocalDate());
         }
         return console;
     }
