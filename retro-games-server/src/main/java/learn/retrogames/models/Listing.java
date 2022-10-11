@@ -1,5 +1,7 @@
 package learn.retrogames.models;
 
+import java.util.List;
+
 public class Listing {
 
     //TODO: add reviews as a thing that can be hydrated here
@@ -13,6 +15,8 @@ public class Listing {
     private Console console;
     private Game game;
     private Merchandise merchandise;
+
+    private List<Review> reviews;
 
     public Listing() {
     }
@@ -96,5 +100,13 @@ public class Listing {
 
     public void setMerchandise(Merchandise merchandise) {
         this.merchandise = merchandise;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

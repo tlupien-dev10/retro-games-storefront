@@ -1,21 +1,13 @@
 package learn.retrogames.data;
 
-import learn.retrogames.data.mappers.ConsoleMapper;
-import learn.retrogames.data.mappers.GameMapper;
-import learn.retrogames.data.mappers.ListingMapper;
-import learn.retrogames.data.mappers.MerchandiseMapper;
-import learn.retrogames.models.Console;
-import learn.retrogames.models.Game;
-import learn.retrogames.models.Listing;
-import learn.retrogames.models.Merchandise;
+import learn.retrogames.data.mappers.*;
+import learn.retrogames.models.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListingJdbcTemplateRepository implements ListingRepository {
-    //TODO: add review-getting helper method here
-    //TODO: modify RowMapper for game and console to each have the list of related console or game
-
     private final JdbcTemplate jdbcTemplate;
 
     public ListingJdbcTemplateRepository(JdbcTemplate jdbcTemplate) {
@@ -27,6 +19,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
         final String sql = "SELECT * FROM listing LIMIT 1000;";
         List<Listing> all =  jdbcTemplate.query(sql, new ListingMapper());
         all.forEach(this::getDetails);
+        all.forEach(this::getReviews);
         return all;
     }
 
@@ -71,5 +64,23 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
         return jdbcTemplate.query(sql, new MerchandiseMapper(), id).stream()
                 .findFirst()
                 .orElse(null);
+    }
+
+    private void getReviews(Listing listing) {
+        int id = listing.getId();
+        final String sql = "SELECT * FROM review WHERE listing_id = ?;";
+        List<Review> reviews =  jdbcTemplate.query(sql, new ReviewMapper(), id);
+        reviews.forEach(this::getAuthorsForReviews);
+        listing.setReviews(reviews);
+    }
+
+    private void getAuthorsForReviews(Review review) {
+        final String sql = "SELECT * FROM app_user WHERE app_user_id = ?;";
+        // This *should* pull in the user but without any role information because of the empty list passed to the
+        // Mapper. Testing will be needed.
+        AppUser author = jdbcTemplate.query(sql, new AppUserMapper(new ArrayList<String>()), review.getId()).stream()
+                .findFirst()
+                .orElse(null);
+        review.setAuthor(author);
     }
 }
