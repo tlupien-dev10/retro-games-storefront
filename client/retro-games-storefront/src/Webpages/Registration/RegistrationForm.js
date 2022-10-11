@@ -1,32 +1,72 @@
-import React, { useState } from "react";
-import {Link} from "react-router-dom";
+import React, { useState, useContext  } from "react";
+import {Link, useHistory} from "react-router-dom";
 
 import "./RegistrationForm.css";
 import FormHelper from "../../Components/Forms/FormHelper"
+import AuthContext from "../../Components/AuthContext/AuthContext";
 
+const DEFAULT_USER = {
+    username: "",
 
+    
+};
 
 function RegistrationForm() {
 
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [confirmPassword, setConfirmPassword] = useState(null);
+    // const [email, setEmail] = useState(null);
+    // const [password, setPassword] = useState(null);
+    // const [confirmPassword, setConfirmPassword] = useState(null);
 
-  const handleChange = (r) => {
-    const { id, value } = r.target;
-    if (id === "email") {
-      setEmail(value);
-    }
-    if (id === "password") {
-      setPassword(value);
-    }
-    if (id === "confirmPassword") {
-      setConfirmPassword(value);
-    }
-  };
+    const [user, setUser]= useState(DEFAULT_USER);
+
+    const auth = useContext(AuthContext);
+
+    const history = useHistory();
+
+//   const handleChange = (r) => {
+//     const { id, value } = r.target;
+//     if (id === "email") {
+//       setEmail(value);
+//     }
+//     if (id === "password") {
+//       setPassword(value);
+//     }
+//     if (id === "confirmPassword") {
+//       setConfirmPassword(value);
+//     }
+//   };
+
+const handleChange = (event) => {
+    const newUser = {...user};
+    newUser[event.target.name] = event.target.value;
+    setUser(newUser);
+}
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    const newUser = {...user};
+
+    const init = {
+       method: "POST",
+       headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+       },
+       body: JSON.stringify(newUser)
+    };
+    fetch ("http://localhost:8080/create_account", init)
+    .then(async response => {
+        if (response.status === 201) {
+            return response.json();
+        } return Promise.reject (await response.json());
+    })
+    .then (userInfo => {
+        history.push("/")
+    })
+    // Temporary
+    .catch ((errorMessages) => {
+        console.log(errorMessages)
+    });
 
   };
 
@@ -35,28 +75,28 @@ function RegistrationForm() {
 <div className="container">
 
         <form onSubmit={handleSubmit}>
-            <h2 id="formTitle">Register</h2>
+            <h3 id="formTitle">Registration</h3>
           <FormHelper
             inputType={"text"}
-            identifier={"email"}
+            identifier={"username"}
             labelText={"Email:"}
-            newVal={email}
+            newVal={user.email}
             onChangeHandler={handleChange}
           />
           <FormHelper
             inputType={"password"}
             identifier={"password"}
             labelText={"Password:"}
-            newVal={password}
+            newVal={user.password}
             onChangeHandler={handleChange}
           />
-          <FormHelper
+          {/* <FormHelper
             inputType={"password"}
             identifier={"confirmPassword"}
             labelText={"Confirm Password:"}
-            newVal={confirmPassword}
+            newVal={user.confirmPassword}
             onChangeHandler={handleChange}
-          />
+          /> */}
            <button className="btn btn-success" id="save">Register</button>
           <Link to="/" className="btn btn-danger" id="cncl">
             Cancel
