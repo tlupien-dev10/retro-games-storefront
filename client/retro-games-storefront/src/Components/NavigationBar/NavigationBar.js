@@ -18,7 +18,7 @@ function NavigationBar() {
               </li>
             ) : (
               <>
-                <li class="right-align">
+                <li className="right-align">
                   <Link to="/login">Login</Link>
                 </li>
                 <li>

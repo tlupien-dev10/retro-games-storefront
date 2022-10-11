@@ -1,0 +1,45 @@
+#register {
+
+        background: #fd0f0f;  /* fallback for old browsers */
+       
+        background: linear-gradient(to right, #090d11, #0099ff);
+        border-radius: 5px;
+        color:rgb(248, 18, 18);
+        width: 550px;
+        margin: 20px auto;
+        padding: 20px;
+        text-align: left;
+        padding: 20px 10px;
+    }
+    
+    .form{
+        background-color: rgb(255, 5, 5);
+        color:rgb(248, 18, 18);
+        border-radius: 5px;
+        width: 550px;
+        margin: 20px auto;
+        padding: 20px;
+        /* height: 600px; */
+    }
+    
+    .form-body{
+        text-align: left;
+        padding: 20px 10px;
+        color:rgb(223, 8, 8)
+    }
+    
+    .form-body > *{
+        padding: 5px;
+    }
+    
+    .form__label{
+        width: 40%;
+    }
+    
+    .form_input{
+        width: 60%;
+    }
+    
+    .footer{
+        text-align: center;
+    }
