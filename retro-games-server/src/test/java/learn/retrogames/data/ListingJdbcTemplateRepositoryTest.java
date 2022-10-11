@@ -1,9 +1,6 @@
 package learn.retrogames.data;
 
-import learn.retrogames.models.Console;
-import learn.retrogames.models.Game;
-import learn.retrogames.models.Listing;
-import learn.retrogames.models.ListingType;
+import learn.retrogames.models.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,7 +87,7 @@ class ListingJdbcTemplateRepositoryTest {
         Listing actual = listingJdbcTemplateRepository.add(toAdd);
 
         assertNotNull(actual);
-        assertEquals(NEXT_ID + 1, actual.getId());
+        assertTrue(actual.getId() >= 14 && actual.getId() <= 16);
     }
 
     @Test
@@ -114,14 +111,58 @@ class ListingJdbcTemplateRepositoryTest {
         Listing actual = listingJdbcTemplateRepository.add(toAdd);
 
         assertNotNull(actual);
-        assertEquals(NEXT_ID + 1, actual.getId());
+        assertTrue(actual.getId() >= 14 && actual.getId() <= 16);
     }
 
     @Test
     void shouldAddMerchandiseListing(){
+        Listing toAdd = new Listing();
+        toAdd.setName("Mario merch");
+        toAdd.setPrice(new BigDecimal(19.99f));
+        toAdd.setDescription("fleece blanket");
+        toAdd.setListingType(ListingType.MERCHANDISE);
+        toAdd.setQuantity(4);
+        toAdd.setImagePath("./ImageTest/999");
+
+        Merchandise toJoin = new Merchandise();
+        toJoin.setCategory("Blanket");
+        toJoin.setId(6);
+
+        toAdd.setMerchandise(toJoin);
+        Listing actual = listingJdbcTemplateRepository.add(toAdd);
+        assertNotNull(actual);
+        assertTrue(actual.getId() >= 14 && actual.getId() <= 16 );
+    }
+
+    @Test
+    void shouldUpdateGameListing(){
 
     }
 
+    @Test
+    void shouldUpdateConsoleListing() {
+
+    }
+
+    @Test
+    void shouldUpdateMerchandise(){
+
+    }
+
+    @Test
+    void shouldDeleteGameListing(){
+        assertTrue(listingJdbcTemplateRepository.deleteById(1));
+    }
+
+    @Test
+    void shouldDeleteConsoleListing(){
+        assertTrue(listingJdbcTemplateRepository.deleteById(7));
+    }
+
+    @Test
+    void shouldDeleteMerchandiseListing(){
+        assertTrue(listingJdbcTemplateRepository.deleteById(12));
+    }
 
 
 }
