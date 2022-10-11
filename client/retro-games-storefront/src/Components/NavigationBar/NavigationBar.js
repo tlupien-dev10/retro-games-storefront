@@ -24,6 +24,12 @@ function NavigationBar() {
                 <li>
                   <Link to="/register">Register</Link>
                 </li>
+                <li>
+                  <Link to="/admin/items">Admin-Items</Link>
+                </li>
+                <li>
+                  <Link to="/admin/orders">Admin-Orders</Link>
+                </li>
               </>
             )}
           </ul>

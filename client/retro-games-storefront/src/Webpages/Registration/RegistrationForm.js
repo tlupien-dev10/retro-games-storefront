@@ -1,9 +1,9 @@
-import React, { useState, useContext  } from "react";
+import React, { useState } from "react";
 import {Link, useHistory} from "react-router-dom";
 
 import "./RegistrationForm.css";
 import FormHelper from "../../Components/Forms/FormHelper"
-import AuthContext from "../../Components/AuthContext/AuthContext";
+import useAuth from "../../Components/Hooks/useAuth";
 
 const DEFAULT_USER = {
     username: "",
@@ -19,7 +19,7 @@ function RegistrationForm() {
 
     const [user, setUser]= useState(DEFAULT_USER);
 
-    const auth = useContext(AuthContext);
+    const auth = useAuth();
 
     const history = useHistory();
 

@@ -1,15 +1,17 @@
-import React, { useContext, useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Error from "../Error/Error";
-import AuthContext from "../../Components/AuthContext/AuthContext";
+import useAuth from "../../Components/Hooks/useAuth";
+// import AuthContext from "../../Components/AuthContext/AuthContext";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  const auth = useContext(AuthContext);
+  // const auth = useContext(AuthContext);
+  const auth = useAuth();
 
   const history = useHistory();
 
