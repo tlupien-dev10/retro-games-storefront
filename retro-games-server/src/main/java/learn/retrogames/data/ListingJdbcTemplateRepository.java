@@ -107,6 +107,10 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
         return (jdbcTemplate.update(sql,id) > 0);
     }
 
+    // -------------------------------
+    // Read details helper methods
+    // -------------------------------
+    
     private void getDetails(Listing listing) {
         switch (listing.getListingType()) {
             case GAME:
@@ -185,6 +189,10 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
         }
     }
 
+    // -----------------------------
+    // Add details helper methods
+    // -----------------------------
+
     private void addGame(Game game, int listingId) {
         final String sql = "INSERT INTO game (genre, publisher, release_date, listing_id) " +
                 "VALUES (?, ?, ?, ?);";
@@ -244,6 +252,10 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
             return ps;
         }, holder);
     }
+
+    // ------------------------------
+    // Update details helper methods
+    // ------------------------------
 
     private void updateDetails(Listing listing) {
         switch (listing.getListingType()) {
@@ -310,4 +322,8 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
                 listingId,
                 merch.getId());
     }
+
+    // -----------------------------
+    // Delete details order method
+    // -----------------------------
 }
