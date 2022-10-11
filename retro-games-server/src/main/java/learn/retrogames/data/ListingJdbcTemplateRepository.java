@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Key;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -157,6 +158,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     }
 
     private void getAuthorsForReviews(Review review) {
+        //TODO make it remove some of the user's fields (like pass hash)
         final String sql = "SELECT * FROM app_user WHERE app_user_id = ?;";
         // This *should* pull in the user but without any role information because of the empty list passed to the
         // Mapper. Testing will be needed.
@@ -164,5 +166,21 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
                 .findFirst()
                 .orElse(null);
         review.setAuthor(author);
+    }
+
+    private void addGame(Game game) {
+        final String sql = "INSERT INTO game (genre, publisher, release_date, listing_id " +
+                "VALUES (?, ?, ?, ?);";
+
+        KeyHolder holder = new GeneratedKeyHolder();
+        int nRowsAffected = jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, game.getGenre());
+            ps.setString(2, game.getPublisher());
+            ps.setDate(3, game.getReleaseDate() == null ? null : Date.valueOf(game.getReleaseDate()));
+            ps.setInt(4, game.getId());
+            return ps;
+        }, holder);
+
     }
 }
