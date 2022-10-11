@@ -3,7 +3,12 @@ package learn.retrogames.data;
 import learn.retrogames.data.mappers.*;
 import learn.retrogames.models.*;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
+import java.security.Key;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +43,29 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
 
     @Override
     public Listing add(Listing listing) {
-        return null;
+        final String sql = "INSERT INTO listing (listing_name, listing_description, image_path, listing_type, quantity, price)" +
+                " VALUES(?,?,?,?,?,?);";
+        KeyHolder holder = new GeneratedKeyHolder();
+        int nRowsAffected = jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, listing.getName());
+            ps.setString(2, listing.getDescription());
+            ps.setString(3,listing.getImagePath());
+            ps.setString(4, listing.getListingType().toString());
+            ps.setInt(5, listing.getQuantity());
+            ps.setBigDecimal(6, listing.getPrice());
+            return ps;
+        }, holder);
+
+        if (nRowsAffected <= 0) {
+            return null;
+        }
+
+        //TODO: also insert stuff into the details table
+        
+
+        listing.setId(holder.getKey().intValue());
+        return listing;
     }
 
     @Override
