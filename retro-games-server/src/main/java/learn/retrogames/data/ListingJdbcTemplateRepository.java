@@ -23,6 +23,34 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
         return all;
     }
 
+    @Override
+    public Listing getById(int id) {
+        final String sql = "SELECT * FROM listing WHERE listing_id = ?;";
+        Listing listing = jdbcTemplate.query(sql, new ListingMapper(), id).stream()
+                .findFirst()
+                .orElse(null);
+        if (listing != null) {
+            getDetails(listing);
+            getReviews(listing);
+        }
+        return listing;
+    }
+
+    @Override
+    public Listing add(Listing listing) {
+        return null;
+    }
+
+    @Override
+    public boolean update(Listing listing) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteById(int id) {
+        return false;
+    }
+
     private void getDetails(Listing listing) {
         switch (listing.getListingType()) {
             case GAME:
