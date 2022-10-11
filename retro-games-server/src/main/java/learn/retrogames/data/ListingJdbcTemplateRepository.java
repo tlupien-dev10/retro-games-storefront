@@ -78,18 +78,23 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
                 " image_path = ?," +
                 " listing_type = ?," +
                 " quantity = ?," +
-                " price = ?;";
+                " price = ?" +
+                " WHERE listing_id = ?;";
 
-        //TODO: update details table as well (?)
-
-
-        return (jdbcTemplate.update(sql,
+         boolean listingUpdated =  (jdbcTemplate.update(sql,
                 listing.getName(),
                 listing.getDescription(),
                 listing.getImagePath(),
                 listing.getListingType().toString(),
                 listing.getQuantity(),
-                listing.getPrice()) > 0); // returns true if it affected a row
+                listing.getPrice(),
+                listing.getId()) > 0);
+
+        if (listingUpdated) {
+            updateDetails(listing);
+        }
+
+        return listingUpdated;
     }
 
     @Override
@@ -238,5 +243,71 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
             ps.setInt(2, listingId);
             return ps;
         }, holder);
+    }
+
+    private void updateDetails(Listing listing) {
+        switch (listing.getListingType()) {
+            case GAME:
+                updateGame(listing.getGame(), listing.getId());
+                break;
+            case CONSOLE:
+                updateConsole(listing.getConsole(), listing.getId());
+                break;
+            case MERCHANDISE:
+                updateMerchandise(listing.getMerchandise(), listing.getId());
+                break;
+        }
+    }
+
+    private void updateGame(Game game, int listingId) {
+        final String sql = "UPDATE game SET" +
+                " genre = ?," +
+                " publisher = ?," +
+                " release_date = ?," +
+                " listing_id = ?" +
+                " WHERE game_id = ?;";
+        jdbcTemplate.update(sql,
+                game.getGenre(),
+                game.getPublisher(),
+                game.getReleaseDate(),
+                listingId,
+                game.getId());
+
+        // since update wouldn't be great here, reset and add the consoles again
+        resetGameConsoleRelationships(game);
+        for (int i = 0; i < game.getConsoles().size(); i++) {
+            addGameConsoleRelationship(game, i);
+        }
+    }
+
+    private void resetGameConsoleRelationships(Game game) {
+        final String sql = "DELETE * FROM game_console WHERE game_id = ?";
+        jdbcTemplate.update(sql,game.getId());
+    }
+
+    private void updateConsole(Console console, int listingId) {
+        final String sql = "UPDATE console SET" +
+                " version = ?," +
+                " company = ?," +
+                " console_release_date = ?," +
+                " listing_id = ?" +
+                " WHERE console_id = ?;";
+        jdbcTemplate.update(sql,
+                console.getVersion(),
+                console.getCompany(),
+                console.getReleaseDate(),
+                listingId,
+                console.getId());
+    }
+
+    private void updateMerchandise(Merchandise merch, int listingId) {
+        final String sql = "UPDATE merchandise SET" +
+                " merchandise_category = ?," +
+                " listing_id = ?" +
+                " WHERE merchandise_id = ?;";
+        jdbcTemplate.update(sql,
+                merch.getCategory(),
+                listingId,
+                merch.getId());
     }
 }
