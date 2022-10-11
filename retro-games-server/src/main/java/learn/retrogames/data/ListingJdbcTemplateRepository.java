@@ -65,10 +65,8 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
             return null;
         }
 
-        //TODO: also insert stuff into the details table
-
-
         listing.setId(holder.getKey().intValue());
+        addDetails(listing);
         return listing;
     }
 
@@ -168,8 +166,22 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
         review.setAuthor(author);
     }
 
-    private void addGame(Game game) {
-        final String sql = "INSERT INTO game (genre, publisher, release_date, listing_id " +
+    private void addDetails(Listing listing) {
+        switch (listing.getListingType()) {
+            case GAME:
+                addGame(listing.getGame(), listing.getId());
+                break;
+            case CONSOLE:
+                addConsole(listing.getConsole(), listing.getId());
+                break;
+            case MERCHANDISE:
+                addMerchandise(listing.getMerchandise(), listing.getId());
+                break;
+        }
+    }
+
+    private void addGame(Game game, int listingId) {
+        final String sql = "INSERT INTO game (genre, publisher, release_date, listing_id) " +
                 "VALUES (?, ?, ?, ?);";
 
         KeyHolder holder = new GeneratedKeyHolder();
@@ -178,9 +190,53 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
             ps.setString(1, game.getGenre());
             ps.setString(2, game.getPublisher());
             ps.setDate(3, game.getReleaseDate() == null ? null : Date.valueOf(game.getReleaseDate()));
-            ps.setInt(4, game.getId());
+            ps.setInt(4, listingId);
             return ps;
         }, holder);
 
+        game.setId(holder.getKey().intValue());
+        for (int i = 0; i < game.getConsoles().size(); i++) {
+            addGameConsoleRelationship(game, i);
+        }
+    }
+
+    private void addGameConsoleRelationship(Game game, int i) {
+        // game must have id by the time this gets called
+        // also this should only really be called in the addGame method
+            final String sql = "INSERT INTO game_console (game_id, console_id) VALUES (?,?);";
+            KeyHolder holder = new GeneratedKeyHolder();
+            jdbcTemplate.update(connection -> {
+                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, game.getId());
+                ps.setInt(1,game.getConsoles().get(i).getId());
+                return ps;
+            }, holder);
+    }
+
+    private void addConsole(Console console, int listingId) {
+        final String sql = "INSERT INTO console (version, company, console_release_date, listing_id) " +
+                "VALUES (?, ?, ?, ?);";
+
+        KeyHolder holder = new GeneratedKeyHolder();
+        int nRowsAffected = jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, console.getVersion());
+            ps.setString(2, console.getCompany());
+            ps.setDate(3, console.getReleaseDate() == null ? null : Date.valueOf(console.getReleaseDate()));
+            ps.setInt(4, listingId);
+            return ps;
+        }, holder);
+    }
+
+    private void addMerchandise(Merchandise merch, int listingId) {
+        final String sql = "INSERT INTO merchandise (category, listing_id) " +
+                "VALUES (?,?);";
+        KeyHolder holder = new GeneratedKeyHolder();
+        int nRowsAffected = jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, merch.getCategory());
+            ps.setInt(2, listingId);
+            return ps;
+        }, holder);
     }
 }
