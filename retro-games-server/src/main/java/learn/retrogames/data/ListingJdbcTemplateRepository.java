@@ -102,7 +102,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     public boolean deleteById(int id) {
         Listing toDelete = getById(id);
         deleteDetails(toDelete);
-        final String sql = "DELETE * FROM listing WHERE listing_id = ?;";
+        final String sql = "DELETE FROM listing WHERE listing_id = ?;";
         return (jdbcTemplate.update(sql,id) > 0);
     }
 
@@ -342,18 +342,18 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     }
 
     private void deleteGameById(int id) {
-        final String sql = "DELETE * FROM game WHERE game_id = ?;";
-        jdbcTemplate.update(sql,id);
+        final String sql = "DELETE FROM game WHERE game_id = ?;";
         resetGameConsoleRelationships(id);
+        jdbcTemplate.update(sql,id);
     }
 
     private void deleteConsoleById(int id) {
-        final String sql = "DELETE * FROM console WHERE console_id = ?;";
+        final String sql = "DELETE FROM console WHERE console_id = ?;";
         jdbcTemplate.update(sql,id);
     }
 
     private void deleteMerchandiseById(int id) {
-        final String sql = "DELETE * FROM merchandise WHERE merchandise_id = ?;";
+        final String sql = "DELETE FROM merchandise WHERE merchandise_id = ?;";
         jdbcTemplate.update(sql,id);
     }
 }
