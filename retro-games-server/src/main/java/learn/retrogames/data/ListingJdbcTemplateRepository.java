@@ -226,7 +226,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     }
 
     private void addConsole(Console console, int listingId) {
-        final String sql = "INSERT INTO console (version, company, console_release_date, listing_id) " +
+        final String sql = "INSERT INTO console (console_version, company, console_release_date, listing_id) " +
                 "VALUES (?, ?, ?, ?);";
 
         KeyHolder holder = new GeneratedKeyHolder();

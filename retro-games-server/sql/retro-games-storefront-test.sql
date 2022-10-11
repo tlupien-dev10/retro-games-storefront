@@ -237,5 +237,3 @@ insert into order_listing (order_id, listing_id) values
     
 end //
 delimiter ;
-   
-call set_known_good_state();
