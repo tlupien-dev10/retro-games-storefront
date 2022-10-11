@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Order {
     private int id;
-    private BigDecimal total;
     private AppUser customer;
     private List<Listing> listings;
 
@@ -18,14 +17,6 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
     }
 
     public AppUser getCustomer() {
