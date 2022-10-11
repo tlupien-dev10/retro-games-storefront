@@ -1,5 +1,6 @@
 package learn.retrogames.models;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Listing {
@@ -17,6 +18,7 @@ public class Listing {
     private Merchandise merchandise;
 
     private List<Review> reviews;
+    private BigDecimal price;
 
     public Listing() {
     }
@@ -108,5 +110,13 @@ public class Listing {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

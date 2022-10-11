@@ -18,6 +18,7 @@ public class ListingMapper implements RowMapper<Listing> {
         listing.setImagePath("image_path");
         listing.setListingType(ListingType.valueOf(resultSet.getString("listing_type")));
         listing.setQuantity(resultSet.getInt("quantity"));
-        return null;
+        listing.setPrice(resultSet.getBigDecimal("price"));
+        return listing;
     }
 }
