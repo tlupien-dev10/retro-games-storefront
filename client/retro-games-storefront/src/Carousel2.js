@@ -3,7 +3,7 @@ import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 
 import one from "./ImageTest/1.jpg"
-import two from "./ImageTest/2.png"
+import two from "./ImageTest/2.jpg"
 import three from "./ImageTest/3.jpg"
 import four from "./ImageTest/4.jpg"
 import five from "./ImageTest/5.jpg"
