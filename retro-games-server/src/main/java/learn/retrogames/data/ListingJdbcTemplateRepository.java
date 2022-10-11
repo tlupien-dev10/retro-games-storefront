@@ -5,6 +5,7 @@ import learn.retrogames.models.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Key;
 import java.sql.PreparedStatement;
@@ -91,8 +92,13 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     }
 
     @Override
+    @Transactional
     public boolean deleteById(int id) {
-        return false;
+        // delete details and then listing
+        // TODO: helper methods to delete detail table records go here
+        // NOTE THIS WILL NOT WORK UNTIL HELPER METHODS ARE ADDED ABOVE
+        final String sql = "DELETE * FROM listing WHERE listing_id = ?;";
+        return (jdbcTemplate.update(sql,id) > 0);
     }
 
     private void getDetails(Listing listing) {
