@@ -298,7 +298,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
 
     private void updateConsole(Console console, int listingId) {
         final String sql = "UPDATE console SET" +
-                " version = ?," +
+                " console_version = ?," +
                 " company = ?," +
                 " console_release_date = ?," +
                 " listing_id = ?" +

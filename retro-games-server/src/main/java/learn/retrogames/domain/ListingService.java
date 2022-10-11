@@ -18,4 +18,14 @@ public class ListingService {
         return repo.getAll();
     }
 
+    public Listing getById(int id) {
+        return repo.getById(id);
+    }
+
+    // Validation:
+    // - adding listing of type Game: consoles game is on (which are in the list attached to game) must all exist
+    // - must have name
+    // -
+    // - must have price
+
 }
