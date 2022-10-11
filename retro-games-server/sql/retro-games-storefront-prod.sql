@@ -140,7 +140,7 @@ insert into listing (listing_name, listing_description, image_path, listing_type
     ("Luigi's Mansion", 'Luigi has just inherited a luxury mansion, but it is filled with ghosts! Now Luigi must rescue Mario from King Boo', 'imagepath', 'GAME', 8, 49.99),
     ('Donkey Kong 64', "Donkey Kong's friends have been kidnapped! It is up to you as DK to stop King K. Rool and maybe pick up some bananas along the way", 'imagepath', 'GAME', 12, 49.99),
     ('Super Mario 64', "Bowser has hidden Princess Peach somewhere in her castle and it is up to you in Mario's first 3-D game to jump through painting and collect stars to save her!", 'imagepath', 'GAME', 4, 89.99),
-    ('GoldenEye 007', "When a powerful satellite falls into the wrong hands, it is up to you as James Bond to 006 from destroying the world!", 'imagepath', 'GAME', 23, 49.99),
+    ('GoldenEye 007', "When a powerful satellite falls into the wrong hands, it is up to you as James Bond to stop 006 from destroying the world!", 'imagepath', 'GAME', 23, 49.99),
     ('Nintendo 64', "The successor to the Super NES, this system revolutionized gaming with it's amazing 3-D capabilities", 'imagepath', 'CONSOLE', 14, 149.99),
     ('Super Nintendo Entertainment System', 'The successor to the NES, this system introduced advanced graphics compared to other systems at the time. The most popular games it supports are Super Mario World, Super Metroid, Donkey Kong Country, and more!', 'imagepath', 'CONSOLE', 5, 114.99),
     ('Sega Genesis', 'The Console that helped start the console War in 1991 in the U.S. and Europe. This system can play classics such as Sonic the Hedgehog and Mortal Kombat', 'imagepath', 'CONSOLE', 1, 79.99),
@@ -157,10 +157,26 @@ insert into merchandise (merchandise_category, listing_id) values
     
 insert into game (genre, publisher, release_date, listing_id) values
 	('Platformer', 'Nintendo', '2002-07-19', 1),
-    ('Puzzle-Adventure', 'Nintendo', '2001-09-14', 2);
+    ('Puzzle-Adventure', 'Nintendo', '2001-09-14', 2),
+    ('Platformer', 'Nintendo', '1999-11-22', 3),
+    ('Platformer', 'Nintendo', '1996-06-23', 4),
+    ('First-Person Shooter', 'Nintendo', '1997-08-23', 5);
     
 insert into console (console_version, company, console_release_date, listing_id) values
-	('2nd Generation', 'Nintendo', '1990-11-21', 7);
+	('3rd Generation', 'Nintendo', '1996-06-23', 6),
+	('2nd Generation', 'Nintendo', '1990-11-21', 7),
+    ('3rd Generation', 'Sega', '1988-10-29', 8),
+    ('1st Generation', 'Sony', '1994-12-03', 9),
+    ('4th Generation', 'Nintendo', '2001-09-14', 10);
+    
+insert into game_console values 
+	(1, 5),
+    (2, 5),
+    (3, 6),
+    (4, 6),
+    (5, 6);
+    
+    
     
     
     
