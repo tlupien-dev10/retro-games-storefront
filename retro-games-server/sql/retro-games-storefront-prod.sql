@@ -91,14 +91,13 @@ create table review (
     constraint fk_review_listing_id
 		foreign key (listing_id)
         references listing(listing_id),
-	constraint fk_reivew_author
+	constraint fk_review_author
 		foreign key (review_author)
-        references app_user_id(user_id)
+        references app_user(app_user_id)
 );
 
 create table `order` (
 	order_id int primary key auto_increment,
-    total numeric(8, 2),
     app_user_id int not null,
     constraint fk_order_app_user_id
 		foreign key (app_user_id)
@@ -175,12 +174,38 @@ insert into console (console_version, company, console_release_date, listing_id)
     ('4th Generation', 'Nintendo', '2001-09-14', 10);
     
 insert into game_console values 
-	(1, 5),
-    (2, 5),
-    (3, 6),
-    (4, 6),
-    (5, 6);
+	(1, 1),
+    (2, 1),
+    (3, 2),
+    (4, 2),
+    (5, 2);
     
+insert into review (review_title, review_author, review_description, listing_id) values
+	('Best Game Ever!', 3, 'Without a doubt, the best game I have ever played in my life. Highly Reccommend!', 1),
+    ('Critics love it and so do I!', 3, 'Game was super fun, the Fludd mechanics are so unique!', 1),
+    ('So spooky!', 3, 'So cool that Luigi finally got his own game, and it is an instant classic!', 2),
+    ('A blast', 5, 'As a kid this game is a 10/10', 3),
+    ('Revolutionary', 2, 'This game forever changed gaming and is a must-play for all classic video game lovers!', 4),
+    ('Incredible', 2, 'One of the original first-person shooters, tons of action', 5),
+    ('3-D is amazing', 3, 'I remember playing these at McDonalds all the time. So fun!', 6),
+    ('Beautiful graphics', 1, 'Duck Hunt was my favorite game.', 7),
+    ('Just ok', 2, 'I think the Dreamcast was better', 8),
+    ('Started it all', 1, 'Had a few of my favorite classics like Crash Bandicoot', 9),
+    ('Arguably the best system', 3, "A system so good that Nintendo went out of it's way to give it backwards compatibility", 10),
+    ('Solid Controller', 1, 'Arrived quickly and lasted a long time', 11),
+    ('Burned me!', 2, 'This controller burned my skin when I was spinning the joystick to win a Mario Party mini game!', 12),
+    ('Mesmerizing', 1, 'Super fun lamp for the kids', 13);
+
+insert into `order` (app_user_id) values (1), (1), (2), (3);
+
+insert into order_listing (order_id, listing_id) values
+	(1, 6),
+    (1, 12),
+    (2, 13),
+    (3, 1),
+    (3, 2),
+    (3, 10),
+    (3, 11);
     
     
     
