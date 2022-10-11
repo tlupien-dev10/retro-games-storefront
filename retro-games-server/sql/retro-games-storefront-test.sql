@@ -167,19 +167,19 @@ insert into app_user_role values
     (7, 1);
     
 insert into listing (listing_name, listing_description, image_path, listing_type, quantity, price) values 
-	('Super Mario Sunshine', 'Explore Isle Delfino as Mario with F.L.U.D.D. to stop Shadow Mario and Rescue Princess Peach', 'imagepath', 'GAME', 14, 69.99),
-    ("Luigi's Mansion", 'Luigi has just inherited a luxury mansion, but it is filled with ghosts! Now Luigi must rescue Mario from King Boo', 'imagepath', 'GAME', 8, 49.99),
-    ('Donkey Kong 64', "Donkey Kong's friends have been kidnapped! It is up to you as DK to stop King K. Rool and maybe pick up some bananas along the way", 'imagepath', 'GAME', 12, 49.99),
-    ('Super Mario 64', "Bowser has hidden Princess Peach somewhere in her castle and it is up to you in Mario's first 3-D game to jump through painting and collect stars to save her!", 'imagepath', 'GAME', 4, 89.99),
-    ('GoldenEye 007', "When a powerful satellite falls into the wrong hands, it is up to you as James Bond to stop 006 from destroying the world!", 'imagepath', 'GAME', 23, 49.99),
-    ('Nintendo 64', "The successor to the Super NES, this system revolutionized gaming with it's amazing 3-D capabilities", 'imagepath', 'CONSOLE', 14, 149.99),
-    ('Super Nintendo Entertainment System', 'The successor to the NES, this system introduced advanced graphics compared to other systems at the time. The most popular games it supports are Super Mario World, Super Metroid, Donkey Kong Country, and more!', 'imagepath', 'CONSOLE', 5, 114.99),
-    ('Sega Genesis', 'The Console that helped start the console War in 1991 in the U.S. and Europe. This system can play classics such as Sonic the Hedgehog and Mortal Kombat', 'imagepath', 'CONSOLE', 1, 79.99),
-    ('PlayStation', 'Created as as CD-ROM peripheral for the Super NES, this system has many premier franchises including Crash Bandicoot, Tomb Raider, and Final Fantasy', 'imagepath', 'CONSOLE', 26, 149.99),
-    ('GameCube', "Known for it's extensive library of high-quality games, this system had tons of exclusive features for cross system play and exclusive content", 'imagepath', 'CONSOLE', 19, 99.99),
-    ('GameCube Controller', 'Controller for the GameCube with extra joysticks and satisfaction guaranteed', 'imagepath', 'MERCHANDISE', 5, 19.99),
-    ('Nintendo 64 Controller', 'A controller known for causing burns to your palm, we have updated the joystick to prevent this', 'imagepath', 'MERCHANDISE', 25, 45.99),
-    ('Mario Lamp', 'Cool bedside table lamp that shuts off if it overheats', 'imagepath', 'MERCHANDISE', 12, 29.99);
+	('Super Mario Sunshine', 'Explore Isle Delfino as Mario with F.L.U.D.D. to stop Shadow Mario and Rescue Princess Peach', './ImageTest/1.jpg', 'GAME', 14, 69.99),
+    ("Luigi's Mansion", 'Luigi has just inherited a luxury mansion, but it is filled with ghosts! Now Luigi must rescue Mario from King Boo', './ImageTest/2.jpg', 'GAME', 8, 49.99),
+    ('Donkey Kong 64', "Donkey Kong's friends have been kidnapped! It is up to you as DK to stop King K. Rool and maybe pick up some bananas along the way", './ImageTest/3.jpg', 'GAME', 12, 49.99),
+    ('Super Mario 64', "Bowser has hidden Princess Peach somewhere in her castle and it is up to you in Mario's first 3-D game to jump through painting and collect stars to save her!", './ImageTest/4.jpg', 'GAME', 4, 89.99),
+    ('GoldenEye 007', "When a powerful satellite falls into the wrong hands, it is up to you as James Bond to stop 006 from destroying the world!", './ImageTest/5.jpg', 'GAME', 23, 49.99),
+    ('Nintendo 64', "The successor to the Super NES, this system revolutionized gaming with it's amazing 3-D capabilities", './ImageTest/6.jpg', 'CONSOLE', 14, 149.99),
+    ('Super Nintendo Entertainment System', 'The successor to the NES, this system introduced advanced graphics compared to other systems at the time. The most popular games it supports are Super Mario World, Super Metroid, Donkey Kong Country, and more!', './ImageTest/6.jpg', 'CONSOLE', 5, 114.99),
+    ('Sega Genesis', 'The Console that helped start the console War in 1991 in the U.S. and Europe. This system can play classics such as Sonic the Hedgehog and Mortal Kombat', './ImageTest/8.jpg', 'CONSOLE', 1, 79.99),
+    ('PlayStation', 'Created as as CD-ROM peripheral for the Super NES, this system has many premier franchises including Crash Bandicoot, Tomb Raider, and Final Fantasy', './ImageTest/9.jpg', 'CONSOLE', 26, 149.99),
+    ('GameCube', "Known for it's extensive library of high-quality games, this system had tons of exclusive features for cross system play and exclusive content", './ImageTest/10.jpg', 'CONSOLE', 19, 99.99),
+    ('GameCube Controller', 'Controller for the GameCube with extra joysticks and satisfaction guaranteed', './ImageTest/11.jpg', 'MERCHANDISE', 5, 19.99),
+    ('Nintendo 64 Controller', 'A controller known for causing burns to your palm, we have updated the joystick to prevent this', './ImageTest/12.jpg', 'MERCHANDISE', 25, 45.99),
+    ('Mario Lamp', 'Cool bedside table lamp that shuts off if it overheats', './ImageTest/1.jpg', 'MERCHANDISE', 13, 29.99);
     
 insert into merchandise (merchandise_category, listing_id) values
 	('Controller', 11),
