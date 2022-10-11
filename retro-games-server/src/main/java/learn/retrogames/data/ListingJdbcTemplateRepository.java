@@ -100,9 +100,8 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     @Override
     @Transactional
     public boolean deleteById(int id) {
-        // delete details and then listing
-        // TODO: helper methods to delete detail table records go here
-        // NOTE THIS WILL NOT WORK UNTIL HELPER METHODS ARE ADDED ABOVE
+        Listing toDelete = getById(id);
+        deleteDetails(toDelete);
         final String sql = "DELETE * FROM listing WHERE listing_id = ?;";
         return (jdbcTemplate.update(sql,id) > 0);
     }
@@ -110,7 +109,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     // -------------------------------
     // Read details helper methods
     // -------------------------------
-    
+
     private void getDetails(Listing listing) {
         switch (listing.getListingType()) {
             case GAME:
@@ -286,15 +285,15 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
                 game.getId());
 
         // since update wouldn't be great here, reset and add the consoles again
-        resetGameConsoleRelationships(game);
+        resetGameConsoleRelationships(game.getId());
         for (int i = 0; i < game.getConsoles().size(); i++) {
             addGameConsoleRelationship(game, i);
         }
     }
 
-    private void resetGameConsoleRelationships(Game game) {
+    private void resetGameConsoleRelationships(int id) {
         final String sql = "DELETE * FROM game_console WHERE game_id = ?";
-        jdbcTemplate.update(sql,game.getId());
+        jdbcTemplate.update(sql,id);
     }
 
     private void updateConsole(Console console, int listingId) {
@@ -326,4 +325,35 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     // -----------------------------
     // Delete details order method
     // -----------------------------
+
+    private void deleteDetails(Listing listing) {
+        switch (listing.getListingType()) {
+            case GAME:
+                deleteGameById(listing.getGame().getId());
+                break;
+            case CONSOLE:
+                deleteConsoleById(listing.getConsole().getId());
+                break;
+            case MERCHANDISE:
+                deleteMerchandiseById(listing.getMerchandise().getId());
+                break;
+        }
+
+    }
+
+    private void deleteGameById(int id) {
+        final String sql = "DELETE * FROM game WHERE game_id = ?;";
+        jdbcTemplate.update(sql,id);
+        resetGameConsoleRelationships(id);
+    }
+
+    private void deleteConsoleById(int id) {
+        final String sql = "DELETE * FROM console WHERE console_id = ?;";
+        jdbcTemplate.update(sql,id);
+    }
+
+    private void deleteMerchandiseById(int id) {
+        final String sql = "DELETE * FROM merchandise WHERE merchandise_id = ?;";
+        jdbcTemplate.update(sql,id);
+    }
 }
