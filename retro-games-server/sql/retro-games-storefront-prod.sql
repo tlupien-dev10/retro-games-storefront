@@ -84,11 +84,16 @@ create table game_console (
 
 create table review (
 	review_id int primary key auto_increment,
-    review_description varchar(200),
+    review_title varchar(50),
+    review_author int not null,
+    review_description varchar(400),
     listing_id int not null,
     constraint fk_review_listing_id
 		foreign key (listing_id)
-        references listing(listing_id)
+        references listing(listing_id),
+	constraint fk_reivew_author
+		foreign key (review_author)
+        references app_user_id(user_id)
 );
 
 create table `order` (
