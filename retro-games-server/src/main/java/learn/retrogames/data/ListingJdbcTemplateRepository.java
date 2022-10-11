@@ -326,6 +326,11 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     // Delete details order method
     // -----------------------------
 
+    // TODO: order_listing foreign key constraint prevents deletion, need to
+    // implement strategy here.
+    // TODO: reviews foreign key also prevents deletion smh
+    // TODO: implement soft delete for pretty much everything to preserve order history
+    // when listings are deleted
     private void deleteDetails(Listing listing) {
         switch (listing.getListingType()) {
             case GAME:
@@ -348,6 +353,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     }
 
     private void deleteConsoleById(int id) {
+        //TODO: need a way to delete game_console from console side
         final String sql = "DELETE FROM console WHERE console_id = ?;";
         jdbcTemplate.update(sql,id);
     }

@@ -25,7 +25,12 @@ public class ListingService {
     // Validation:
     // - adding listing of type Game: consoles game is on (which are in the list attached to game) must all exist
     // - must have name
-    // -
-    // - must have price
+    // - must have positive price
+    // - must have positive (or 0) quantity
+    // - must have listing type
+    // - must have details object corresponding to listing type
+    // - must NOT have any other details object
+    // - must have an image path
+    //
 
 }
