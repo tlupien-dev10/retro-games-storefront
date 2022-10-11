@@ -117,6 +117,10 @@ class ListingJdbcTemplateRepositoryTest {
         assertEquals(NEXT_ID + 1, actual.getId());
     }
 
+    @Test
+    void shouldAddMerchandiseListing(){
+
+    }
 
 
 

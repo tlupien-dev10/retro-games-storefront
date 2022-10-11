@@ -241,7 +241,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     }
 
     private void addMerchandise(Merchandise merch, int listingId) {
-        final String sql = "INSERT INTO merchandise (category, listing_id) " +
+        final String sql = "INSERT INTO merchandise (merchandise_category, listing_id) " +
                 "VALUES (?,?);";
         KeyHolder holder = new GeneratedKeyHolder();
         int nRowsAffected = jdbcTemplate.update(connection -> {
@@ -298,7 +298,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
 
     private void updateConsole(Console console, int listingId) {
         final String sql = "UPDATE console SET" +
-                " version = ?," +
+                " console_version = ?," +
                 " company = ?," +
                 " console_release_date = ?," +
                 " listing_id = ?" +
