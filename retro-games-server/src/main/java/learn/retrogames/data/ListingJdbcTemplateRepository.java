@@ -62,7 +62,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
         }
 
         //TODO: also insert stuff into the details table
-        
+
 
         listing.setId(holder.getKey().intValue());
         return listing;
@@ -70,7 +70,24 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
 
     @Override
     public boolean update(Listing listing) {
-        return false;
+        final String sql ="UPDATE listing SET" +
+                " listing_name = ?," +
+                " listing_description = ?," +
+                " image_path = ?," +
+                " listing_type = ?," +
+                " quantity = ?," +
+                " price = ?;";
+
+        //TODO: update details table as well (?)
+
+
+        return (jdbcTemplate.update(sql,
+                listing.getName(),
+                listing.getDescription(),
+                listing.getImagePath(),
+                listing.getListingType().toString(),
+                listing.getQuantity(),
+                listing.getPrice()) > 0); // returns true if it affected a row
     }
 
     @Override
