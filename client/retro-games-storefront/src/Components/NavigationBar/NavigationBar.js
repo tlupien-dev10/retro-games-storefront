@@ -14,8 +14,9 @@ function NavigationBar() {
             </li>
             {authorization.user ? (
               <li>
-                <Link to="/products">Products</Link>
+                <Link to="/listing">Listing</Link>
               </li>
+              
             ) : (
               <>
                 <li className="right-align">
@@ -29,7 +30,8 @@ function NavigationBar() {
                 </li>
                 <li>
                   <Link to="/admin/orders">Admin-Orders</Link>
-                </li>
+                  </li>
+            
               </>
             )}
           </ul>
@@ -37,6 +39,15 @@ function NavigationBar() {
             <div>
               Welcome {authorization.user.username}!
               <button onClick={() => authorization.logout()}>Logout</button>
+
+              {/* <ul>
+                <li>
+                  <Link to="/admin/items">Admin-Items</Link>
+                  </li>
+                  <li>
+                    <Link to="/admin/orders">Admin-Orders</Link>
+                    </li>
+                    </ul> */}
             </div>
           )}
         </nav>

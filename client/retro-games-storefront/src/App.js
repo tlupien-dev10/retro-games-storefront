@@ -11,6 +11,7 @@ import RequiredAuth from "./Components/RequiredAuth";
 import RegistrationForm from "./Webpages/Registration/RegistrationForm";
 import NavigationBar from "./Components/NavigationBar/NavigationBar";
 import Homepage from "./Webpages/Homepage/Homepage";
+import Listings from "./Webpages/Listing/Listing";
 import NotFound from "./Webpages/NotFound/NotFound";
 import Login from "./Webpages/LoginPage/LoginPage";
 import AdminItem from "./Webpages/Admin/AdminItem";
@@ -91,6 +92,10 @@ if (!restoreLoginAttemptCompleted) {
           <Route path="/register">
             <RegistrationForm />
           </Route>
+
+          <Route exact path="/listing">
+            <Listings />
+          </Route>
       
           {/* <Route exact path="/admin/items">
              {user.roles === null || !user.roles.includes("admin") ?
@@ -103,16 +108,23 @@ if (!restoreLoginAttemptCompleted) {
               )
             </Route> */}
 
-            <Route exact path ="/admin/items">
+            {/* <Route exact path ="/admin/items">
               {user.roles === "admin" ?
               <AdminItem /> : <Redirect to="/" />}
-          </Route>
+          </Route> */}
 
-          <Route exact path="/admin/orders">
-          {user.roles === "admin" ?
+          {/* <Route exact path="/admin/orders">
+          {auth.user.hasRole("ADMIN") ?
             <AdminOrder /> : <Redirect to="/" />}
+          </Route> */}
+
+          <Route exact path ="/admin/items">
+            {user ? <AdminItem /> : <Redirect to ="/" />}
           </Route>
 
+          <Route exact path ="/admin/orders">
+            <AdminOrder />
+          </Route>
 
           <Route>
             <NotFound />

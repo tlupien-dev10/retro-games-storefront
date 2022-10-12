@@ -5,6 +5,8 @@
 // import AuthContext from "../../Components/AuthContext/AuthContext";
 
 function AdminItem() {
+return (
+  <h1>Welcome to the Admin Inventory Page!</h1>
   // const [itemList, setItemList] = useState([]);
 
   // const adminView = useContext(AuthContext);
@@ -20,6 +22,7 @@ function AdminItem() {
   //     fetch ("http://localhost:8080/api/admin/items")
   //   }
   // })
+);
    }
 
 export default AdminItem;
