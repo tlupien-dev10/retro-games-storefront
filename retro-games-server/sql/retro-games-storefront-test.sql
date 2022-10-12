@@ -35,13 +35,15 @@ create table listing (
     image_path varchar(1000) not null,
     listing_type varchar(50) not null,
     quantity int not null,
-    price numeric(8, 2)
+    price numeric(8, 2),
+    deleted bit not null default(0)
 );
 
 create table merchandise (
 	merchandise_id int primary key auto_increment,
     merchandise_category varchar(100) not null,
     listing_id int not null,
+    deleted bit not null default(0),
     constraint fk_merchandise_listing_id
 		foreign key (listing_id)
         references listing(listing_id)
@@ -53,6 +55,7 @@ create table game (
     publisher varchar(50) not null,
     release_date date not null,
     listing_id int not null,
+    deleted bit not null default(0),
     constraint fk_game_listing_id
 		foreign key (listing_id)
         references listing(listing_id)
@@ -64,6 +67,7 @@ create table console (
     company varchar(50) not null,
     console_release_date date not null,
     listing_id int not null,
+    deleted bit not null default(0),
     constraint fk_console_listing_id
 		foreign key (listing_id)
         references listing(listing_id)
@@ -72,6 +76,7 @@ create table console (
 create table game_console (
 	game_id int not null,
     console_id int not null,
+    deleted bit not null default(0),
     constraint pk_game_console
 		primary key (game_id, console_id),
 	constraint fk_game_console_game_id
@@ -88,6 +93,7 @@ create table review (
     review_author int not null,
     review_description varchar(400),
     listing_id int not null,
+    deleted bit not null default(0),
     constraint fk_review_listing_id
 		foreign key (listing_id)
         references listing(listing_id),
@@ -99,6 +105,7 @@ create table review (
 create table `order` (
 	order_id int primary key auto_increment,
     app_user_id int not null,
+    deleted bit not null default(0),
     constraint fk_order_app_user_id
 		foreign key (app_user_id)
         references app_user(app_user_id)
@@ -107,6 +114,7 @@ create table `order` (
 create table order_listing (
 	order_id int not null,
     listing_id int not null,
+    deleted bit not null default(0),
     constraint pk_order_listing
 		primary key (order_id, listing_id),
 	constraint fk_order_listing_order_id
@@ -200,7 +208,7 @@ insert into console (console_version, company, console_release_date, listing_id)
     ('1st Generation', 'Sony', '1994-12-03', 9),
     ('4th Generation', 'Nintendo', '2001-09-14', 10);
     
-insert into game_console values 
+insert into game_console (game_id, console_id) values 
 	(1, 1),
     (2, 1),
     (3, 2),
