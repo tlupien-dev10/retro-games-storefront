@@ -1,18 +1,23 @@
 package learn.retrogames.domain;
 
+import learn.retrogames.data.ConsoleRepository;
 import learn.retrogames.data.ListingRepository;
+import learn.retrogames.models.Console;
 import learn.retrogames.models.Listing;
 import learn.retrogames.models.ListingType;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ListingService {
     private final ListingRepository repo;
+    private final ConsoleRepository consoleRepo; // for game-console validation purposes; see validate method
 
-    public ListingService(ListingRepository repo) {
+    public ListingService(ListingRepository repo, ConsoleRepository consoleRepo) {
         this.repo = repo;
+        this.consoleRepo = consoleRepo;
     }
 
     public List<Listing> getAll() {
@@ -84,7 +89,14 @@ public class ListingService {
             res.addMessage("Listing must have an image path. For listings with no image use a placeholder.", ResultType.INVALID);
         }
 
-        if (listing.getListingType() == ListingType.GAME && listing.getGame().getConsoles())
+        if (listing.getListingType() == ListingType.GAME &&
+                !listing.getGame().getConsoles().stream()
+                        .map(Console::getId)
+                        .map(id -> consoleRepo.getAvailableConsoleIds().contains(id))
+                        .collect(Collectors.toList())
+                        .contains(false)) {
+            res.addMessage("For game listings, all associated consoles must already exist.", ResultType.INVALID);
+        }
 
         return res;
     }
