@@ -287,4 +287,44 @@ class ListingServiceTest {
         assertEquals(ResultType.INVALID, service.add(toAdd).getType());
     }
 
+    @Test
+    void shouldUpdateGame() {
+        Listing toUpdate = knownGoodListing(ListingType.GAME);
+        toUpdate.setId(1);
+        toUpdate.setName("UPDATED");
+
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        List<Integer> ec = new ArrayList<>();
+        ec.add(1);
+        when(consoleRepo.getAvailableConsoleIds()).thenReturn(ec);
+
+        assertTrue(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.SUCCESS, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldUpdateConsole() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        toUpdate.setId(1);
+        toUpdate.setName("UPDATED");
+
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertTrue(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.SUCCESS, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldUpdateMerch() {
+        Listing toUpdate = knownGoodListing(ListingType.MERCHANDISE);
+        toUpdate.setId(1);
+        toUpdate.setName("UPDATED");
+
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertTrue(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.SUCCESS, service.update(toUpdate).getType());
+    }
+
 }
