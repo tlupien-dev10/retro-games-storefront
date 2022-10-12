@@ -38,19 +38,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/authenticate").permitAll()
-//                .antMatchers(HttpMethod.GET,
-//                        "/order").permitAll()
-//                .antMatchers(HttpMethod.GET,
-//                        "/sighting", "/sighting/*").permitAll()
-//                .antMatchers(HttpMethod.POST,
-//                        "/sighting").hasAnyRole("USER", "ADMIN")
-//                .antMatchers(HttpMethod.PUT,
-//                        "/sighting/*").hasAnyRole("USER", "ADMIN")
-//                .antMatchers(HttpMethod.DELETE,
-//                        "/sighting/*").hasAnyRole("ADMIN")
-//                .antMatchers("/**").denyAll()
+                .antMatchers("/create_account").permitAll()
+                .antMatchers("/refresh_token").authenticated()
+                .antMatchers(HttpMethod.GET, "/listing").permitAll()
+                .antMatchers(HttpMethod.GET, "/listing/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/listing").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/listing/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/listing/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/order").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/order/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/order").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/order/*").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/order/*").hasRole("ADMIN")
                 .and()
-//                // new ...
+                // new ...
                 .addFilter(new JwtRequestFilter(authenticationManager(), converter))
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
