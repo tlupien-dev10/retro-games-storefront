@@ -282,18 +282,20 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
                 game.getId());
 
         // since update wouldn't be great here, reset and add the consoles again
-        resetGameConsoleRelationships(game.getId());
+        resetGameConsoleRelationships(listingId);
         for (int i = 0; i < game.getConsoles().size(); i++) {
             addGameConsoleRelationship(game, i);
         }
     }
 
-    private void resetGameConsoleRelationships(int id) {
-        final String sql = "UPDATE game_console SET deleted = 1 WHERE game_id = ?";
+    private void resetGameConsoleRelationships(int id) { // needs listing id now
+        final String sql = "DELETE FROM game_console WHERE game_id = " +
+                "(SELECT game_id FROM game WHERE listing_id = ?);";
         jdbcTemplate.update(sql,id);
     }
-    private void resetConsoleGameRelationships(int id) {
-        final String sql = "UPDATE game_console SET deleted = 1 WHERE console_id = ?";
+    private void resetConsoleGameRelationships(int id) { // needs listing id now
+        final String sql = "DELETE FROM game_console WHERE console_id = " +
+                "(SELECT console_id FROM console WHERE listing_id = ?);";
         jdbcTemplate.update(sql,id);
     }
 

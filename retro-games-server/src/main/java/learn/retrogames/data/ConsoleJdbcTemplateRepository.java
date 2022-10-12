@@ -3,10 +3,12 @@ package learn.retrogames.data;
 import learn.retrogames.data.mappers.ConsoleMapper;
 import learn.retrogames.models.Console;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Repository
 public class ConsoleJdbcTemplateRepository implements ConsoleRepository {
 
     private final JdbcTemplate jdbcTemplate;
