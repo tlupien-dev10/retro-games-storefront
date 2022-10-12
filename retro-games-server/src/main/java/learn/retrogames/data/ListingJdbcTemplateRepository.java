@@ -164,12 +164,13 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
 
     private void getAuthorsForReviews(Review review) {
         //TODO make it remove some of the user's fields (like pass hash)
-        final String sql = "SELECT * FROM app_user WHERE app_user_id = ? AND disabled = 0;";
+        final String sql = "SELECT app_user_id, username FROM app_user WHERE app_user_id = ? AND disabled = 0;";
         // This *should* pull in the user but without any role information because of the empty list passed to the
         // Mapper. Testing will be needed.
-        AppUser author = jdbcTemplate.query(sql, new AppUserMapper(new ArrayList<String>()), review.getId()).stream()
+        AppUser author = jdbcTemplate.query(sql, new AppUserMapperLite(), review.getId()).stream()
                 .findFirst()
                 .orElse(null);
+
         review.setAuthor(author);
     }
 
