@@ -116,4 +116,75 @@ class ListingServiceTest {
         assertEquals(ResultType.SUCCESS, service.add(toAdd).getType());
     }
 
+    @Test
+    void shouldNotAddNullListing() {
+        assertFalse(service.add(null).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(null).getType());
+    }
+
+    @Test
+    void shouldNotAddNullNameListing() {
+        Listing toAdd = knownGoodListing(ListingType.CONSOLE);
+        toAdd.setName(null);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNullPriceListing() {
+        Listing toAdd = knownGoodListing(ListingType.CONSOLE);
+        toAdd.setPrice(null);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNegativePriceListing() {
+        Listing toAdd = knownGoodListing(ListingType.CONSOLE);
+        toAdd.setPrice(BigDecimal.valueOf(-1.00));
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNegativeQuantityListing() {
+        Listing toAdd = knownGoodListing(ListingType.CONSOLE);
+        toAdd.setQuantity(-1);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNoTypeListing() {
+        Listing toAdd = knownGoodListing(ListingType.CONSOLE);
+        toAdd.setListingType(null);
+        toAdd.setGame(null);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNoGameGame() {
+        Listing toAdd = knownGoodListing(ListingType.GAME);
+        toAdd.setGame(null);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNoConsoleConsole() {
+        Listing toAdd = knownGoodListing(ListingType.CONSOLE);
+        toAdd.setConsole(null);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNoMerchMerch() {
+        Listing toAdd = knownGoodListing(ListingType.MERCHANDISE);
+        toAdd.setMerchandise(null);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
 }

@@ -101,47 +101,43 @@ public class ListingService {
 
         if (listing.getListingType() == null) {
             res.addMessage("Listing must have a listing type.", ResultType.INVALID);
-        }
-
-        switch (listing.getListingType()) {
-            case GAME:
-                if (listing.getGame() == null) {
-                    res.addMessage("Game listings must have game details associated with them.", ResultType.INVALID);
-                }
-                if (listing.getConsole() != null || listing.getMerchandise() != null) {
-                    res.addMessage("Game listings may not have console or merchandise details.", ResultType.INVALID);
-                }
-                break;
-            case CONSOLE:
-                if (listing.getConsole() == null) {
-                    res.addMessage("Console listings must have console details associated with them.", ResultType.INVALID);
-                }
-                if (listing.getGame() != null || listing.getMerchandise() != null) {
-                    res.addMessage("Console listings may not have game or merchandise details.", ResultType.INVALID);
-                }
-                break;
-            case MERCHANDISE:
-                if (listing.getMerchandise() == null) {
-                    res.addMessage("Merchandise listings must have merchandise details associated with them.", ResultType.INVALID);
-                }
-                if (listing.getGame() != null || listing.getConsole() != null) {
-                    res.addMessage("Merchandise listings may not have game or console details.", ResultType.INVALID);
-                }
-                break;
+        } else {
+            switch (listing.getListingType()) {
+                case GAME:
+                    if (listing.getGame() == null) {
+                        res.addMessage("Game listings must have game details associated with them.", ResultType.INVALID);
+                    } else if (listing.getGame().getConsoles().stream()
+                            .map(Console::getId)
+                            .map(id -> consoleRepo.getAvailableConsoleIds().contains(id))
+                            .collect(Collectors.toList())
+                            .contains(false)) {
+                        res.addMessage("For game listings, all associated consoles must already exist.", ResultType.INVALID);
+                    }
+                    if (listing.getConsole() != null || listing.getMerchandise() != null) {
+                        res.addMessage("Game listings may not have console or merchandise details.", ResultType.INVALID);
+                    }
+                    break;
+                case CONSOLE:
+                    if (listing.getConsole() == null) {
+                        res.addMessage("Console listings must have console details associated with them.", ResultType.INVALID);
+                    }
+                    if (listing.getGame() != null || listing.getMerchandise() != null) {
+                        res.addMessage("Console listings may not have game or merchandise details.", ResultType.INVALID);
+                    }
+                    break;
+                case MERCHANDISE:
+                    if (listing.getMerchandise() == null) {
+                        res.addMessage("Merchandise listings must have merchandise details associated with them.", ResultType.INVALID);
+                    }
+                    if (listing.getGame() != null || listing.getConsole() != null) {
+                        res.addMessage("Merchandise listings may not have game or console details.", ResultType.INVALID);
+                    }
+                    break;
+            }
         }
 
         if (listing.getImagePath() == null) {
             res.addMessage("Listing must have an image path. For listings with no image use a placeholder.", ResultType.INVALID);
-        }
-
-        if (listing.getListingType() == ListingType.GAME) {
-            if (listing.getGame().getConsoles().stream()
-                    .map(Console::getId)
-                    .map(id -> consoleRepo.getAvailableConsoleIds().contains(id))
-                    .collect(Collectors.toList())
-                    .contains(false)) {
-                res.addMessage("For game listings, all associated consoles must already exist.", ResultType.INVALID);
-            }
         }
 
 
