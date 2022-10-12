@@ -104,25 +104,7 @@ function RegistrationForm() {
       </form>
     </div>
 
-    /* <div className="form" id="register">
-            <div className="form-body">
-                <div className="email">
-                    <label className="form__label" htmlFor="email">Email </label>
-                    <input  type="email" id="email" className="form__input" value={email} onChange = {(r) => handleChange(r)} placeholder="Email"/>
-                </div>
-                <div className="password">
-                    <label className="form__label" htmlFor="password">Password </label>
-                    <input className="form__input" type="password"  id="password" value={password} onChange = {(r) => handleChange(r)} placeholder="Password"/>
-                </div>
-                <div className="confirm-password">
-                    <label className="form__label" htmlFor="confirmPassword">Confirm Password </label>
-                    <input className="form__input" type="password" id="confirmPassword" value={confirmPassword} onChange = {(r) => handleChange(r)} placeholder="Confirm Password"/>
-                </div>
-            </div>
-            <div className="footer">
-                <button onClick={()=>handleSubmit()} type="submit" className="btn">Register</button>
-            </div>
-        </div> */
+    
   );
 }
 
