@@ -161,6 +161,9 @@ insert into listing (listing_name, listing_description, image_path, listing_type
     ('GameCube Controller', 'Controller for the GameCube with extra joysticks and satisfaction guaranteed', './ImageTest/11.jpg', 'MERCHANDISE', 5, 19.99),
     ('Nintendo 64 Controller', 'A controller known for causing burns to your palm, we have updated the joystick to prevent this', './ImageTest/12.jpg', 'MERCHANDISE', 25, 45.99),
     ('Mario Lamp', 'Cool bedside table lamp that shuts off if it overheats', './ImageTest/13.jpg', 'MERCHANDISE', 12, 29.99);
+
+insert into listing (listing_name, listing_description, image_path, listing_type, quantity, price, deleted) values
+	('TEST DELETED LISTING SHOULD NOT SHOW UP','test','test','GAME',0,69.69,true);
     
 insert into merchandise (merchandise_category, listing_id) values
 	('Controller', 11),

@@ -25,7 +25,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
 
     @Override
     public List<Listing> getAll() {
-        final String sql = "SELECT * FROM listing LIMIT 1000;";
+        final String sql = "SELECT * FROM listing WHERE deleted = 0 LIMIT 1000;";
         List<Listing> all =  jdbcTemplate.query(sql, new ListingMapper());
         all.forEach(this::getDetails);
         all.forEach(this::getReviews);
@@ -34,7 +34,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
 
     @Override
     public Listing getById(int id) {
-        final String sql = "SELECT * FROM listing WHERE listing_id = ?;";
+        final String sql = "SELECT * FROM listing WHERE listing_id = ? AND deleted = 0;";
         Listing listing = jdbcTemplate.query(sql, new ListingMapper(), id).stream()
                 .findFirst()
                 .orElse(null);
@@ -100,9 +100,8 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     @Override
     @Transactional
     public boolean deleteById(int id) {
-        Listing toDelete = getById(id);
-        deleteDetails(toDelete);
-        final String sql = "DELETE FROM listing WHERE listing_id = ?;";
+        deleteDetails(id);
+        final String sql = "UPDATE listing SET deleted = 1 WHERE listing_id = ?;";
         return (jdbcTemplate.update(sql,id) > 0);
     }
 
@@ -125,14 +124,14 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     }
 
     private Console getConsole(int id) {
-        final String sql = "SELECT * FROM console WHERE listing_id = ?;";
+        final String sql = "SELECT * FROM console WHERE listing_id = ? AND deleted = 0;";
         return jdbcTemplate.query(sql, new ConsoleMapper(), id).stream()
                 .findFirst()
                 .orElse(null);
     }
 
     private Game getGame(int id) {
-        final String sql = "SELECT * FROM game WHERE listing_id = ?;";
+        final String sql = "SELECT * FROM game WHERE listing_id = ? AND deleted = 0;";
         Game game =  jdbcTemplate.query(sql, new GameMapper(), id).stream()
                 .findFirst()
                 .orElse(null);
@@ -142,14 +141,14 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
 
     private void getConsolesForGame(Game game) {
         final String sql = "SELECT * FROM console AS c INNER JOIN game_console AS gc ON c.console_id = gc.console_id "
-                + "WHERE gc.game_id = ?;";
+                + "WHERE gc.game_id = ? AND gc.deleted = 0;";
         if (game != null) {
             game.setConsoles(jdbcTemplate.query(sql, new ConsoleMapper(), game.getId()));
         }
     }
 
     private Merchandise getMerchandise(int id) {
-        final String sql = "SELECT * FROM merchandise WHERE listing_id = ?;";
+        final String sql = "SELECT * FROM merchandise WHERE listing_id = ? AND deleted = 0;";
         return jdbcTemplate.query(sql, new MerchandiseMapper(), id).stream()
                 .findFirst()
                 .orElse(null);
@@ -157,7 +156,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
 
     private void getReviews(Listing listing) {
         int id = listing.getId();
-        final String sql = "SELECT * FROM review WHERE listing_id = ?;";
+        final String sql = "SELECT * FROM review WHERE listing_id = ? AND deleted = 0;";
         List<Review> reviews =  jdbcTemplate.query(sql, new ReviewMapper(), id);
         reviews.forEach(this::getAuthorsForReviews);
         listing.setReviews(reviews);
@@ -165,7 +164,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
 
     private void getAuthorsForReviews(Review review) {
         //TODO make it remove some of the user's fields (like pass hash)
-        final String sql = "SELECT * FROM app_user WHERE app_user_id = ?;";
+        final String sql = "SELECT * FROM app_user WHERE app_user_id = ? AND disabled = 0;";
         // This *should* pull in the user but without any role information because of the empty list passed to the
         // Mapper. Testing will be needed.
         AppUser author = jdbcTemplate.query(sql, new AppUserMapper(new ArrayList<String>()), review.getId()).stream()
@@ -292,7 +291,11 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     }
 
     private void resetGameConsoleRelationships(int id) {
-        final String sql = "DELETE * FROM game_console WHERE game_id = ?";
+        final String sql = "UPDATE game_console SET deleted = 1 WHERE game_id = ?";
+        jdbcTemplate.update(sql,id);
+    }
+    private void resetConsoleGameRelationships(int id) {
+        final String sql = "UPDATE game_console SET deleted = 1 WHERE console_id = ?";
         jdbcTemplate.update(sql,id);
     }
 
@@ -326,40 +329,35 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     // Delete details order method
     // -----------------------------
 
-    // TODO: order_listing foreign key constraint prevents deletion, need to
-    // implement strategy here.
-    // TODO: reviews foreign key also prevents deletion smh
-    // TODO: implement soft delete for pretty much everything to preserve order history
-    // when listings are deleted
-    private void deleteDetails(Listing listing) {
-        switch (listing.getListingType()) {
-            case GAME:
-                deleteGameById(listing.getGame().getId());
-                break;
-            case CONSOLE:
-                deleteConsoleById(listing.getConsole().getId());
-                break;
-            case MERCHANDISE:
-                deleteMerchandiseById(listing.getMerchandise().getId());
-                break;
-        }
-
+    // Note: order listings won't be soft-deleted because the order will still need to represent deleted listings
+    private void deleteDetails(int id) {
+        // now this uses just the listing id
+        deleteGameById(id);
+        deleteConsoleById(id);
+        deleteMerchandiseById(id);
+        deleteReviewsById(id);
     }
 
     private void deleteGameById(int id) {
-        final String sql = "DELETE FROM game WHERE game_id = ?;";
+        final String sql = "UPDATE game SET deleted = 1 WHERE listing_id = ?;";
         resetGameConsoleRelationships(id);
         jdbcTemplate.update(sql,id);
     }
 
     private void deleteConsoleById(int id) {
-        //TODO: need a way to delete game_console from console side
-        final String sql = "DELETE FROM console WHERE console_id = ?;";
+        final String sql = "UPDATE console SET deleted = 1 WHERE listing_id = ?;";
+        resetConsoleGameRelationships(id);
         jdbcTemplate.update(sql,id);
     }
 
     private void deleteMerchandiseById(int id) {
-        final String sql = "DELETE FROM merchandise WHERE merchandise_id = ?;";
+        final String sql = "UPDATE merchandise SET deleted = 1 WHERE listing_id = ?;";
         jdbcTemplate.update(sql,id);
     }
+
+    private void deleteReviewsById(int id) {
+        final String sql = "UPDATE review SET deleted = 1 WHERE listing_id = ?;";
+        jdbcTemplate.update(sql,id);
+    }
+
 }
