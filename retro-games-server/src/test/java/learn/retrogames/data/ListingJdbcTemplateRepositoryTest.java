@@ -136,12 +136,73 @@ class ListingJdbcTemplateRepositoryTest {
 
     @Test
     void shouldUpdateGameListing(){
+        Listing toUpdate = new Listing();
+        toUpdate.setName("Spooky Scary Skeletons");
+        toUpdate.setPrice(new BigDecimal(19.99f));
+        toUpdate.setDescription("scary game");
+        toUpdate.setListingType(ListingType.GAME);
+        toUpdate.setQuantity(5);
+        toUpdate.setImagePath("./ImageTest/999");
+
+        Game toJoin = new Game();
+        toJoin.setGenre("Platformer");
+        toJoin.setPublisher("Sony");
+        toJoin.setReleaseDate(LocalDate.of(1999, 5, 27));
+        toJoin.setId(listingJdbcTemplateRepository.getById(2).getGame().getId());
+
+
+        List<Console> consoles = new ArrayList<>();
+        Console detailConsole = new Console();
+        detailConsole.setId(5);
+        consoles.add(detailConsole);
+
+        toJoin.setConsoles(consoles);
+
+        toUpdate.setGame(toJoin);
+        toUpdate.setId(2);
+        assertTrue(listingJdbcTemplateRepository.update(toUpdate));
+        Listing updatedListing = listingJdbcTemplateRepository.getById(2);
+        assertEquals("Sony", updatedListing.getGame().getPublisher());
+        assertEquals("scary game", updatedListing.getDescription());
 
     }
 
     @Test
-    void shouldUpdateConsoleListing() {
+    void shouldUpdateGameConsoleListing(){
+        Listing toUpdate = new Listing();
+        toUpdate.setName("Spooky Scary Skeletons");
+        toUpdate.setPrice(new BigDecimal(19.99f));
+        toUpdate.setDescription("scary game");
+        toUpdate.setListingType(ListingType.GAME);
+        toUpdate.setQuantity(5);
+        toUpdate.setImagePath("./ImageTest/999");
 
+        Game toJoin = new Game();
+        toJoin.setGenre("Platformer");
+        toJoin.setPublisher("Sony");
+        toJoin.setReleaseDate(LocalDate.of(1999, 5, 27));
+        toJoin.setId(listingJdbcTemplateRepository.getById(2).getGame().getId());
+
+
+        List<Console> consoles = new ArrayList<>();
+        Console detailConsole = new Console();
+        detailConsole.setId(2);
+        consoles.add(detailConsole);
+
+        toJoin.setConsoles(consoles);
+
+        toUpdate.setGame(toJoin);
+        toUpdate.setId(2);
+        assertTrue(listingJdbcTemplateRepository.update(toUpdate));
+        Listing updatedListing = listingJdbcTemplateRepository.getById(2);
+        assertEquals("Sony", updatedListing.getGame().getPublisher());
+        assertEquals("scary game", updatedListing.getDescription());
+        assertEquals(2, updatedListing.getGame().getConsoles().get(0).getId());
+    }
+
+    @Test
+    void shouldUpdateConsoleListing() {
+        
     }
 
     @Test
