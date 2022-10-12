@@ -2,7 +2,6 @@
 import "./Listing.css";
 import { Link } from "react-router-dom";
 
-import PageErrors from "../../Components/PageErrors/PageErrors";
 
 function Listing({listing}) {
 

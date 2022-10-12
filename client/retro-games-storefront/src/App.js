@@ -12,13 +12,14 @@ import RegistrationForm from "./Webpages/Registration/RegistrationForm";
 import NavigationBar from "./Components/NavigationBar/NavigationBar";
 import Homepage from "./Webpages/Homepage/Homepage";
 import Listings from "./Webpages/Listing/Listings";
+import ListingId from "./Webpages/ListingId/ListingId";
 import NotFound from "./Webpages/NotFound/NotFound";
 import Login from "./Webpages/LoginPage/LoginPage";
 import AdminItem from "./Webpages/Admin/AdminItem";
 import AdminOrder from "./Webpages/Admin/AdminOrder";
 import AuthContext from "./Components/AuthContext/AuthContext";
 
-import ListingId from "./Webpages/ListingId/ListingId";
+
 
 
 const LOCAL_STORAGE_TOKEN_KEY = "retroGamesToken";
@@ -101,6 +102,9 @@ if (!restoreLoginAttemptCompleted) {
 
           <Route exact path="/listing">
             <Listings />
+          </Route>
+          <Route path="/listing/:id">
+            <ListingId />
           </Route>
       
           {/* <Route exact path="/admin/items">

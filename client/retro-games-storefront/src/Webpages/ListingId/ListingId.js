@@ -1,31 +1,37 @@
-import { useEffect, useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 
 import "./ListingId.css";
-import Listing from "../Listing/Listing";
+import ListingIdDisplay from "./ListingIdDisplay";
 import useAuth from "../../Components/Hooks/useAuth";
-
+import PageErrors from "../../Components/PageErrors/PageErrors";
 
 function ListingId() {
-    const [listings, setListings]=useState([]);
+  const [listing, setListing] = useState([]);
+  const [error, setError] = useState([]);
+  const {id} = useParams();
 
-    const auth = useAuth();
-    const history = useHistory();
+  const auth = useAuth();
+  const history = useHistory();
 
-    useEffect(() => {
-        fetch("http://localhost:8080/api/listing")
+  function getListing() {
+    fetch(`http://localhost:8080/api/listing/${id}`)
         .then((response) => response.json())
-        .then((data) => setListings(data));
-    }, []);
+        .then((data) => setListing(data))
+        .catch((err) => setError([...err]));
 
+}
 
+useEffect(() => getListing(), []);
 
-    return (
-        <div>
-         {listings.map((listing) => (
-        <Listing key={listing.id} listing={listing} />
-    ))}
-    </div>);
+  return (
+    <div>
+      <PageErrors errors={error} />
+      {listing.map((listing) => (
+        <ListingIdDisplay key={listing.listingId} listing={listing} />
+      ))}
+    </div>
+  );
 }
 
 export default ListingId;

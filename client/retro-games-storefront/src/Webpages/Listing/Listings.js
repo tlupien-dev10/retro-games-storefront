@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import "./Listings.css";
-import Listing from "../Listing/Listing";
-import Carousel2 from "../../Components/Carousel2";
+import Listing from "./Listing";
 import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
 
 
 function Listings() {
-    const [listings, setListings]=useState([]);
+    const [allListings, setallListings]=useState([]);
     const [error, setError] = useState([]);
 
     const auth = useAuth();
@@ -18,7 +17,7 @@ function Listings() {
     function getAllListings() {
         fetch('http://localhost:8080/api/listing')
             .then((response) => response.json())
-            .then((data) => setListings(data))
+            .then((data) => setallListings(data))
             .catch((err) => setError([...err]));
 
     }
@@ -30,7 +29,7 @@ function Listings() {
     return (
         <div>
             <PageErrors errors={error} />
-         {listings.map((listing) => (
+         {allListings.map((listing) => (
         <Listing key={listing.id} listing={listing} />
     ))}
     </div>);
