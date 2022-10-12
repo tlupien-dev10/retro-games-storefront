@@ -2,6 +2,7 @@ package learn.retrogames.domain;
 
 import learn.retrogames.data.ListingRepository;
 import learn.retrogames.models.Listing;
+import learn.retrogames.models.ListingType;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -78,6 +79,12 @@ public class ListingService {
                     res.addMessage("Merchandise listings may not have game or console details.", ResultType.INVALID);
                 }
         }
+
+        if (listing.getImagePath() == null) {
+            res.addMessage("Listing must have an image path. For listings with no image use a placeholder.", ResultType.INVALID);
+        }
+
+        if (listing.getListingType() == ListingType.GAME && listing.getGame().getConsoles())
 
         return res;
     }

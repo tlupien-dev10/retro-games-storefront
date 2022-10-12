@@ -6,17 +6,19 @@ import Listing from "../Listing/Listing";
 import useAuth from "../../Components/Hooks/useAuth";
 
 
-function ListingId() {
+function Listings() {
     const [listings, setListings]=useState([]);
 
     const auth = useAuth();
     const history = useHistory();
 
-    useEffect(() => {
-        fetch("http://localhost:8080/api/listing")
-        .then((response) => response.json())
-        .then((data) => setListings(data));
-    }, []);
+    function getAllListings() {
+        fetch('http://localhost:8080/api/listing')
+            .then((response) => response.json())
+            .then((data) => setListings(data));
+    }
+
+    useEffect(() => getAllListings(), []);
 
 
 
@@ -28,6 +30,4 @@ function ListingId() {
     </div>);
 }
 
-export default ListingId;
-
-import "./Listings.css";
+export default Listings;

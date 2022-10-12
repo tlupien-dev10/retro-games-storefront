@@ -11,7 +11,7 @@ import RequiredAuth from "./Components/RequiredAuth";
 import RegistrationForm from "./Webpages/Registration/RegistrationForm";
 import NavigationBar from "./Components/NavigationBar/NavigationBar";
 import Homepage from "./Webpages/Homepage/Homepage";
-import Listings from "./Webpages/Listing/Listing";
+import Listings from "./Webpages/Listing/Listings";
 import NotFound from "./Webpages/NotFound/NotFound";
 import Login from "./Webpages/LoginPage/LoginPage";
 import AdminItem from "./Webpages/Admin/AdminItem";
