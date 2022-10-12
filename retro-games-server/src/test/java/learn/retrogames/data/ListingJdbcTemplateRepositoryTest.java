@@ -202,12 +202,50 @@ class ListingJdbcTemplateRepositoryTest {
 
     @Test
     void shouldUpdateConsoleListing() {
-        
+        Listing toUpdate = new Listing();
+        toUpdate.setName("PlayStation 2");
+        toUpdate.setPrice(new BigDecimal(19.99f));
+        toUpdate.setDescription("speaks for itself");
+        toUpdate.setListingType(ListingType.CONSOLE);
+        toUpdate.setQuantity(4);
+        toUpdate.setImagePath("./ImageTest/999");
+        toUpdate.setId(7);
+
+        Console toJoin = new Console();
+        toJoin.setCompany("Sony");
+        toJoin.setVersion("2nd Generation");
+        toJoin.setReleaseDate(LocalDate.of(1999, 5, 27));
+        toJoin.setId(1);
+
+
+        toUpdate.setConsole(toJoin);
+        assertTrue(listingJdbcTemplateRepository.update(toUpdate));
+        Listing updatedListing = listingJdbcTemplateRepository.getById(7);
+        assertEquals(4, updatedListing.getQuantity());
+        assertEquals(1, updatedListing.getConsole().getId());
+
     }
 
     @Test
     void shouldUpdateMerchandise(){
+        Listing toUpdate = new Listing();
+        toUpdate.setName("Zelda merch");
+        toUpdate.setPrice(new BigDecimal(19.99f));
+        toUpdate.setDescription("throw pillow");
+        toUpdate.setListingType(ListingType.MERCHANDISE);
+        toUpdate.setQuantity(4);
+        toUpdate.setImagePath("./ImageTest/999");
+        toUpdate.setId(12);
 
+        Merchandise toJoin = new Merchandise();
+        toJoin.setCategory("Pillow");
+        toJoin.setId(2);
+
+        toUpdate.setMerchandise(toJoin);
+        assertTrue(listingJdbcTemplateRepository.update(toUpdate));
+        Listing updatedListing = listingJdbcTemplateRepository.getById(12);
+        assertEquals("Pillow", updatedListing.getMerchandise().getCategory());
+        assertEquals("./ImageTest/999", updatedListing.getImagePath());
     }
 
     @Test
