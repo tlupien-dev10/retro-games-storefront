@@ -28,6 +28,47 @@ public class ListingService {
         return repo.getById(id);
     }
 
+    public Result<Listing> add (Listing listing) {
+        Result<Listing> res = validate(listing);
+
+        if (!res.isSuccess()) {
+            return res;
+        }
+
+        if (listing.getId() != 0) {
+            res.addMessage("Listing id must not be set before adding", ResultType.INVALID);
+            return res;
+        }
+
+        listing = repo.add(listing);
+        res.setPayload(listing);
+        return res;
+    }
+
+    public Result<Listing> update(Listing listing) {
+        Result<Listing> res = validate(listing);
+
+        if (!res.isSuccess()) {
+            return res;
+        }
+
+        if (listing.getId() <= 0) {
+            res.addMessage("Listing id must be set before updating", ResultType.INVALID);
+            return res;
+        }
+
+        if (!repo.update(listing)) {
+            String msg = String.format("Listing with id %s not found", listing.getId());
+            res.addMessage(msg, ResultType.NOT_FOUND);
+        }
+
+        return res;
+    }
+
+    public boolean deleteById(int id) {
+        return repo.deleteById(id);
+    }
+
     // Validation:
     // - adding listing of type Game: consoles game is on (which are in the list attached to game) must all exist
     // - must have name
@@ -43,6 +84,7 @@ public class ListingService {
         Result<Listing> res = new Result<>();
         if (listing == null) {
             res.addMessage("Listing cannot be null.", ResultType.INVALID);
+            return res;
         }
 
         if (listing.getName() == null) {
