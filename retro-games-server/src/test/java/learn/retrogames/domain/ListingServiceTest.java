@@ -47,34 +47,71 @@ class ListingServiceTest {
     // - update - all validations from add except it has to ALREADY have an id, rather than not having one
     // - delete - success case for all 3 types + 1 fail for not found (when repo returns false)
 
-    private Listing knownGoodListing() {
+    private Listing knownGoodListing(ListingType type) {
+        // generic listing info
+
         Listing listing = new Listing();
         listing.setName("Test");
         listing.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
         listing.setImagePath("/test/image/path.png");
-        listing.setListingType(ListingType.GAME);
+        listing.setListingType(type);
         listing.setQuantity(69);
         listing.setPrice(new BigDecimal(39.99));
 
+
+        // details objects (only adds 1)
+        Console console = new Console(1,"Test","ACME consoles",LocalDate.of(2022,10,12));
+
         Game game = new Game(1,"Test","ACME games", LocalDate.of(2022,10,12));
         List<Console> consoles = new ArrayList<>();
-        Console console = new Console(1,"Test","ACME consoles",LocalDate.of(2022,10,12));
         consoles.add(console);
         game.setConsoles(consoles);
-        listing.setGame(game);
+
+        Merchandise merch = new Merchandise(1, "Test");
+
+        switch (type) {
+            case GAME:
+                listing.setGame(game);
+                break;
+            case CONSOLE:
+                listing.setConsole(console);
+                break;
+            case MERCHANDISE:
+                listing.setMerchandise(merch);
+                break;
+        }
 
         return listing;
     }
 
     @Test
-    void shouldAdd() {
-        Listing toAdd = knownGoodListing();
+    void shouldAddGame() {
+        Listing toAdd = knownGoodListing(ListingType.GAME);
 
         List<Integer> ec = new ArrayList<>();
         ec.add(1);
         when(consoleRepo.getAvailableConsoleIds()).thenReturn(ec);
 
+        assertTrue(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.SUCCESS, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldAddConsole() {
+        Listing toAdd = knownGoodListing(ListingType.CONSOLE);
+
         service.add(toAdd).getMessages().forEach(System.out::println);
+
+        assertTrue(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.SUCCESS, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldAddMerch() {
+        Listing toAdd = knownGoodListing(ListingType.MERCHANDISE);
+
+        service.add(toAdd).getMessages().forEach(System.out::println);
+
         assertTrue(service.add(toAdd).isSuccess());
         assertEquals(ResultType.SUCCESS, service.add(toAdd).getType());
     }

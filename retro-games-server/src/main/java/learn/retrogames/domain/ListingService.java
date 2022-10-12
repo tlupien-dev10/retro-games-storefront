@@ -134,14 +134,16 @@ public class ListingService {
             res.addMessage("Listing must have an image path. For listings with no image use a placeholder.", ResultType.INVALID);
         }
 
-        if (!(listing.getListingType() == ListingType.GAME &&
-                !listing.getGame().getConsoles().stream()
-                        .map(Console::getId)
-                        .map(id -> consoleRepo.getAvailableConsoleIds().contains(id))
-                        .collect(Collectors.toList())
-                        .contains(false))) {
-            res.addMessage("For game listings, all associated consoles must already exist.", ResultType.INVALID);
+        if (listing.getListingType() == ListingType.GAME) {
+            if (listing.getGame().getConsoles().stream()
+                    .map(Console::getId)
+                    .map(id -> consoleRepo.getAvailableConsoleIds().contains(id))
+                    .collect(Collectors.toList())
+                    .contains(false)) {
+                res.addMessage("For game listings, all associated consoles must already exist.", ResultType.INVALID);
+            }
         }
+
 
         return res;
     }
