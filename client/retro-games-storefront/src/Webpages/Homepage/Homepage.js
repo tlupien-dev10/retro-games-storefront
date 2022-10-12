@@ -1,7 +1,7 @@
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 // import Carousel from "./Webpages/Homepage/Carousel";
-import Carousel2 from "../../Carousel2";
+import Carousel2 from "../../Components/Carousel2";
 
 
 import { Link } from "react-router-dom";

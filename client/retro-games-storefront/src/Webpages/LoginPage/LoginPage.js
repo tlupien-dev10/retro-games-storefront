@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import PageErrors from "../../Components/PageErrors/PageErrors";
 import useAuth from "../../Components/Hooks/useAuth";
-// import AuthContext from "../../Components/AuthContext/AuthContext";
+import "./LoginPage.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -64,9 +64,16 @@ export default function Login() {
         </div>
         <div>
           <button type="submit">Login</button>
+        <Link to={"/listing"}>
+        <button className="btn btn-sm btn-success" id="loginRegister">
+          New User
+        </button>
+        </Link>
         </div>
       </form>
       <PageErrors errors={error} />
     </div>
   );
 }
+
+//

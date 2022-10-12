@@ -2,11 +2,8 @@ import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 
-import one from "./ImageTest/1.jpg";
-import two from "./ImageTest/2.jpg";
-import three from "./ImageTest/3.jpg";
-import four from "./ImageTest/4.jpg";
-import five from "./ImageTest/5.jpg";
+
+
 
 class Carousel2 extends Component {
   componentDidMount() {
@@ -29,19 +26,19 @@ class Carousel2 extends Component {
         className="carousel"
       >
         <a className="carousel-item">
-          <img alt="1" src={one} />
+          <img alt="1" src={"/ImageTest/1.jpg"} />
         </a>
         <a className="carousel-item">
-          <img alt="2" src={two} />
+          <img alt="2" src={"/ImageTest/2.jpg"} />
         </a>
         <a className="carousel-item">
-          <img alt="3" src={three} />
+          <img alt="3" src={"/ImageTest/3.jpg"} />
         </a>
         <a className="carousel-item">
-          <img alt="4" src={four} />
+          <img alt="4" src={"/ImageTest/4.jpg"} />
         </a>
         <a className="carousel-item">
-          <img alt="5" src={five} />
+          <img alt="5" src={"/ImageTest/5.jpg"} />
         </a>
       </div>
     );

@@ -110,22 +110,15 @@ if (!restoreLoginAttemptCompleted) {
             </Route> */}
 
             {/* <Route exact path ="/admin/items">
-              {user.roles === "admin" ?
+              {auth.hasRole("ADMIN") ?
               <AdminItem /> : <Redirect to="/" />}
-          </Route> */}
-
-          {/* <Route exact path="/admin/orders">
-          {auth.user.hasRole("ADMIN") ?
-            <AdminOrder /> : <Redirect to="/" />}
-          </Route> */}
-
-          <Route exact path ="/admin/items">
-            {user ? <AdminItem /> : <Redirect to ="/" />}
-          </Route>
-
+          </Route> 
           <Route exact path ="/admin/orders">
-            <AdminOrder />
-          </Route>
+              {auth.hasRole("ADMIN") ?
+              <AdminOrder /> : <Redirect to="/" />}
+          </Route> */}
+
+         
 
           <Route>
             <NotFound />
