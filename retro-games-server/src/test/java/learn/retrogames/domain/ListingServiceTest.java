@@ -117,13 +117,13 @@ class ListingServiceTest {
     }
 
     @Test
-    void shouldNotAddNullListing() {
+    void shouldNotAddNull() {
         assertFalse(service.add(null).isSuccess());
         assertEquals(ResultType.INVALID, service.add(null).getType());
     }
 
     @Test
-    void shouldNotAddNullNameListing() {
+    void shouldNotAddNullName() {
         Listing toAdd = knownGoodListing(ListingType.CONSOLE);
         toAdd.setName(null);
         assertFalse(service.add(toAdd).isSuccess());
@@ -131,7 +131,7 @@ class ListingServiceTest {
     }
 
     @Test
-    void shouldNotAddNullPriceListing() {
+    void shouldNotAddNullPrice() {
         Listing toAdd = knownGoodListing(ListingType.CONSOLE);
         toAdd.setPrice(null);
         assertFalse(service.add(toAdd).isSuccess());
@@ -139,7 +139,7 @@ class ListingServiceTest {
     }
 
     @Test
-    void shouldNotAddNegativePriceListing() {
+    void shouldNotAddNegativePrice() {
         Listing toAdd = knownGoodListing(ListingType.CONSOLE);
         toAdd.setPrice(BigDecimal.valueOf(-1.00));
         assertFalse(service.add(toAdd).isSuccess());
@@ -147,7 +147,7 @@ class ListingServiceTest {
     }
 
     @Test
-    void shouldNotAddNegativeQuantityListing() {
+    void shouldNotAddNegativeQuantity() {
         Listing toAdd = knownGoodListing(ListingType.CONSOLE);
         toAdd.setQuantity(-1);
         assertFalse(service.add(toAdd).isSuccess());
@@ -155,7 +155,7 @@ class ListingServiceTest {
     }
 
     @Test
-    void shouldNotAddNoTypeListing() {
+    void shouldNotAddNoType() {
         Listing toAdd = knownGoodListing(ListingType.CONSOLE);
         toAdd.setListingType(null);
         toAdd.setGame(null);
@@ -167,6 +167,11 @@ class ListingServiceTest {
     void shouldNotAddNoGameGame() {
         Listing toAdd = knownGoodListing(ListingType.GAME);
         toAdd.setGame(null);
+
+        List<Integer> ec = new ArrayList<>();
+        ec.add(1);
+        when(consoleRepo.getAvailableConsoleIds()).thenReturn(ec);
+
         assertFalse(service.add(toAdd).isSuccess());
         assertEquals(ResultType.INVALID, service.add(toAdd).getType());
     }
@@ -183,6 +188,101 @@ class ListingServiceTest {
     void shouldNotAddNoMerchMerch() {
         Listing toAdd = knownGoodListing(ListingType.MERCHANDISE);
         toAdd.setMerchandise(null);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddWrongDetailGame() {
+        Listing toAdd = knownGoodListing(ListingType.GAME);
+        toAdd.setGame(null);
+        Merchandise merch = new Merchandise(1, "Test");
+        toAdd.setMerchandise(merch);
+
+        List<Integer> ec = new ArrayList<>();
+        ec.add(1);
+        when(consoleRepo.getAvailableConsoleIds()).thenReturn(ec);
+
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddWrongDetailConsole() {
+        Listing toAdd = knownGoodListing(ListingType.CONSOLE);
+        toAdd.setConsole(null);
+        Merchandise merch = new Merchandise(1, "Test");
+        toAdd.setMerchandise(merch);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddWrongDetailMerch() {
+        Listing toAdd = knownGoodListing(ListingType.MERCHANDISE);
+        toAdd.setMerchandise(null);
+        Console console = new Console(1,"Test","ACME consoles",LocalDate.of(2022,10,12));
+        toAdd.setConsole(console);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddMultiDetailGame() {
+        Listing toAdd = knownGoodListing(ListingType.GAME);
+        Merchandise merch = new Merchandise(1, "Test");
+        toAdd.setMerchandise(merch);
+
+        List<Integer> ec = new ArrayList<>();
+        ec.add(1);
+        when(consoleRepo.getAvailableConsoleIds()).thenReturn(ec);
+
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddMultiDetailConsole() {
+        Listing toAdd = knownGoodListing(ListingType.CONSOLE);
+        Merchandise merch = new Merchandise(1, "Test");
+        toAdd.setMerchandise(merch);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddMultiDetailMerch() {
+        Listing toAdd = knownGoodListing(ListingType.MERCHANDISE);
+        Console console = new Console(1,"Test","ACME consoles",LocalDate.of(2022,10,12));
+        toAdd.setConsole(console);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNullImagePath() {
+        Listing toAdd = knownGoodListing(ListingType.CONSOLE);
+        toAdd.setImagePath(null);
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddGameReferencingBadConsole() {
+        Listing toAdd = knownGoodListing(ListingType.GAME);
+
+        List<Integer> ec = new ArrayList<>();
+        ec.add(2); // key to this test
+        when(consoleRepo.getAvailableConsoleIds()).thenReturn(ec);
+
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddWithId() {
+        Listing toAdd = knownGoodListing(ListingType.CONSOLE);
+        toAdd.setId(1);
         assertFalse(service.add(toAdd).isSuccess());
         assertEquals(ResultType.INVALID, service.add(toAdd).getType());
     }
