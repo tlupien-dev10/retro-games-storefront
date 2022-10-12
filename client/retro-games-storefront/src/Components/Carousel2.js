@@ -1,9 +1,7 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
-
-
-
 
 class Carousel2 extends Component {
   componentDidMount() {
@@ -11,35 +9,47 @@ class Carousel2 extends Component {
       duration: 300,
       onCycleTo: () => {
         console.log("New Slide");
-      }
+      },
     };
     M.Carousel.init(this.Carousel, options);
-
   }
-
+        //Eventually want navigation arrows
+          //However, even with out them it will still allow you to
+          //Cycle through the Carousel to view all items as long as you
+          //Don't click on the current Pop-upped Image
   render() {
     return (
       <div
-        ref={Carousel => {
+        ref={(Carousel) => {
           this.Carousel = Carousel;
         }}
         className="carousel"
       >
-        <a className="carousel-item">
+        <div className="carousel-item">
+          <Link to={"/listing"}>
           <img alt="1" src={"/ImageTest/1.jpg"} />
-        </a>
-        <a className="carousel-item">
+          </Link>
+        </div>
+        <div className="carousel-item">
+        <Link to={"/listing"}>
           <img alt="2" src={"/ImageTest/2.jpg"} />
-        </a>
-        <a className="carousel-item">
+          </Link>
+        </div>
+        <div className="carousel-item">
+        <Link to={"/listing"}>
           <img alt="3" src={"/ImageTest/3.jpg"} />
-        </a>
-        <a className="carousel-item">
+          </Link>
+        </div>
+        <div className="carousel-item">
+        <Link to={"/listing"}>
           <img alt="4" src={"/ImageTest/4.jpg"} />
-        </a>
-        <a className="carousel-item">
+          </Link>
+        </div>
+        <div className="carousel-item">
+        <Link to={"/listing"}>
           <img alt="5" src={"/ImageTest/5.jpg"} />
-        </a>
+        </Link>
+        </div>
       </div>
     );
   }

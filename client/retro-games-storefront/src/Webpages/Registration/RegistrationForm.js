@@ -88,13 +88,7 @@ function RegistrationForm() {
           newVal={user.password}
           onChangeHandler={handleChange}
         />
-        {/* <FormHelper
-            inputType={"password"}
-            identifier={"confirmPassword"}
-            labelText={"Confirm Password:"}
-            newVal={user.confirmPassword}
-            onChangeHandler={handleChange}
-          /> */}
+      
         <button className="btn btn-success" id="save">
           Register
         </button>

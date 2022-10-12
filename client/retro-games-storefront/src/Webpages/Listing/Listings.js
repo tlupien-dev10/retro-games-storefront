@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import "./Listings.css";
 import Listing from "../Listing/Listing";
+import Carousel2 from "../../Components/Carousel2";
 import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
 

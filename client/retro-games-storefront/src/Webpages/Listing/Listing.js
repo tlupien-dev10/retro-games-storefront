@@ -1,5 +1,6 @@
 // import { Link, useHistory } from "react-router-dom";
 import "./Listing.css";
+import { Link } from "react-router-dom";
 
 import PageErrors from "../../Components/PageErrors/PageErrors";
 
@@ -11,7 +12,9 @@ function Listing({listing}) {
       <div className="col s12 m7">
         <div className="card">
           <div className="card-image">
+            <Link to={"listing/" + listing.id}>
            <img src={"../../"+ listing.imagePath} alt="" />
+           </Link>
           </div>
      
           <div className="card-content">
@@ -19,7 +22,8 @@ function Listing({listing}) {
             <p>Price: {listing.price}</p>
           </div>
           <div className="card-action">
-            <a href={"listing/" + listing.id}>Additional Information</a>
+            {/* <a href={"listing/" + listing.id}>Additional Information</a> */}
+            <a href={"listing/" + listing.id}>Add to Cart Placeholder</a>
           </div>
         </div>
       </div>

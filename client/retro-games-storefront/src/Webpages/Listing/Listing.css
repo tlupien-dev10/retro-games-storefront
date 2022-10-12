@@ -6,3 +6,8 @@
     width: 30%;
     margin-bottom: 1em;
   }
+
+  .card-action{
+    font-size: 10px;
+    text-align: right;
+  }

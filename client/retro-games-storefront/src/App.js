@@ -17,6 +17,7 @@ import Login from "./Webpages/LoginPage/LoginPage";
 import AdminItem from "./Webpages/Admin/AdminItem";
 import AdminOrder from "./Webpages/Admin/AdminOrder";
 import AuthContext from "./Components/AuthContext/AuthContext";
+
 import ListingId from "./Webpages/ListingId/ListingId";
 
 
@@ -39,6 +40,8 @@ useEffect (() => {
 },
 []);
 
+
+
 const login = (token) => {
   localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, token);
 
@@ -47,11 +50,13 @@ const login = (token) => {
 
   const roles = authoritiesString.split(',');
 
+  console.log(roles);
+
   const user = {
     username,
     roles,
     token,
-    hasRole(role) {
+    hasRole: function(role) {
       return this.roles.includes(role);
     }
 };
@@ -109,14 +114,14 @@ if (!restoreLoginAttemptCompleted) {
               )
             </Route> */}
 
-            {/* <Route exact path ="/admin/items">
-              {auth.hasRole("ADMIN") ?
+            <Route exact path ="/admin/items">
+              {auth.user && auth.user.hasRole("ADMIN") ?
               <AdminItem /> : <Redirect to="/" />}
           </Route> 
           <Route exact path ="/admin/orders">
-              {auth.hasRole("ADMIN") ?
+              {auth.user && auth.user.hasRole("ADMIN") ?
               <AdminOrder /> : <Redirect to="/" />}
-          </Route> */}
+          </Route>
 
          
 

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import './App.css';
 // import AuthContext from "./Components/AuthContext/AuthContext";
 // import { BrowserRouter, Route } from "react-router-dom";
 
