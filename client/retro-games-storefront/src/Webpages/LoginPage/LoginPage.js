@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import Error from "../Error/Error";
+import PageErrors from "../../Components/PageErrors/PageErrors";
 import useAuth from "../../Components/Hooks/useAuth";
 // import AuthContext from "../../Components/AuthContext/AuthContext";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [error, setError] = useState([]);
 
   // const auth = useContext(AuthContext);
   const auth = useAuth();
@@ -36,18 +36,15 @@ export default function Login() {
       auth.login(jwt_token);
       history.push("/");
     } else if (response.status === 403) {
-      setErrors(["Login failed."]);
+      setError(["Login failed. Invalid password"]);
     } else {
-      setErrors(["Unknown error."]);
+      setError(["Unknown error."]);
     }
   };
 
   return (
     <div>
       <h2>Login</h2>
-      {errors.map((error, i) => (
-        <Error key={i} msg={error} />
-      ))}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username:</label>
@@ -69,6 +66,7 @@ export default function Login() {
           <button type="submit">Login</button>
         </div>
       </form>
+      <PageErrors errors={error} />
     </div>
   );
 }

@@ -1,8 +1,9 @@
 // import { Link, useHistory } from "react-router-dom";
 import "./Listing.css";
-import one from "../../ImageFolder/1.jpg";
+import one from "../../ImageTest/1.jpg";
+import PageErrors from "../../Components/PageErrors/PageErrors";
 
-function Listing(listing) {
+function Listing({listing}) {
 
 
   return (
@@ -10,11 +11,11 @@ function Listing(listing) {
       <div className="col s12 m7">
         <div className="card">
           <div className="card-image">
-           <img src={listing.imagePath} alt="" />
+           <img src={"../../"+ listing.imagePath} alt="" />
           </div>
-          <div className="card-image">
+          {/* <div className="card-image">
            <img src={one} alt="1" />
-          </div>
+          </div> */}
           <div className="card-content">
             <p>Name: {listing.name}</p>
             <p>Price: {listing.price}</p>

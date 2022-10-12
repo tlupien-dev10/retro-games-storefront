@@ -1,110 +1,108 @@
 import React, { useState } from "react";
-import {Link, useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import "./RegistrationForm.css";
-import FormHelper from "../../Components/Forms/FormHelper"
+import FormHelper from "../../Components/Forms/FormHelper";
 import useAuth from "../../Components/Hooks/useAuth";
+import PageErrors from "../../Components/PageErrors/PageErrors";
 
 const DEFAULT_USER = {
-    username: "",
-
-    
+  username: "",
 };
 
 function RegistrationForm() {
+  // const [email, setEmail] = useState(null);
+  // const [password, setPassword] = useState(null);
+  // const [confirmPassword, setConfirmPassword] = useState(null);
 
-    // const [email, setEmail] = useState(null);
-    // const [password, setPassword] = useState(null);
-    // const [confirmPassword, setConfirmPassword] = useState(null);
+  const [user, setUser] = useState(DEFAULT_USER);
 
-    const [user, setUser]= useState(DEFAULT_USER);
+  const [error, setError] = useState([]);
 
-    const auth = useAuth();
+  const auth = useAuth();
 
-    const history = useHistory();
+  const history = useHistory();
 
-//   const handleChange = (r) => {
-//     const { id, value } = r.target;
-//     if (id === "email") {
-//       setEmail(value);
-//     }
-//     if (id === "password") {
-//       setPassword(value);
-//     }
-//     if (id === "confirmPassword") {
-//       setConfirmPassword(value);
-//     }
-//   };
+  //   const handleChange = (r) => {
+  //     const { id, value } = r.target;
+  //     if (id === "email") {
+  //       setEmail(value);
+  //     }
+  //     if (id === "password") {
+  //       setPassword(value);
+  //     }
+  //     if (id === "confirmPassword") {
+  //       setConfirmPassword(value);
+  //     }
+  //   };
 
-const handleChange = (event) => {
-    const newUser = {...user};
+  const handleChange = (event) => {
+    const newUser = { ...user };
     newUser[event.target.name] = event.target.value;
     setUser(newUser);
-}
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    const newUser = {...user};
+    const newUser = { ...user };
 
     const init = {
-       method: "POST",
-       headers: {
+      method: "POST",
+      headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-       },
-       body: JSON.stringify(newUser)
+      },
+      body: JSON.stringify(newUser),
     };
-    fetch ("http://localhost:8080/create_account", init)
-    .then(async response => {
+    fetch("http://localhost:8080/create_account", init)
+      .then(async (response) => {
         if (response.status === 201) {
-            return response.json();
-        } return Promise.reject (await response.json());
-    })
-    .then (userInfo => {
-        history.push("/")
-    })
-    // Temporary
-    .catch ((errorMessages) => {
-        console.log(errorMessages)
-    });
-
+          return response.json();
+        }
+        return Promise.reject(await response.json());
+      })
+      .then((userInfo) => {
+        history.push("/");
+      })
+      // Temporary
+      .catch((err) => setError([...err]));
   };
 
   return (
+    <div className="container">
+      <PageErrors errors={error} />
 
-<div className="container">
-
-        <form onSubmit={handleSubmit}>
-            <h3 id="formTitle">Registration</h3>
-          <FormHelper
-            inputType={"text"}
-            identifier={"username"}
-            labelText={"Email:"}
-            newVal={user.email}
-            onChangeHandler={handleChange}
-          />
-          <FormHelper
-            inputType={"password"}
-            identifier={"password"}
-            labelText={"Password:"}
-            newVal={user.password}
-            onChangeHandler={handleChange}
-          />
-          {/* <FormHelper
+      <form onSubmit={handleSubmit}>
+        <h3 id="formTitle">Registration</h3>
+        <FormHelper
+          inputType={"text"}
+          identifier={"username"}
+          labelText={"Email:"}
+          newVal={user.email}
+          onChangeHandler={handleChange}
+        />
+        <FormHelper
+          inputType={"password"}
+          identifier={"password"}
+          labelText={"Password:"}
+          newVal={user.password}
+          onChangeHandler={handleChange}
+        />
+        {/* <FormHelper
             inputType={"password"}
             identifier={"confirmPassword"}
             labelText={"Confirm Password:"}
             newVal={user.confirmPassword}
             onChangeHandler={handleChange}
           /> */}
-           <button className="btn btn-success" id="save">Register</button>
-          <Link to="/login" className="btn btn-danger" id="cncl">
-            Cancel
-          </Link>
-        </form>
+        <button className="btn btn-success" id="save">
+          Register
+        </button>
+        <Link to="/login" className="btn btn-danger" id="cncl">
+          Cancel
+        </Link>
+      </form>
     </div>
-          
-
 
     /* <div className="form" id="register">
             <div className="form-body">
