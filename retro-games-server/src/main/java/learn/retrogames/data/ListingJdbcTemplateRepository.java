@@ -217,7 +217,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
             jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, game.getId());
-                ps.setInt(1,game.getConsoles().get(i).getId());
+                ps.setInt(2,game.getConsoles().get(i).getId());
                 return ps;
             }, holder);
     }
