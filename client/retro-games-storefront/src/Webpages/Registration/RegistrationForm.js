@@ -98,7 +98,7 @@ const handleChange = (event) => {
             onChangeHandler={handleChange}
           /> */}
            <button className="btn btn-success" id="save">Register</button>
-          <Link to="/" className="btn btn-danger" id="cncl">
+          <Link to="/login" className="btn btn-danger" id="cncl">
             Cancel
           </Link>
         </form>

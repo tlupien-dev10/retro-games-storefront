@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 
-import "./Listings.css";
+import "./ListingId.css";
 import Listing from "../Listing/Listing";
 import useAuth from "../../Components/Hooks/useAuth";
 
@@ -29,5 +29,3 @@ function ListingId() {
 }
 
 export default ListingId;
-
-import "./Listings.css";

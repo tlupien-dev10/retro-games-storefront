@@ -1,21 +1,26 @@
 // import { Link, useHistory } from "react-router-dom";
 import "./Listing.css";
-import one from "../../ImageTest/1.jpg";
+import one from "../../ImageFolder/1.jpg";
 
-function Listing(listingDetails) {
+function Listing(listing) {
+
+
   return (
     <div className="row">
       <div className="col s12 m7">
         <div className="card">
           <div className="card-image">
-          <img alt="1" src={one} />
+           <img src={listing.imagePath} alt="" />
+          </div>
+          <div className="card-image">
+           <img src={one} alt="1" />
           </div>
           <div className="card-content">
-            <p>Name: {listingDetails.name}</p>
-            <p>Price: {listingDetails.price}</p>
+            <p>Name: {listing.name}</p>
+            <p>Price: {listing.price}</p>
           </div>
           <div className="card-action">
-            <a href={"listing/" + listingDetails.id}>This is a link</a>
+            <a href={"listing/" + listing.id}>Additional Information</a>
           </div>
         </div>
       </div>
