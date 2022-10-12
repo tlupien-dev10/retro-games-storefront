@@ -64,7 +64,7 @@ export default function Login() {
         </div>
         <div>
           <button type="submit">Login</button>
-        <Link to={"/listing"}>
+        <Link to={"/register"}>
         <button className="btn btn-sm btn-success" id="loginRegister">
           New User
         </button>
