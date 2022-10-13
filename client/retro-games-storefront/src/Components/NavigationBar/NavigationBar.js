@@ -6,7 +6,13 @@ import "./NavigationBar.css";
 function NavigationBar() {
   const auth = useAuth();
 
+
   return (
+    <div>
+     <ul id="dropdown1" className="dropdown-content">
+      <li><Link to="/admin/items">Admin-Items</Link></li>
+      <li><Link to="/admin/orders">Admin-Orders</Link></li>
+    </ul>
     <nav>
       <ul>
         <li>
@@ -16,10 +22,7 @@ function NavigationBar() {
           <Link to="/listing">Listing</Link>
         </li>
         {auth.user && auth.user.hasRole("ADMIN") ? (
-          <li>
-            <Link to="/admin/items">Admin-Items</Link>
-            {/* <Link to="/admin/orders">Admin-Orders</Link> */}
-          </li>
+           <li><a className="dropdown-trigger" data-target="dropdown1" >Admin Options<i className="material-icons right">arrow_drop_down</i></a></li>
         ) : (
           <>
             <li className="right-align">
@@ -38,15 +41,16 @@ function NavigationBar() {
         </div>
       )}
     </nav>
+    </div>
+
   );
   
 //   return (
 //     <div>
 // <ul id="dropdown1" class="dropdown-content">
-//   <li><a href="#!">one</a></li>
-//   <li><a href="#!">two</a></li>
+//   <li><Link to="/admin/items">Admin-Items</Link></li>
+//   <li><Link to="/admin/orders">Admin-Orders</Link></li>
 //   <li class="divider"></li>
-//   <li><a href="#!">three</a></li>
 // </ul>
 // <nav>
 //   <div class="nav-wrapper">
