@@ -151,4 +151,120 @@ class OrderServiceTest {
         assertFalse(service.add(toAdd).isSuccess());
         assertEquals(ResultType.INVALID, service.add(toAdd).getType());
     }
+
+    @Test
+    void shouldUpdate() {
+        Order toUpdate = knownGoodOrder(true);
+        existingListings();
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertTrue(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.SUCCESS, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNull() {
+        assertFalse(service.update(null).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(null).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNullId() {
+        Order toUpdate = knownGoodOrder(false);
+        existingListings();
+        when(repo.update(toUpdate)).thenReturn(false);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateBadId() {
+        Order toUpdate = knownGoodOrder(false);
+        toUpdate.setId(2);
+        existingListings();
+        when(repo.update(toUpdate)).thenReturn(false);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.NOT_FOUND, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNullListings() {
+        Order toUpdate = knownGoodOrder(true);
+        toUpdate.setListings(null);
+        existingListings();
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateZeroListings() {
+        Order toUpdate = knownGoodOrder(true);
+        toUpdate.setListings(new ArrayList<>());
+        existingListings();
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNegativeOrderQuantity() {
+        Order toUpdate = knownGoodOrder(true);
+        toUpdate.getListings().get(0).setOrderedQuantity(-1);
+        existingListings();
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNullCustomer() {
+        Order toUpdate = knownGoodOrder(true);
+        toUpdate.setCustomer(null);
+        existingListings();
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateTooLarge() {
+        Order toUpdate = knownGoodOrder(true);
+        toUpdate.getListings().get(0).setOrderedQuantity(9001);
+        existingListings();
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNonexistentListing() {
+        Order toUpdate = knownGoodOrder(true);
+        toUpdate.getListings().get(0).setId(2);
+        existingListings();
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldDelete() {
+        when(repo.deleteById(1)).thenReturn(true);
+        assertTrue(service.deleteById(1));
+    }
+
+    @Test
+    void shouldNotDelete() {
+        when(repo.deleteById(9000)).thenReturn(false);
+        assertFalse(service.deleteById(9000));
+    }
+
 }
