@@ -1,10 +1,8 @@
 package learn.retrogames.data;
 
-import learn.retrogames.data.mappers.AppUserMapper;
-import learn.retrogames.data.mappers.AppUserMapperLite;
-import learn.retrogames.data.mappers.ListingMapper;
-import learn.retrogames.data.mappers.OrderMapper;
+import learn.retrogames.data.mappers.*;
 import learn.retrogames.models.AppUser;
+import learn.retrogames.models.Console;
 import learn.retrogames.models.Listing;
 import learn.retrogames.models.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class OrderJdbcTemplateRepository  implements OrderRepository{
@@ -89,6 +88,13 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
         final String sql = "UPDATE order SET deleted = 1 WHERE order_id = ?;";
         softResetListingOrderRelationship(id);
         return (jdbcTemplate.update(sql, id) > 0);
+    }
+
+    @Override
+    public List<Integer> getAvailableListingIds() {
+        final String sql = "SELECT * FROM listing WHERE deleted = 0;";
+        List<Listing> listings = jdbcTemplate.query(sql, new ListingMapper());
+        return listings.stream().map(Listing::getId).collect(Collectors.toList());
     }
 
 

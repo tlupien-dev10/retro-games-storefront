@@ -45,6 +45,7 @@ public class OrderService {
     // - order must have a customer (user) associated with it
     // - orderedQuantities cannot exceed regular (inventory) quantities
     // - order can't be null
+    // - all listings associated with an order must already exist
 
     private Result<Order> validate(Order order) {
         Result<Order> res = new Result<>();
