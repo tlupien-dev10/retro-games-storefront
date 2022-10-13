@@ -26,15 +26,44 @@ public class OrderService {
     }
 
     public Result<Order> add(Order order) {
-        throw new UnsupportedOperationException();
+        Result<Order> res = validate(order);
+
+        if (!res.isSuccess()) {
+            return res;
+        }
+
+        if (order.getId() != 0) {
+            res.addMessage("Order id must not be set before adding.", ResultType.INVALID);
+            return res;
+        }
+
+        order = repo.add(order);
+        res.setPayload(order);
+        return res;
     }
 
     public Result<Order> update(Order order) {
-        throw new UnsupportedOperationException();
+        Result<Order> res = validate(order);
+
+        if (!res.isSuccess()) {
+            return res;
+        }
+
+        if (order.getId() <= 0) {
+            res.addMessage("Order id must be set before updating.", ResultType.INVALID);
+            return res;
+        }
+
+        if (!repo.update(order)) {
+            String msg = String.format("Order with id %s not found.", order.getId());
+            res.addMessage(msg, ResultType.NOT_FOUND);
+        }
+
+        return res;
     }
 
-    public boolean deleteById(int orderId) {
-        throw new UnsupportedOperationException();
+    public boolean deleteById(int id) {
+        return repo.deleteById(id);
     }
 
 
@@ -73,7 +102,9 @@ public class OrderService {
                                     l.getName()),
                             ResultType.INVALID);
                 }
-                // TODO: check if listings exist here
+                if (!repo.getAvailableListingIds().contains(l.getId())) {
+                    res.addMessage("Order cannot reference listings that do not exist.", ResultType.INVALID)
+                }
             }
         }
         return res;

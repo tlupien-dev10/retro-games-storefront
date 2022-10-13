@@ -36,7 +36,7 @@ public class ListingService {
         }
 
         if (listing.getId() != 0) {
-            res.addMessage("Listing id must not be set before adding", ResultType.INVALID);
+            res.addMessage("Listing id must not be set before adding.", ResultType.INVALID);
             return res;
         }
 
@@ -53,12 +53,12 @@ public class ListingService {
         }
 
         if (listing.getId() <= 0) {
-            res.addMessage("Listing id must be set before updating", ResultType.INVALID);
+            res.addMessage("Listing id must be set before updating.", ResultType.INVALID);
             return res;
         }
 
         if (!repo.update(listing)) {
-            String msg = String.format("Listing with id %s not found", listing.getId());
+            String msg = String.format("Listing with id %s not found.", listing.getId());
             res.addMessage(msg, ResultType.NOT_FOUND);
         }
 
