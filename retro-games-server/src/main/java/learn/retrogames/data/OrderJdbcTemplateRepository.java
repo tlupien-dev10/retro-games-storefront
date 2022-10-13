@@ -97,7 +97,20 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
         final String sql = "SELECT * FROM listing AS l INNER JOIN order_listing AS ol ON l.listing_id = ol.listing_id " +
                 "WHERE ol.order_id = ?;";
         List<Listing> listings = jdbcTemplate.query(sql, new ListingMapper(), order.getId());
+        listings.forEach(l -> setListingOrderedQty(l, order.getId()));
         order.setListings(listings);
+    }
+
+    private void setListingOrderedQty(Listing listing, int orderId) {
+        final String sql = "SELECT quantity FROM order_listing WHERE order_id = ? AND listing_id = ?;";
+        int orderedQuantity = jdbcTemplate.query(sql,
+                        (rs, row) -> rs.getInt("quantity"),
+                        orderId,
+                        listing.getId())
+                .stream()
+                .findFirst()
+                .orElse(0);
+        listing.setOrderedQuantity(orderedQuantity);
     }
 
     private void addListingOrderRelationship(Order order, int i) {

@@ -11,6 +11,8 @@ public class Listing {
     private ListingType listingType;
     private int quantity;
 
+    private int orderedQuantity;
+
     private Console console;
     private Game game;
     private Merchandise merchandise;
@@ -116,5 +118,13 @@ public class Listing {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public int getOrderedQuantity() {
+        return orderedQuantity;
+    }
+
+    public void setOrderedQuantity(int orderedQuantity) {
+        this.orderedQuantity = orderedQuantity;
     }
 }
