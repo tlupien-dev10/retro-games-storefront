@@ -5,26 +5,26 @@
 // private String imagePath;
 // private ListingType listingType;
 
-function ListingIdDisplay({listing} ) {
+function ListingIdDisplay({listings} ) {
   return (
     <div>
       <figure>
-        {"../../"+ listing.imagePath && (
+        {"../../"+ listings.imagePath && (
           <img
             className="card-img-top"
-            src={"../../"+ listing.imagePath}
-            alt={listing.description}
+            src={"../../"+ listings.imagePath}
+            alt={listings.description}
           />
         )}
         <figcaption>
-          <h4>{listing.description}</h4>
-          <p>Name: {listing.name}</p>
-          <p>Price: {listing.price}</p>
+          <h4>{listings.description}</h4>
+          <p>Name: {listings.name}</p>
+          <p>Price: {listings.price}</p>
           {/* <p>Release Date: {listing.</p>
           <p>Type: {listing.listingType}</p> */}
         </figcaption>
       </figure>
-       <p>Reviews: {listing.reviews}</p>
+       <p>Reviews: {listings.reviews}</p>
     </div>
   );
 }

@@ -4,6 +4,13 @@
 // import FormHelper from "../../Components/Forms/FormHelper";
 // import AuthContext from "../../Components/AuthContext/AuthContext";
 
+
+
+  //Keep for now, but I'm pretty sure this entire file can be
+  //Deleted. All the Table data was placed in the return for
+  //AdminItemHelper (if deleting this change name of AdminItemHelper)
+
+
 import {Link, useParams} from "react-router-dom";
 
 function AdminItem({ allListing, handleDelete, canAdd, canEdit, canDelete }) {

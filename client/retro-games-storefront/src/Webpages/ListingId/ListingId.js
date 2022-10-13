@@ -27,8 +27,8 @@ useEffect(() => getListing(), []);
   return (
     <div>
       <PageErrors errors={error} />
-      {listing.map((listing) => (
-        <ListingIdDisplay key={listing.id} listing={listing} />
+      {listing.map((listings) => (
+        <ListingIdDisplay key={listings.id} listing={listings} />
       ))}
     </div>
   );

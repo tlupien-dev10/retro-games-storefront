@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useHistory, useParams, Link } from "react-router-dom";
 
 import AdminItem from "./AdminItem";
+import "./AdminItemHelper.css";
 import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
 
@@ -43,34 +44,33 @@ function AdminItemHelper() {
       .catch((err) => setError([...err]));
   };
 
-    // <div>
-    //   <PageErrors errors={error} />
-    //   {allListings.map((listing) => (
-    //     <AdminItem
-    //       key={listing.id}
-    //       allListing={listing}
-    //       handleDelete={handleDelete}
-    //       canEdit={canEdit}
-    //       canDelete={canDelete}
-    //       canAdd={canAdd}
-    //     />
-    //   ))}
-    // </div>
-
     return (
+      <div>
+      <table className="striped">
       <tbody>
         <tr>
           <th>Item Name</th>
+          <th>Display Image</th>
           <th>Price</th>
           <th>Quantity</th>
-          <th></th>
+          <th className="text-center">{canAdd && (
+          <Link to={"/admin/add"}>
+                <button
+                  className="float-start btn btn-sm btn-success"
+                  id="editBtn"
+                >
+                  Add New Listing
+                </button></Link>)}
+                </th>
         </tr>
         {allListings.map((listing) => (
           <tr key={listing.id}>
             <td>{listing.name}</td>
+            <td> <img id="tableImage" src={"../../"+ listing.imagePath} alt="" /></td>
             <td>{listing.price}</td>
             <td>{listing.quantity}</td>
             <td className="text-right">
+            {canEdit && (
               <Link to={"/edit/" + id}>
                 <button
                   className="float-start btn btn-sm btn-success"
@@ -79,16 +79,21 @@ function AdminItemHelper() {
                   Edit
                 </button>
               </Link>
+              )}
+              {canDelete && (
               <button
                 className="float-end btn btn-sm btn-danger"
                 id="delBtn"
                 onClick={() => handleDelete(listing.id)}>Delete
               </button>
+              )}
             </td>
           </tr>
         ))}
         </tbody>
-
+        </table>
+        <PageErrors errors={error} />
+        </div>
   );
 }
 

@@ -17,6 +17,7 @@ import Login from "./Webpages/LoginPage/LoginPage";
 import AdminItemHelper from "./Webpages/Admin/AdminItemHelper";
 import AdminOrder from "./Webpages/Admin/AdminOrder";
 import AuthContext from "./Components/AuthContext/AuthContext";
+import AdminAddForm from "./Components/Forms/AdminAddForm";
 
 
 
@@ -102,6 +103,7 @@ if (!restoreLoginAttemptCompleted) {
           <Route exact path="/listing">
             <Listings />
           </Route>
+          
           <Route path="/listing/:id">
             <ListingId />
           </Route>
@@ -110,9 +112,14 @@ if (!restoreLoginAttemptCompleted) {
               {auth.user && auth.user.hasRole("ADMIN") ?
               <AdminItemHelper /> : <Redirect to="/" />}
           </Route> 
+
           <Route exact path ="/admin/orders">
               {auth.user && auth.user.hasRole("ADMIN") ?
               <AdminOrder /> : <Redirect to="/" />}
+          </Route>
+
+          <Route exact path ="/admin/add">
+            <AdminAddForm />
           </Route>
 
           <Route>
