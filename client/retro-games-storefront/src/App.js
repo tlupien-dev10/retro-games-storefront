@@ -7,7 +7,6 @@ import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 // import Carousel from "./Webpages/Homepage/Carousel";
 
-import RequiredAuth from "./Components/RequiredAuth";
 import RegistrationForm from "./Webpages/Registration/RegistrationForm";
 import NavigationBar from "./Components/NavigationBar/NavigationBar";
 import Homepage from "./Webpages/Homepage/Homepage";
@@ -15,7 +14,7 @@ import Listings from "./Webpages/Listing/Listings";
 import ListingId from "./Webpages/ListingId/ListingId";
 import NotFound from "./Webpages/NotFound/NotFound";
 import Login from "./Webpages/LoginPage/LoginPage";
-import AdminItem from "./Webpages/Admin/AdminItem";
+import AdminItemHelper from "./Webpages/Admin/AdminItemHelper";
 import AdminOrder from "./Webpages/Admin/AdminOrder";
 import AuthContext from "./Components/AuthContext/AuthContext";
 
@@ -106,28 +105,15 @@ if (!restoreLoginAttemptCompleted) {
           <Route path="/listing/:id">
             <ListingId />
           </Route>
-      
-          {/* <Route exact path="/admin/items">
-             {user.roles === null || !user.roles.includes("admin") ?
-            <AdminItem /> : <Redirect to="/" />}
-          </Route> */}
-          {/* {user.role ==="admin" ? (
-            <Route exact path ="/admin/items">
-              <AdminItem />
-              ) : (<Redirect to="/" />
-              )
-            </Route> */}
 
             <Route exact path ="/admin/items">
               {auth.user && auth.user.hasRole("ADMIN") ?
-              <AdminItem /> : <Redirect to="/" />}
+              <AdminItemHelper /> : <Redirect to="/" />}
           </Route> 
           <Route exact path ="/admin/orders">
               {auth.user && auth.user.hasRole("ADMIN") ?
               <AdminOrder /> : <Redirect to="/" />}
           </Route>
-
-         
 
           <Route>
             <NotFound />

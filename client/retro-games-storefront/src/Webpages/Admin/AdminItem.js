@@ -4,15 +4,14 @@
 // import FormHelper from "../../Components/Forms/FormHelper";
 // import AuthContext from "../../Components/AuthContext/AuthContext";
 
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
-function AdminItem({ listing, handleDelete, canAdd, canEdit, canDelete }) {
-
+function AdminItem({ allListing, handleDelete, canAdd, canEdit, canDelete }) {
+  const {id} = useParams();
   
   return (
     <div>
-      <h1>Welcome to the Admin Inventory Page!</h1>
-      <table className="table">
+      <table className="responsive-table">
         <thead>
           <tr>
             <th>Item Name</th>
@@ -23,12 +22,12 @@ function AdminItem({ listing, handleDelete, canAdd, canEdit, canDelete }) {
         </thead>
         <tbody>
           <tr>
-            <td>{listing.name}</td>
-            <td>{listing.price}</td>
-            <td>{listing.quantity}</td>
+            <td>{allListing.name}</td>
+            <td>{allListing.price}</td>
+            <td>{allListing.quantity}</td>
             <td className="text-right">
               {canEdit && (
-              <Link to={`/edit/${listing.id}`}>
+              <Link to={"/edit/" + id}>
                 <button
                   className="float-start btn btn-sm btn-success"
                   id="editBtn"
@@ -41,7 +40,7 @@ function AdminItem({ listing, handleDelete, canAdd, canEdit, canDelete }) {
               <button
                 className="float-end btn btn-sm btn-danger"
                 id="delBtn"
-                onClick={() => handleDelete(listing.id)}>Delete
+                onClick={() => handleDelete(allListing.id)}>Delete
               </button>
               )}
             </td>

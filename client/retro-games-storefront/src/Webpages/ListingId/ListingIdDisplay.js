@@ -24,7 +24,7 @@ function ListingIdDisplay({listing} ) {
           <p>Type: {listing.listingType}</p> */}
         </figcaption>
       </figure>
-    //   <p>Reviews: {listing.reviews}</p>
+       <p>Reviews: {listing.reviews}</p>
     </div>
   );
 }

@@ -15,7 +15,7 @@ function NavigationBar() {
         <li>
           <Link to="/listing">Listing</Link>
         </li>
-        {auth.user ? (
+        {auth.user && auth.user.hasRole("ADMIN") ? (
           <li>
             <Link to="/admin/items">Admin-Items</Link>
             {/* <Link to="/admin/orders">Admin-Orders</Link> */}

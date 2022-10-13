@@ -15,7 +15,7 @@ function ListingId() {
   const history = useHistory();
 
   function getListing() {
-    fetch(`http://localhost:8080/api/listing/${id}`)
+    fetch("http://localhost:8080/api/listing/" + id)
         .then((response) => response.json())
         .then((data) => setListing(data))
         .catch((err) => setError([...err]));
@@ -28,7 +28,7 @@ useEffect(() => getListing(), []);
     <div>
       <PageErrors errors={error} />
       {listing.map((listing) => (
-        <ListingIdDisplay key={listing.listingId} listing={listing} />
+        <ListingIdDisplay key={listing.id} listing={listing} />
       ))}
     </div>
   );
