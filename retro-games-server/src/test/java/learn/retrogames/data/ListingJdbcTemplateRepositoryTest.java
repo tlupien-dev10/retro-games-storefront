@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ListingJdbcTemplateRepositoryTest {
 
-    final static int NEXT_ID = 13;
 
     @Autowired
     ListingJdbcTemplateRepository listingJdbcTemplateRepository;
