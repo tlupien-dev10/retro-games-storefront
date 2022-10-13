@@ -13,8 +13,25 @@ const DEFAULT_LISTING = {
   price: "",
 };
 
+const listType = [
+    {
+        label: "GAME",
+        value: "GAME",
+    },
+    {
+    label: "CONSOLE",
+    value: "CONSOLE",
+},
+{
+label: "MERCHANDISE",
+value: "MERCHANDISE",
+},
+];
+
 function AdminAddForm() {
   const [listing, setListing] = useState(DEFAULT_LISTING);
+  const [listingType, setListingType] = useState([]);
+  
   const [error, setError] = useState([]);
   const history = useHistory();
   const auth = useAuth();
@@ -62,10 +79,44 @@ function AdminAddForm() {
   listingType: "",
 quantity: "",*/}
       <FormHelper
-                   inputType={"date"}
-                   identifier={"releaseDate"}
-                   labelText={"Release Date:"}
-                   newVal={listing.releaseDate}
+                   inputType={"text"}
+                   identifier={"name"}
+                   labelText={"Listing Name:"}
+                   newVal={listing.name}
+                   onChangeHandler={changeHandler}
+                 />
+                    <FormHelper
+                   inputType={"text"}
+                   identifier={"description"}
+                   labelText={"Description:"}
+                   newVal={listing.description}
+                   onChangeHandler={changeHandler}
+                 />
+                    <FormHelper
+                   inputType={"text"}
+                   identifier={"imagePath"}
+                   labelText={"Image Path:"}
+                   newVal={listing.imagePath}
+                   onChangeHandler={changeHandler}
+                 />
+               <select>
+                <option value="0">--Choose--</option>
+                 {listType.map((t) => (
+                    <option key={t.id} value={t.value}>{t.label}</option>
+                 ))}
+                </select>
+                    <FormHelper
+                   inputType={"number"}
+                   identifier={"quantity"}
+                   labelText={"Quantity:"}
+                   newVal={listing.quantity}
+                   onChangeHandler={changeHandler}
+                 />
+                    <FormHelper
+                   inputType={"number"}
+                   identifier={"price"}
+                   labelText={"Listing Price:"}
+                   newVal={listing.price}
                    onChangeHandler={changeHandler}
                  />
         <PageErrors errors={error} />
