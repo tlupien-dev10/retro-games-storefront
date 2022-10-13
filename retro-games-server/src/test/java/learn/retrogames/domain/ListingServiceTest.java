@@ -327,4 +327,247 @@ class ListingServiceTest {
         assertEquals(ResultType.SUCCESS, service.update(toUpdate).getType());
     }
 
+    @Test
+    void shouldNotUpdateNull() {
+        assertFalse(service.update(null).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(null).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNullName() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        toUpdate.setName(null);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNullPrice() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        toUpdate.setPrice(null);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNegativePrice() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        toUpdate.setPrice(BigDecimal.valueOf(-1.00));
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNegativeQuantity() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        toUpdate.setQuantity(-1);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNoType() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        toUpdate.setListingType(null);
+        toUpdate.setGame(null);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNoGameGame() {
+        Listing toUpdate = knownGoodListing(ListingType.GAME);
+        toUpdate.setGame(null);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+
+        List<Integer> ec = new ArrayList<>();
+        ec.add(1);
+        when(consoleRepo.getAvailableConsoleIds()).thenReturn(ec);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNoConsoleConsole() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        toUpdate.setConsole(null);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNoMerchMerch() {
+        Listing toUpdate = knownGoodListing(ListingType.MERCHANDISE);
+        toUpdate.setMerchandise(null);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateWrongDetailGame() {
+        Listing toUpdate = knownGoodListing(ListingType.GAME);
+        toUpdate.setGame(null);
+        Merchandise merch = new Merchandise(1, "Test");
+        toUpdate.setMerchandise(merch);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+
+        List<Integer> ec = new ArrayList<>();
+        ec.add(1);
+        when(consoleRepo.getAvailableConsoleIds()).thenReturn(ec);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdatedWrongDetailConsole() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        toUpdate.setConsole(null);
+        Merchandise merch = new Merchandise(1, "Test");
+        toUpdate.setMerchandise(merch);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateWrongDetailMerch() {
+        Listing toUpdate = knownGoodListing(ListingType.MERCHANDISE);
+        toUpdate.setMerchandise(null);
+        Console console = new Console(1,"Test","ACME consoles",LocalDate.of(2022,10,12));
+        toUpdate.setConsole(console);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateMultiDetailGame() {
+        Listing toUpdate = knownGoodListing(ListingType.GAME);
+        Merchandise merch = new Merchandise(1, "Test");
+        toUpdate.setMerchandise(merch);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+
+        List<Integer> ec = new ArrayList<>();
+        ec.add(1);
+        when(consoleRepo.getAvailableConsoleIds()).thenReturn(ec);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateMultiDetailConsole() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        Merchandise merch = new Merchandise(1, "Test");
+        toUpdate.setMerchandise(merch);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateMultiDetailMerch() {
+        Listing toUpdate = knownGoodListing(ListingType.MERCHANDISE);
+        Console console = new Console(1,"Test","ACME consoles",LocalDate.of(2022,10,12));
+        toUpdate.setConsole(console);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNullImagePath() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        toUpdate.setImagePath(null);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateGameReferencingBadConsole() {
+        Listing toUpdate = knownGoodListing(ListingType.GAME);
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+
+        List<Integer> ec = new ArrayList<>();
+        ec.add(2); // key to this test
+        when(consoleRepo.getAvailableConsoleIds()).thenReturn(ec);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateNullId() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        when(repo.update(toUpdate)).thenReturn(false);
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateBadId() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        toUpdate.setId(-1);
+        when(repo.update(toUpdate)).thenReturn(false);
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
 }
