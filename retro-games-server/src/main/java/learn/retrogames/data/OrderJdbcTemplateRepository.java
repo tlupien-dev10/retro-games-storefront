@@ -50,10 +50,6 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
     @Transactional
     public Order add(Order order) {
         final String sql = "INSERT INTO `order` (app_user_id) VALUES (?);";
-        // add the order_listings to bridge table
-        for (int i = 0; i < order.getListings().size(); i++) {
-            addListingOrderRelationship(order, i);
-        }
 
         KeyHolder holder = new GeneratedKeyHolder();
         int nRowsAffected = jdbcTemplate.update(connection -> {
@@ -67,6 +63,9 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
         }
 
         order.setId(holder.getKey().intValue());
+        for (int i = 0; i < order.getListings().size(); i++) {
+            addListingOrderRelationship(order, i);
+        }
         return order;
 
     }
