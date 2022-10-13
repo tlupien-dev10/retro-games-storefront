@@ -114,12 +114,13 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
     }
 
     private void addListingOrderRelationship(Order order, int i) {
-        final String sql = "INSERT INTO order_listing (order_id, listing_id) VALUES (?, ?);";
+        final String sql = "INSERT INTO order_listing (order_id, listing_id, quantity) VALUES (?, ?, ?);";
         KeyHolder holder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, order.getId());
             ps.setInt(2, order.getListings().get(i).getId());
+            ps.setInt(3, order.getListings().get(i).getId());
             return ps;
         }, holder);
     }
