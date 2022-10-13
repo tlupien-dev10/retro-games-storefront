@@ -84,6 +84,9 @@ public class OrderJdbcTemplateRepositoryTest {
     @Test
     void shouldUpdateOrder(){
         Order toUpdate = orderJdbcTemplateRepository.getById(2);
-        List<Listing> orderListings = 
+        toUpdate.getListings().get(0).setOrderedQuantity(4);
+        assertTrue(orderJdbcTemplateRepository.update(toUpdate));
+        assertEquals(4, orderJdbcTemplateRepository.getById(2).getListings().get(0).getOrderedQuantity());
+
     }
 }

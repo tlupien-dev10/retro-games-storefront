@@ -94,7 +94,7 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
 
     private void getCustomerForOrder(Order order) {
         final String sql = "SELECT * FROM app_user WHERE app_user_id = ?;";
-        AppUser customer = jdbcTemplate.query(sql, new AppUserMapperLite(), order.getCustomer()).stream()
+        AppUser customer = jdbcTemplate.query(sql, new AppUserMapperLite(), order.getCustomer().getAppUserId()).stream()
                 .findFirst()
                 .orElse(null);
         order.setCustomer(customer);
