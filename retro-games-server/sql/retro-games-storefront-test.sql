@@ -234,7 +234,7 @@ insert into review (review_title, review_author, review_description, listing_id)
 
 insert into `order` (app_user_id) values (1), (1), (2), (3);
 
-insert into order_listing (order_id, listing_id) values
+insert into order_listing (order_id, listing_id, quantity) values
 	(1, 6, 2),
     (1, 12, 1),
     (2, 13, 1),
