@@ -6,13 +6,16 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface OrderRepository {
-    public List<Order> getAll();
+    List<Order> getAll();
 
-    public Order getById(int id);
-
-    @Transactional
-    public Order add(Order order);
+    Order getById(int id);
 
     @Transactional
-    public boolean update(Order order);
+    Order add(Order order);
+
+    @Transactional
+    boolean update(Order order);
+
+    @Transactional
+    boolean deleteById(int id);
 }
