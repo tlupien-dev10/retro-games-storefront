@@ -133,7 +133,7 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, order.getId());
             ps.setInt(2, order.getListings().get(i).getId());
-            ps.setInt(3, order.getListings().get(i).getId());
+            ps.setInt(3, order.getListings().get(i).getOrderedQuantity());
             return ps;
         }, holder);
     }
