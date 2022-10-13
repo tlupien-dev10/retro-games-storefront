@@ -46,6 +46,7 @@ class ListingServiceTest {
     //      - fail for having an id (ADD specific)
     // - update - all validations from add except it has to ALREADY have an id, rather than not having one
     // - delete - success case for all 3 types + 1 fail for not found (when repo returns false)
+    // - well, the difference between deletion for the 3 types is in the repo, so that's where that should be tested.
 
     private Listing knownGoodListing(ListingType type) {
         // generic listing info
@@ -569,5 +570,17 @@ class ListingServiceTest {
         when(repo.update(toUpdate)).thenReturn(false);
         assertFalse(service.update(toUpdate).isSuccess());
         assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldDelete() {
+        when(repo.deleteById(1)).thenReturn(true);
+        assertTrue(service.deleteById(1));
+    }
+
+    @Test
+    void shouldNotDelete() {
+        when(repo.deleteById(9000)).thenReturn(false);
+        assertFalse(service.deleteById(9000));
     }
 }
