@@ -4,8 +4,8 @@ import FormHelper from "./FormHelper";
 import PageErrors from "../PageErrors/PageErrors";
 import useAuth from "../Hooks/useAuth";
 
-function AdminAddForm() {
-    const [listing, setListing] = useState(null);
+function AdminAddForm({listing}) {
+    const [listing, setListing] = useState([]);
     const [error, setError] = useState([]);
     const history = useHistory();
     const auth = useAuth();
@@ -15,6 +15,8 @@ function AdminAddForm() {
         newListing[event.target.name] = event.target.value;
         setListing(newListing);
     };
+
+    // const onChangeValue
 
     const submitHandler = (evt) => {
         evt.preventDefault();
@@ -47,6 +49,7 @@ function AdminAddForm() {
     
        <div className="container">
         {/* <label>Listing Type</label> */}
+        <h5>Enter Listing Type</h5>
         <label>
         <input name="Type Group" type="radio" value="Game" checked />
         <span>Game</span>
@@ -66,8 +69,58 @@ function AdminAddForm() {
         
         <form onSubmit={submitHandler}>
 
-           {// SOmething like this: If value===game render 1st Form.  If value===console render 2nd Form.  If value===merchandise render 3rd form
-           }
+           
+           
+           <FormHelper
+                   inputType={"text"}
+                   identifier={"genre"}
+                   labelText={"Game Genre:"}
+                   newVal={listing.genre}
+                   onChangeHandler={changeHandler}
+                 />
+                  <FormHelper
+                   inputType={"text"}
+                   identifier={"publisher"}
+                   labelText={"Game Publisher"}
+                   newVal={listing.publisher}
+                   onChangeHandler={changeHandler}
+                 />
+                  <FormHelper
+                   inputType={"date"}
+                   identifier={"releaseDate"}
+                   labelText={"Release Date:"}
+                   newVal={listing.releaseDate}
+                   onChangeHandler={changeHandler}
+                 />
+           <FormHelper
+                   inputType={"text"}
+                   identifier={"version"}
+                   labelText={"Console Version:"}
+                   newVal={listing.version}
+                   onChangeHandler={changeHandler}
+                 />
+                  <FormHelper
+                   inputType={"text"}
+                   identifier={"company"}
+                   labelText={"Company"}
+                   newVal={listing.company}
+                   onChangeHandler={changeHandler}
+                 />
+                  <FormHelper
+                   inputType={"date"}
+                   identifier={"releaseDate"}
+                   labelText={"Release Date:"}
+                   newVal={listing.releaseDate}
+                   onChangeHandler={changeHandler}
+                 />
+                 <FormHelper
+                   inputType={"text"}
+                   identifier={"category"}
+                   labelText={"Category:"}
+                   newVal={listing.version}
+                   onChangeHandler={changeHandler}
+                 />
+           
         
                     <PageErrors errors={error} />
        
