@@ -26,13 +26,12 @@ function NavigationBar() {
         </li>
         {auth.user && auth.user.hasRole("ADMIN") ? (
           //  <li><a className="dropdown-trigger" data-target="dropdown1" >Admin Options<i className="material-icons right">arrow_drop_down</i></a></li>
-          <li><Link to="/admin/items">Admin-Items</Link></li>
-        ) : (
-
-        
           <>
-          
-
+          <li><Link to="/admin/items">Admin-Items</Link></li>
+          <li><Link to="/admin/orders">Admin-Orders</Link></li>
+          </>
+        ) : (
+          <>
             <li className="right-align">
               <Link to="/login">Login</Link>
             </li>
