@@ -7,13 +7,16 @@ function NavigationBar() {
   const auth = useAuth();
 
 
+  
+
   return (
     <div>
-     <ul id="dropdown1" className="dropdown-content">
+     {/* <ul id="dropdown1" className="dropdown-content">
       <li><Link to="/admin/items">Admin-Items</Link></li>
       <li><Link to="/admin/orders">Admin-Orders</Link></li>
-    </ul>
+    </ul> */}
     <nav>
+      <div className="nav-wrapper">
       <ul>
         <li>
           <Link to="/">Home</Link>
@@ -22,9 +25,14 @@ function NavigationBar() {
           <Link to="/listing">Listing</Link>
         </li>
         {auth.user && auth.user.hasRole("ADMIN") ? (
-           <li><a className="dropdown-trigger" data-target="dropdown1" >Admin Options<i className="material-icons right">arrow_drop_down</i></a></li>
+          //  <li><a className="dropdown-trigger" data-target="dropdown1" >Admin Options<i className="material-icons right">arrow_drop_down</i></a></li>
+          <li><Link to="/admin/items">Admin-Items</Link></li>
         ) : (
+
+        
           <>
+          
+
             <li className="right-align">
               <Link to="/login">Login</Link>
             </li>
@@ -35,35 +43,17 @@ function NavigationBar() {
         )}
       </ul>
       {auth.user && (
-        <div>
+        <div className="right">
           Welcome {auth.user.username}!
           <button onClick={() => auth.logout()}>Logout</button>
         </div>
       )}
+      </div>
     </nav>
     </div>
 
   );
   
-//   return (
-//     <div>
-// <ul id="dropdown1" class="dropdown-content">
-//   <li><Link to="/admin/items">Admin-Items</Link></li>
-//   <li><Link to="/admin/orders">Admin-Orders</Link></li>
-//   <li class="divider"></li>
-// </ul>
-// <nav>
-//   <div class="nav-wrapper">
-//     <a href="#!" class="brand-logo">Logo</a>
-//     <ul class="right hide-on-med-and-down">
-//       <li><a href="sass.html">Sass</a></li>
-//       <li><a href="badges.html">Components</a></li>
-//       <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-//     </ul>
-//   </div>
-// </nav>
-// </div>
-//   );
 }
 
 export default NavigationBar;
