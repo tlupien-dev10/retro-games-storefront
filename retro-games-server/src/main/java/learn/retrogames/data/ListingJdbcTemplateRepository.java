@@ -46,6 +46,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     }
 
     @Override
+    @Transactional
     public Listing add(Listing listing) {
         final String sql = "INSERT INTO listing (listing_name, listing_description, image_path, listing_type, quantity, price)" +
                 " VALUES(?,?,?,?,?,?);";
@@ -71,6 +72,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     }
 
     @Override
+    @Transactional
     public boolean update(Listing listing) {
         final String sql ="UPDATE listing SET" +
                 " listing_name = ?," +

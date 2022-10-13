@@ -114,6 +114,7 @@ create table `order` (
 create table order_listing (
 	order_id int not null,
     listing_id int not null,
+    quantity int not null,
     deleted bit not null default(0),
     constraint pk_order_listing
 		primary key (order_id, listing_id),
@@ -234,13 +235,13 @@ insert into review (review_title, review_author, review_description, listing_id)
 insert into `order` (app_user_id) values (1), (1), (2), (3);
 
 insert into order_listing (order_id, listing_id) values
-	(1, 6),
-    (1, 12),
-    (2, 13),
-    (3, 1),
-    (3, 2),
-    (3, 10),
-    (3, 11);
+	(1, 6, 2),
+    (1, 12, 1),
+    (2, 13, 1),
+    (3, 1, 1),
+    (3, 2, 2),
+    (3, 10, 1),
+    (3, 11, 1);
     
     
 end //

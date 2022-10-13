@@ -71,6 +71,19 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
 
     }
 
+    @Override
+    @Transactional
+    public boolean update(Order order) {
+        final String sql = "UPDATE order SET app_use_id = ? WHERE order_id = ?;";
+        resetListingOrderRelationship(order.getId());
+        for (int i = 0; i < order.getListings().size(); i++) {
+            addListingOrderRelationship(order, i);
+        }
+        return (jdbcTemplate.update(sql,
+                order.getCustomer().getAppUserId(),
+                order.getId()) > 0);
+    }
+
 
     private void getCustomerForOrder(Order order) {
         final String sql = "SELECT * FROM app_user WHERE app_user_id = ?;";
@@ -96,5 +109,9 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
             ps.setInt(2, order.getListings().get(i).getId());
             return ps;
         }, holder);
+    }
+    private void resetListingOrderRelationship(int id) {
+        final String sql = "DELETE FROM order_listing WHERE order_id = ?;";
+        jdbcTemplate.update(sql, id);
     }
 }

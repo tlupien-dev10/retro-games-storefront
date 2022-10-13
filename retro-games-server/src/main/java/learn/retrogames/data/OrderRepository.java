@@ -12,4 +12,7 @@ public interface OrderRepository {
 
     @Transactional
     public Order add(Order order);
+
+    @Transactional
+    public boolean update(Order order);
 }

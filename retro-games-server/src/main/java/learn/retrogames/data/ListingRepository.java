@@ -10,8 +10,10 @@ public interface ListingRepository {
 
     Listing getById(int id);
 
+    @Transactional
     Listing add(Listing listing);
 
+    @Transactional
     boolean update(Listing listing);
 
     @Transactional
