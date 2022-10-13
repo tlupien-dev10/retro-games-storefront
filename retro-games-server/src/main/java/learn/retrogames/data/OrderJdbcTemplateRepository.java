@@ -72,7 +72,7 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
     @Override
     @Transactional
     public boolean update(Order order) {
-        final String sql = "UPDATE order SET app_user_id = ? WHERE order_id = ?;";
+        final String sql = "UPDATE `order` SET app_user_id = ? WHERE order_id = ?;";
         resetListingOrderRelationship(order.getId());
         for (int i = 0; i < order.getListings().size(); i++) {
             addListingOrderRelationship(order, i);
@@ -85,7 +85,7 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
     @Override
     @Transactional
     public boolean deleteById(int id) {
-        final String sql = "UPDATE order SET deleted = 1 WHERE order_id = ?;";
+        final String sql = "UPDATE `order` SET deleted = 1 WHERE order_id = ?;";
         softResetListingOrderRelationship(id);
         return (jdbcTemplate.update(sql, id) > 0);
     }

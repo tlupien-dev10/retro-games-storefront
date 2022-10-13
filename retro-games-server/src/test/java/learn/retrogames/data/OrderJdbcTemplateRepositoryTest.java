@@ -78,7 +78,7 @@ public class OrderJdbcTemplateRepositoryTest {
         Order order = makeOrder();
         Order actual = orderJdbcTemplateRepository.add(order);
         assertNotNull(actual);
-        assertTrue(actual.getId() >= 5 && actual.getId() <= 8);
+        assertEquals(5, actual.getId());
     }
 
     @Test
@@ -86,7 +86,8 @@ public class OrderJdbcTemplateRepositoryTest {
         Order toUpdate = orderJdbcTemplateRepository.getById(2);
         toUpdate.getListings().get(0).setOrderedQuantity(4);
         assertTrue(orderJdbcTemplateRepository.update(toUpdate));
-        assertEquals(4, orderJdbcTemplateRepository.getById(2).getListings().get(0).getOrderedQuantity());
+        Integer orderedQuantity = orderJdbcTemplateRepository.getById(2).getListings().get(0).getOrderedQuantity();
+        assertEquals(4, orderedQuantity);
 
     }
 }
