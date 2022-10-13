@@ -18,4 +18,6 @@ public interface OrderRepository {
 
     @Transactional
     boolean deleteById(int id);
+
+    List<Integer> getAvailableListingIds();
 }
