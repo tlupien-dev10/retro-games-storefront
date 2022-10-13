@@ -103,7 +103,7 @@ public class OrderService {
                             ResultType.INVALID);
                 }
                 if (!repo.getAvailableListingIds().contains(l.getId())) {
-                    res.addMessage("Order cannot reference listings that do not exist.", ResultType.INVALID)
+                    res.addMessage("Order cannot reference listings that do not exist.", ResultType.INVALID);
                 }
             }
         }
