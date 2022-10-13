@@ -79,7 +79,7 @@ public class OrderService {
     private Result<Order> validate(Order order) {
         Result<Order> res = new Result<>();
         if (order == null) {
-            res.addMessage("Listing cannot be null.", ResultType.INVALID);
+            res.addMessage("Order cannot be null.", ResultType.INVALID);
             return res;
         }
         if (order.getCustomer()==null) {
@@ -90,7 +90,7 @@ public class OrderService {
         } else {
 
             if (order.getListings().stream().map(Listing::getOrderedQuantity).map(qty -> qty > 0).collect(Collectors.toList()).contains(false)) {
-                res.addMessage("You may not order 0 of a product.", ResultType.INVALID);
+                res.addMessage("Orders cannot be for 0 of a product.", ResultType.INVALID);
             }
 
             List<Listing> listings = order.getListings();

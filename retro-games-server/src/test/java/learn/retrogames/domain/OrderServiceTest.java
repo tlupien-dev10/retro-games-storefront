@@ -62,16 +62,93 @@ class OrderServiceTest {
         return order;
     }
 
-    @Test
-    void shouldAdd() {
-        Order toAdd = knownGoodOrder(false);
-
+    private void existingListings() {
         List<Integer> el = new ArrayList<>();
         el.add(1);
         when(repo.getAvailableListingIds()).thenReturn(el);
+    }
 
-        service.add(toAdd).getMessages().forEach(System.out::println);
+    @Test
+    void shouldAdd() {
+        Order toAdd = knownGoodOrder(false);
+        existingListings();
+
         assertTrue(service.add(toAdd).isSuccess());
         assertEquals(ResultType.SUCCESS, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNull() {
+        assertFalse(service.add(null).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(null).getType());
+    }
+
+    @Test
+    void shouldNotAddWithId() {
+        Order toAdd = knownGoodOrder(true);
+        existingListings();
+
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNullListings() {
+        Order toAdd = knownGoodOrder(false);
+        toAdd.setListings(null);
+        existingListings();
+
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddZeroListings() {
+        Order toAdd = knownGoodOrder(false);
+        toAdd.setListings(new ArrayList<>());
+        existingListings();
+
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNegativeOrderQuantity() {
+        Order toAdd = knownGoodOrder(false);
+        toAdd.getListings().get(0).setOrderedQuantity(-1);
+        existingListings();
+
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNullCustomer() {
+        Order toAdd = knownGoodOrder(false);
+        toAdd.setCustomer(null);
+        existingListings();
+
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddTooLarge() {
+        Order toAdd = knownGoodOrder(false);
+        toAdd.getListings().get(0).setOrderedQuantity(9001);
+        existingListings();
+
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddNonexistentListing() {
+        Order toAdd = knownGoodOrder(false);
+        toAdd.getListings().get(0).setId(2);
+        existingListings();
+
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
     }
 }
