@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/api/auth/authenticate").permitAll()
-                .antMatchers("/api/auth/create_account").permitAll()
+                .antMatchers("/api/auth/create_account", "/create-checkout-session").permitAll()
                 .antMatchers("/api/auth/refresh_token").authenticated()
                 .antMatchers(HttpMethod.GET, "/api/listing").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/listing/*").permitAll()
@@ -49,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/order").permitAll()
                 .antMatchers(HttpMethod.PUT, "/api/order/*").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/api/order/*").hasRole("ADMIN")
+
                 .anyRequest().denyAll()
                 .and()
                 // new ...

@@ -21,6 +21,8 @@ import AdminAddForm from "./Components/Forms/AdminAddForm";
 import Cart from "./Webpages/Cart/Cart";
 import CartContext from "./Components/CartContext/CartContext";
 
+import CustomRoute from "./Components/CustomRoute/CustomRoute";
+
 
 
 
@@ -114,6 +116,10 @@ const cart = {
           
           <Route path="/listing/:id">
             <ListingId />
+          </Route>
+
+          <Route path="/create-checkout-session">
+            <CustomRoute />
           </Route>
 
             <Route exact path ="/admin/items">
