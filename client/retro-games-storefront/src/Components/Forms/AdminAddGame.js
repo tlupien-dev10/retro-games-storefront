@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import FormHelper from "./FormHelper";
 import PageErrors from "../PageErrors/PageErrors";
+import useAuth from "../Hooks/useAuth";
 
-function AdminAddGame() {
-    const [listing, setListing] = useState(null);
+function AdminAddGame({listing1}) {
+    const [listing, setListing] = useState(listing1);
     const [error, setError] = useState([]);
     const history = useHistory();
+    const auth = useAuth();
 
     const changeHandler = (event) => {
         const newListing = {...listing};
@@ -14,19 +16,10 @@ function AdminAddGame() {
         setListing(newListing);
     };
 
-    const submitHandler = (evt) => {
-        evt.preventDefault();
-        const newListing = {...listing};
-    }
+    return (
+        <p>Add game form would show up.</p>
+    );
 
-    const init = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${auth.user.token}`,
-        },
-        body: JSON.stringify(newListing)
-    };
 }
 
 export default AdminAddGame;
