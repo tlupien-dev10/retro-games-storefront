@@ -85,7 +85,8 @@ if (!restoreLoginAttemptCompleted) {
 }
 
 const cart = {
-  listings: []
+  listings: [],
+  addToCart: function(listing) {cart.listings.push(listing)}
 }
 
   return (
@@ -140,6 +141,7 @@ const cart = {
       </BrowserRouter>
       </CartContext.Provider>
       </AuthContext.Provider>
+      
       </div> 
   );
 }
