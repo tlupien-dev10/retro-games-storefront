@@ -14,7 +14,7 @@ function AdminAddConsole({listing, changeDetails}) {
         const newConsole = {...console};
         newConsole[event.target.name] = event.target.value;
         setConsole(newConsole);
-        changeDetails(console);
+        changeDetails(newConsole);
     };
 
     return (

@@ -14,7 +14,7 @@ function AdminAddGame({listing, changeDetails}) {
         const newGame = {...game};
         newGame[event.target.name] = event.target.value;
         setGame(newGame);
-        changeDetails(game);
+        changeDetails(newGame);
     };
 
     return (

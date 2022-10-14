@@ -14,7 +14,7 @@ function AdminAddMerchandise({listing, changeDetails}) {
         const newMerch = {...merch};
         newMerch[event.target.name] = event.target.value;
         setMerch(newMerch);
-        changeDetails(merch);
+        changeDetails(newMerch);
     };
 
     return (
