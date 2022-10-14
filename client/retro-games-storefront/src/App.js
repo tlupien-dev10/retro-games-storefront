@@ -21,8 +21,7 @@ import AdminAddForm from "./Components/Forms/AdminAddForm";
 import Cart from "./Webpages/Cart/Cart";
 import CartContext from "./Components/CartContext/CartContext";
 
-import CustomRoute from "./Components/CustomRoute/CustomRoute";
-import {loadStripe} from "@stripe/stripe-js";
+import {loadStripe} from '@stripe/stripe-js';
 
 
 
@@ -124,9 +123,6 @@ const cart = {
             <ListingId />
           </Route>
 
-          <Route path="/create-checkout-session">
-            <CustomRoute />
-          </Route>
 
             <Route exact path ="/admin/items">
               {auth.user && auth.user.hasRole("ADMIN") ?
