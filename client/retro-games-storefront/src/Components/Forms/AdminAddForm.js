@@ -3,14 +3,22 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import FormHelper from "./FormHelper";
 import PageErrors from "../PageErrors/PageErrors";
 import useAuth from "../Hooks/useAuth";
+import AdminAddGame from "./AdminAddGame";
+import AdminAddConsole from "./AdminAddConsole";
+import AdminAddMerchandise from "./AdminAddMerchandise";
 
 const DEFAULT_LISTING = {
   name: "",
   description: "",
   imagePath: "",
-  listingType: "",
+  listingType: "GAME",
   quantity: "",
   price: "",
+  console: {
+    version: "",
+    company: "",
+    releaseDate: "1970-01-01"
+  }
 };
 
 const listType = [
@@ -48,6 +56,8 @@ function AdminAddForm() {
     evt.preventDefault();
     const newListing = { ...listing };
 
+    // set stuff to null based on type here!
+
     const init = {
       method: "POST",
       headers: {
@@ -69,6 +79,17 @@ function AdminAddForm() {
       .catch((err) => setError([...err]));
   };
 
+  function getOtherForm() {
+    switch(listing.listingType) {
+      case "GAME":
+        return <AdminAddGame listing1={listing}/>;
+      case "CONSOLE":
+        return <AdminAddConsole listing1={listing}/>
+      case "MERCHANDISE":
+        return <AdminAddMerchandise listing1={listing}/>;
+    }
+  }
+
   return (
     <div className="container">
       <form onSubmit={submitHandler}>
@@ -79,44 +100,10 @@ function AdminAddForm() {
   listingType: "",
 quantity: "",*/}
       <FormHelper
-                   inputType={"text"}
-                   identifier={"name"}
-                   labelText={"Listing Name:"}
-                   newVal={listing.name}
-                   onChangeHandler={changeHandler}
-                 />
-                    <FormHelper
-                   inputType={"text"}
-                   identifier={"description"}
-                   labelText={"Description:"}
-                   newVal={listing.description}
-                   onChangeHandler={changeHandler}
-                 />
-                    <FormHelper
-                   inputType={"text"}
-                   identifier={"imagePath"}
-                   labelText={"Image Path:"}
-                   newVal={listing.imagePath}
-                   onChangeHandler={changeHandler}
-                 />
-               <select>
-                <option value="0">--Choose--</option>
-                 {listType.map((t) => (
-                    <option key={t.id} value={t.value}>{t.label}</option>
-                 ))}
-                </select>
-                    <FormHelper
-                   inputType={"number"}
-                   identifier={"quantity"}
-                   labelText={"Quantity:"}
-                   newVal={listing.quantity}
-                   onChangeHandler={changeHandler}
-                 />
-                    <FormHelper
-                   inputType={"number"}
-                   identifier={"price"}
-                   labelText={"Listing Price:"}
-                   newVal={listing.price}
+                   inputType={"date"}
+                   identifier={"releaseDate"}
+                   labelText={"Release Date:"}
+                   newVal={listing.releaseDate}
                    onChangeHandler={changeHandler}
                  />
         <PageErrors errors={error} />
