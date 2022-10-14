@@ -4,20 +4,43 @@ import FormHelper from "./FormHelper";
 import PageErrors from "../PageErrors/PageErrors";
 import useAuth from "../Hooks/useAuth";
 
-function AdminAddGame({listing1}) {
-    const [listing, setListing] = useState(listing1);
+function AdminAddGame({listing, changeDetails}) {
+    const [game, setGame] = useState(listing.game);
     const [error, setError] = useState([]);
     const history = useHistory();
     const auth = useAuth();
 
     const changeHandler = (event) => {
-        const newListing = {...listing};
-        newListing[event.target.name] = event.target.value;
-        setListing(newListing);
+        const newGame = {...game};
+        newGame[event.target.name] = event.target.value;
+        setGame(newGame);
+        changeDetails(game);
     };
 
     return (
-        <p>Add game form would show up.</p>
+        <div>
+        <FormHelper
+            inputType={"text"}
+            identifier={"genre"}
+            labelText={"Genre:"}
+            newVal={listing.game.genre}
+            onChangeHandler={changeHandler}
+            />
+            <FormHelper
+            inputType={"text"}
+            identifier={"publisher"}
+            labelText={"publisher"}
+            newVal={listing.game.publisher}
+            onChangeHandler={changeHandler}
+            />
+            <FormHelper
+            inputType={"date"}
+            identifier={"releaseDate"}
+            labelText={"Release Date:"}
+            newVal={listing.game.releaseDate}
+            onChangeHandler={changeHandler}
+            />
+        </div>
     );
 
 }

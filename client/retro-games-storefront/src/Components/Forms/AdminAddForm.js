@@ -18,23 +18,16 @@ const DEFAULT_LISTING = {
     version: "",
     company: "",
     releaseDate: "1970-01-01"
+  },
+  game: {
+    genre: "",
+    publisher: "",
+    releaseDate: "1970-01-01"
+  },
+  merchandise: {
+    category: ""
   }
 };
-
-const listType = [
-    {
-        label: "GAME",
-        value: "GAME",
-    },
-    {
-    label: "CONSOLE",
-    value: "CONSOLE",
-},
-{
-label: "MERCHANDISE",
-value: "MERCHANDISE",
-},
-];
 
 function AdminAddForm() {
   const [listing, setListing] = useState(DEFAULT_LISTING);
@@ -50,6 +43,22 @@ function AdminAddForm() {
     setListing(newListing);
   };
 
+  const changeDetails = function(details) {
+    const newListing = {...listing};
+    switch(listing.listingType) {
+      case "GAME":
+        newListing.game = details;
+        break;
+      case "CONSOLE":
+        newListing.console = details;
+        break;
+      case "MERCHANDISE":
+        newListing.merchandise = details;
+       break;
+    }
+    setListing(newListing);
+  }
+
   // const onChangeValue
 
   const submitHandler = (evt) => {
@@ -57,36 +66,52 @@ function AdminAddForm() {
     const newListing = { ...listing };
 
     // set stuff to null based on type here!
+    switch(listing.listingType) {
+      case "GAME":
+        newListing.console = null;
+        newListing.merchandise = null;
+        break;
+      case "CONSOLE":
+        newListing.game = null;
+        newListing.merchandise = null;
+        break;
+      case "MERCHANDISE":
+       newListing.game = null;
+       newListing.console = null;
+       break;
+    }
 
-    const init = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${auth.user.token}`,
-      },
-      body: JSON.stringify(newListing),
-    };
-    fetch("http://localhost:8080/api/listing", init)
-      .then(async (response) => {
-        if (response.status === 201) {
-          return response.json();
-        }
-        return Promise.reject(await response.json());
-      })
-      .then((listingInfo) => {
-        history.push("/admin/item");
-      })
-      .catch((err) => setError([...err]));
+    console.log(newListing);
+
+    // const init = {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${auth.user.token}`,
+    //   },
+    //   body: JSON.stringify(newListing),
+    // };
+    // fetch("http://localhost:8080/api/listing", init)
+    //   .then(async (response) => {
+    //     if (response.status === 201) {
+    //       return response.json();
+    //     }
+    //     return Promise.reject(await response.json());
+    //   })
+    //   .then((listingInfo) => {
+    //     history.push("/admin/item");
+    //   })
+    //   .catch((err) => setError([...err]));
   };
 
   function getOtherForm() {
     switch(listing.listingType) {
       case "GAME":
-        return <AdminAddGame listing1={listing}/>;
+        return <AdminAddGame listing={listing} changeDetails={changeDetails}/>;
       case "CONSOLE":
-        return <AdminAddConsole listing1={listing}/>
+        return <AdminAddConsole listing={listing} changeDetails={changeDetails}/>
       case "MERCHANDISE":
-        return <AdminAddMerchandise listing1={listing}/>;
+        return <AdminAddMerchandise listing={listing} changeDetails={changeDetails}/>;
     }
   }
 
@@ -156,6 +181,11 @@ function AdminAddForm() {
         {
           getOtherForm()
         }
+
+        <button type="submit" className="btn btn-success">
+          Add Listing
+        </button>
+
         <PageErrors errors={error} />
       </form>
     </div>

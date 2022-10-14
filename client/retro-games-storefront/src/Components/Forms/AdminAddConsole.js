@@ -4,41 +4,42 @@ import FormHelper from "./FormHelper";
 import PageErrors from "../PageErrors/PageErrors";
 import useAuth from "../Hooks/useAuth";
 
-function AdminAddConsole({listing1}) {
-    const [listing, setListing] = useState(listing1);
+function AdminAddConsole({listing, changeDetails}) {
+    const [console, setConsole] = useState(listing.console);
     const [error, setError] = useState([]);
     const history = useHistory();
     const auth = useAuth();
 
     const changeHandler = (event) => {
-        const newListing = {...listing};
-        newListing[event.target.name] = event.target.value;
-        setListing(newListing);
+        const newConsole = {...console};
+        newConsole[event.target.name] = event.target.value;
+        setConsole(newConsole);
+        changeDetails(console);
     };
 
     return (
-        <div className="container">
+        <div>
+            <FormHelper
+                inputType={"text"}
+                identifier={"version"}
+                labelText={"Console Version:"}
+                newVal={listing.console.version}
+                onChangeHandler={changeHandler}
+                />
                 <FormHelper
-                   inputType={"text"}
-                   identifier={"version"}
-                   labelText={"Console Version:"}
-                   newVal={listing.console.version}
-                   onChangeHandler={changeHandler}
-                 />
-                  <FormHelper
-                   inputType={"text"}
-                   identifier={"company"}
-                   labelText={"Company"}
-                   newVal={listing.console.company}
-                   onChangeHandler={changeHandler}
-                 />
-                  <FormHelper
-                   inputType={"date"}
-                   identifier={"releaseDate"}
-                   labelText={"Release Date:"}
-                   newVal={listing.console.releaseDate}
-                   onChangeHandler={changeHandler}
-                 />
+                inputType={"text"}
+                identifier={"company"}
+                labelText={"Company"}
+                newVal={listing.console.company}
+                onChangeHandler={changeHandler}
+                />
+                <FormHelper
+                inputType={"date"}
+                identifier={"releaseDate"}
+                labelText={"Release Date:"}
+                newVal={listing.console.releaseDate}
+                onChangeHandler={changeHandler}
+                />
         </div>
     )
 }
