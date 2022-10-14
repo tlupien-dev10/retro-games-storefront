@@ -22,18 +22,21 @@ import Cart from "./Webpages/Cart/Cart";
 import CartContext from "./Components/CartContext/CartContext";
 
 import CustomRoute from "./Components/CustomRoute/CustomRoute";
+import {loadStripe} from "@stripe/stripe-js";
 
 
 
 
 const LOCAL_STORAGE_TOKEN_KEY = "retroGamesToken";
 
-
-
+const stripePromise = loadStripe("pk_test_51Lsu0RK0z3kkSqwsoh0VVVF0sHUR4apYBXHLnJ18GBYkbHtdya3mpVlpbecK1sby6WOqWCKMPvBPDtFlwh1AAqaN00qQfz5m1d");
+// this pulls stripe elements and such (later)
+// which will be accessed in the checkout component (so pass this promise to the cart page)
 function App() {
 
 
-const [user, setUser] = useState(null);
+const [user, setUser] = useState(null); // so like this (see comment near cart-provider)
+const [cartListings, setCartListings] = useState([]);
 const [restoreLoginAttemptCompleted, setRestoreLoginAttemptCompleted] = useState(false);
 
 useEffect (() => {
@@ -87,14 +90,17 @@ if (!restoreLoginAttemptCompleted) {
 }
 
 const cart = {
-  listings: [],
-  addToCart: function(listing) {cart.listings.push(listing)}
+  listings: []
+  // addToCart: function(listing) {cart.listings.push(listing)}
 }
 
   return (
     <div className="App container">
       <AuthContext.Provider value={auth}>
-      <CartContext.Provider value={cart}>
+      {/* <CartContext.Provider value={cart}> this might need to be a state instead because there's no setter on the context */
+      // because there will be a need to redraw when the cart changes (because the state is never invalidated)
+      // so there needs to be state-tracking in the app (go to line 38)
+  }
       <BrowserRouter>
         <NavigationBar />
         <Switch>
@@ -111,7 +117,7 @@ const cart = {
           </Route>
 
           <Route exact path="/listing">
-            <Listings />
+            <Listings cartListings={cartListings} setCartListings={setCartListings}/>
           </Route>
           
           <Route path="/listing/:id">
@@ -137,7 +143,7 @@ const cart = {
           </Route>
 
           <Route path = "/cart">
-            <Cart/>
+            <Cart stripePromise={stripePromise}  cart={cartListings}/>
           </Route>
 
           <Route>
@@ -145,7 +151,7 @@ const cart = {
           </Route>
         </Switch>
       </BrowserRouter>
-      </CartContext.Provider>
+      {/* </CartContext.Provider> */}
       </AuthContext.Provider>
       
       </div> 

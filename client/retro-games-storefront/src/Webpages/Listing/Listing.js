@@ -6,16 +6,16 @@ import Cart from "../Cart/Cart";
 import CartContext from "../../Components/CartContext/CartContext";
 
 
-function Listing({allListing}) {
+function Listing({allListing, cartListings, setCartListings}) {
 
-  const cart = useContext(CartContext);
+  // const cart = useContext(CartContext);
 
   const addToCart = function(evt) {
     const listing = "Test" // DELETE THIS (EVENTUALLY)
-    const newListings = [...cart.listings]
+    // have a line here that hydrates orderedquantity (default 1)
+    const newListings = [...cartListings]
     newListings.push(listing);
-    cart.listings = newListings;
-    console.log(cart.listings);
+    setCartListings(newListings)
   }
 
   return (
