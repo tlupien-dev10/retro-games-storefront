@@ -1,4 +1,4 @@
-import {useContext, useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
@@ -15,7 +15,11 @@ function AdminOrder() {
     const history = useHistory();
 
     function getAllOrders(){
-        fetch("http://localhost:8080/api/order")
+        fetch("http://localhost:8080/api/order", {
+            headers :{
+            Authorization: `Bearer ${auth.user.token}`
+            }
+        })
         .then((response) => response.json())
         .then((data) => setAllOrders(data))
         .catch((err) => setError([...err]));
@@ -23,12 +27,31 @@ function AdminOrder() {
 
     useEffect(() => getAllOrders(), []);
     console.log(allOrders);
+
+    function deleteOrder(orderId){
+        fetch("http://localhost:8080/api/order/" + orderId, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${auth.user.token}`,
+            },
+        })
+        .then(async response => {
+            if (response.status === 204) {
+                console.log("success");
+                getAllOrders();
+                
+            } else {
+                return Promise.reject(await response.json());
+            }
+        })
+        .catch((error) => console.log(error));
+    }
     
 return (
     <div><h5>Order History</h5>
         <PageErrors errors={error} />
         {allOrders.map((orders) => (
-            <Order key={orders.id} order={orders} />
+            <Order key={orders.id} order={orders} deleteOrder={deleteOrder}/>
         ) )}
     </div>
 

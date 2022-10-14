@@ -28,7 +28,7 @@ function AdminItemHelper() {
   useEffect(() => getAllListings(), []);
 
   const handleDelete = (id) => {
-    fetch("http://localhost:8080/listing/" + id, {
+    fetch("http://localhost:8080/api/listing/" + id, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${auth.user.token}`,

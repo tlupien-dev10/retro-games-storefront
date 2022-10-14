@@ -1,12 +1,14 @@
-function Order({order}){
+function Order({order, deleteOrder}){
+
+
+
 
 
     return (
         <div className="row">
-          <div className="col s12 m7">
-            <div className="card">
-         
-              <div className="card-content">
+          <div className="col s12 m6">
+            <div className="card light-blue darken-1">
+              <div className="card-content black-text">
                 <p>Username: {order.customer.username} </p>
                 Listing: {order.listings.map((listing) => (
                     <>
@@ -22,7 +24,7 @@ function Order({order}){
               </div>
               <div className="card-action">
                 <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={() => deleteOrder(order.id)}>Delete</button>
               </div>
             </div>
           </div>

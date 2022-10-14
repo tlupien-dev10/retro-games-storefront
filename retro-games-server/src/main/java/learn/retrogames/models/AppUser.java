@@ -39,7 +39,7 @@ public class AppUser implements UserDetails {
 
     private static Collection<GrantedAuthority> convertRolesToAuthorities(List<String> roles) {
         return roles.stream()
-                .map(r -> new SimpleGrantedAuthority(r))
+                .map(r -> new SimpleGrantedAuthority("ROLE_" + r))
                 .collect(Collectors.toList());
     }
 

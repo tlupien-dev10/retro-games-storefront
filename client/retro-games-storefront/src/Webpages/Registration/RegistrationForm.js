@@ -54,7 +54,7 @@ function RegistrationForm() {
       },
       body: JSON.stringify(newUser),
     };
-    fetch("http://localhost:8080/create_account", init)
+    fetch("http://localhost:8080/api/auth/create_account", init)
       .then(async (response) => {
         if (response.status === 201) {
           return response.json();

@@ -58,7 +58,7 @@ const login = (token) => {
     roles,
     token,
     hasRole: function(role) {
-      return this.roles.includes(role);
+      return this.roles.includes("ROLE_" + role);
     }
 };
 
