@@ -19,6 +19,7 @@ import AdminOrder from "./Webpages/Admin/AdminOrder";
 import AuthContext from "./Components/AuthContext/AuthContext";
 import AdminAddForm from "./Components/Forms/AdminAddForm";
 import Cart from "./Webpages/Cart/Cart";
+import CartContext from "./Components/CartContext/CartContext";
 
 
 
@@ -83,9 +84,14 @@ if (!restoreLoginAttemptCompleted) {
   return null;
 }
 
+const cart = {
+  listings: []
+}
+
   return (
     <div className="App container">
       <AuthContext.Provider value={auth}>
+      <CartContext.Provider value={cart}>
       <BrowserRouter>
         <NavigationBar />
         <Switch>
@@ -132,6 +138,7 @@ if (!restoreLoginAttemptCompleted) {
           </Route>
         </Switch>
       </BrowserRouter>
+      </CartContext.Provider>
       </AuthContext.Provider>
       </div> 
   );
