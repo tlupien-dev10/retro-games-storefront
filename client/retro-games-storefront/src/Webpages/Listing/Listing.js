@@ -19,6 +19,7 @@ function Listing({allListing}) {
           <div className="card-content">
             <p>Name: {allListing.name}</p>
             <p>Price: {allListing.price}</p>
+            <p>Type: {allListing.listingType}</p>
           </div>
           <div className="card-action">
             {/* <a href={"listing/" + listing.id}>Additional Information</a> */}
