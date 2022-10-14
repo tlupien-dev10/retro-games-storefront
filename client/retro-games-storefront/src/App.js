@@ -18,6 +18,7 @@ import AdminItemHelper from "./Webpages/Admin/AdminItemHelper";
 import AdminOrder from "./Webpages/Admin/AdminOrder";
 import AuthContext from "./Components/AuthContext/AuthContext";
 import AdminAddForm from "./Components/Forms/AdminAddForm";
+import Cart from "./Webpages/Cart/Cart";
 
 
 
@@ -120,6 +121,10 @@ if (!restoreLoginAttemptCompleted) {
 
           <Route exact path ="/admin/add">
             <AdminAddForm />
+          </Route>
+
+          <Route path = "/cart">
+            <Cart/>
           </Route>
 
           <Route>

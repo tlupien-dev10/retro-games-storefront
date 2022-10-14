@@ -98,7 +98,7 @@ function AdminAddForm() {
     //     }
     //     return Promise.reject(await response.json());
     //   })
-    //   .then((listingInfo) => {
+    //   .then((res) => {
     //     history.push("/admin/item");
     //   })
     //   .catch((err) => setError([...err]));
