@@ -1,13 +1,25 @@
 #orderCard{
-    width: 200px;
-    height: 500px;
+    width: 300px;
+    height: 430px;
+    background-color: rgb(18, 120, 253, 0.6);
 }
 
 #orderTitle {
   text-align: center;
-    font-size: medium;
+    font-size: large;
+    color: black;
+    font-weight: bolder;
 }
 
 #orderData {
 text-align: left;
+color: black;
+}
+
+#orderDelete {
+   margin-left: 85%;
+   margin-top: 5%;
+    width: 50px;
+    background-color: black;
+    color: red;
 }
