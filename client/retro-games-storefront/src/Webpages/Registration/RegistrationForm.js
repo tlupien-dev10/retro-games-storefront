@@ -62,7 +62,7 @@ function RegistrationForm() {
         return Promise.reject(await response.json());
       })
       .then((userInfo) => {
-        history.push("/");
+        history.push("/login");
       })
       // Temporary
       .catch((err) => setError([...err]));

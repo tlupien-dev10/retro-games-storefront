@@ -135,11 +135,13 @@ const cart = {
           </Route>
 
           <Route exact path ="/admin/add">
-            <AdminAddForm />
+          {auth.user && auth.user.hasRole("ADMIN") ?
+            <AdminAddForm /> : <Redirect to="/" />}
           </Route>
 
           <Route path = "/cart">
-            <Cart stripePromise={stripePromise}  cart={cartListings}/>
+            {auth.user ?
+            <Cart stripePromise={stripePromise}  cart={cartListings}/> : <Redirect to="/login" />}
           </Route>
 
           <Route>
