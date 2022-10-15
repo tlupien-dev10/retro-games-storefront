@@ -45,8 +45,8 @@ function AdminItemHelper() {
   };
 
     return (
-      <div>
-      <table className="striped">
+      <div id="adminTable">
+      <table className="striped" id="adminItemTable">
       <tbody>
         <tr>
           <th>Item Name</th>

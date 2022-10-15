@@ -1,6 +1,13 @@
 #tableImage{
-
    width: 5em;
    height:5em;
     display: block; 
+}
+
+#adminTable{
+    margin-top: 5%
+}
+
+#adminItemTable{
+    background-color: rgb(225, 0, 255, 0.2);
 }
