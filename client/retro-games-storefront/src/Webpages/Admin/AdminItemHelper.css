@@ -2,6 +2,7 @@
    width: 5em;
    height:5em;
     display: block; 
+   margin: 1em;
 }
 
 #adminTable{
@@ -12,3 +13,13 @@
     background-color: rgba(17, 20, 243, 0.2);
     font-weight: bold;
 }
+
+#editBtn {
+    margin-right: 1em;
+}
+
+#quantity{
+    text-align: center;
+}
+
+
