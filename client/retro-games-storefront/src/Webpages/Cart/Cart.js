@@ -60,9 +60,9 @@ function Cart({stripePromise, cart, setCart}) {
     console.log(cart)
     return (
         <div>
-            <p>This is the cart.</p>
-            {//put header in table
-            }
+
+            <h3>Cart Contents:</h3>      
+
             <table className="striped">
                 <tbody>
                     {cart.map(l => <CartItem listing={l} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} deleteItem={deleteItem}/>)}
