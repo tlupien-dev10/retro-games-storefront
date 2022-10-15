@@ -23,7 +23,8 @@ function Listing({listingData, cartListings, setCartListings}) {
       qty += parseInt(newListing.orderedQuantity);
       newCartListings.find(l => l.id === newListing.id).orderedQuantity = qty;
     } else {
-      newCartListings.push(listing);
+      newListing.orderedQuantity = parseInt(newListing.orderedQuantity);
+      newCartListings.push(newListing);
     }
     setCartListings(newCartListings)
   }
