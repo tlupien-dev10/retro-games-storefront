@@ -17,11 +17,12 @@ function Homepage() {
 
 
       <Carousel2 />
-
+      <div id="homeShopDiv">
       <Link to={"/listing"}>
-        <button className="btn btn-sm btn-success" id="homeBtn">
-          Enter to begin shopping</button>
+        <button className="btn btn-sm btn-success" id="homeShopBtn">
+          Enter to begin shopping<br></br><i class="material-icons" id="cartLogo">shopping_cart</i></button>
       </Link>
+      </div>
     </div>
 
   );

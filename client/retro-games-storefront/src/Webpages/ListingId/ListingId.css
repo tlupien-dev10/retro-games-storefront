@@ -1,0 +1,28 @@
+#listingIdText{
+    outline: 5px groove #1C6EA4;
+outline-offset: 8px;
+color: yellow;
+}
+
+#listingIdPrice{
+    font-weight: bold;
+    color:rgb(153, 15, 5);
+}
+
+#reviews{
+    margin-top: 5%;
+    outline: 5px double #091c29;
+    outline-offset: 8px;
+  background-color: rgba(17, 20, 243, 0.2);
+  color:rgb(0, 0, 0);
+  font-weight: bold;
+  margin-left: 5.1%;
+  max-width: 89.5%;
+  text-align:left;
+}
+
+#listingIdImg{
+    margin-left: 30%;
+    max-width: 400px;
+    max-height: 400px;
+}

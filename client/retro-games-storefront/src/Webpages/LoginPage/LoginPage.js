@@ -43,30 +43,37 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div id="loginForm">
+      <h2 id="loginTitle">Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username:</label>
+          <label id="username" htmlFor="username">Username:</label>
           <input
             type="text"
             onChange={(event) => setUsername(event.target.value)}
-            id="username"
+            id="usernameInput"
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label id="password" htmlFor="password">Password:</label>
           <input
             type="password"
             onChange={(event) => setPassword(event.target.value)}
-            id="password"
+            id="passwordInput"
           />
         </div>
         <div>
-          <button type="submit">Login</button>
+        <button id="loginBtn" class="btn waves-effect waves-light" type="submit" name="action">Login
+    <i class="material-icons right">send</i>
+  </button>
         <Link to={"/register"}>
         <button className="btn btn-sm btn-success" id="loginRegister">
           New User
+        </button>
+        </Link>
+        <Link to={"/"}>
+        <button className="btn btn-sm btn-success" id="loginCancel">
+          Cancel
         </button>
         </Link>
         </div>

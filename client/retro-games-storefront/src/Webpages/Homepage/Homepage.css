@@ -8,3 +8,16 @@
     margin-bottom:-5em;
     color: yellow;
 }
+
+#homeShopDiv{
+    margin-top: 5%;
+   text-align: center;
+}
+
+#homeShopBtn{
+    height: 4.5em;
+}
+
+#cartLogo{
+    height: 1em;
+}

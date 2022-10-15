@@ -34,18 +34,21 @@ useEffect(() => getListing(), []);
       <figure>
         {"../../"+ listing.imagePath && (
           <img
-            className="card-img-top"
+            className="card-img-top" id="listingIdImg"
             src={"../../"+ listing.imagePath}
-            alt={listing.description}
+            alt={""}
           />
         )}
-        <figcaption>
-          <h4>{listing.description}</h4>
-          <p>Name: {listing.name}</p>
-          <p>Price: {listing.price}</p>
+        <figcaption id="listingIdText">
+          <h4>{listing.name}</h4>
+          <p>Description: {listing.description}</p>
+          <p id="listingIdPrice">Price: ${listing.price}</p>
         </figcaption>
       </figure>
+      <div id="reviews">
+        <h5>Reviews</h5>
        {listing.reviews.map(r => <p key={r.id}>{r.title}</p>)}
+       </div>
     </div>
     </div>
   );
