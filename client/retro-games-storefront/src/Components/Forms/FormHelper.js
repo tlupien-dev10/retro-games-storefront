@@ -10,7 +10,7 @@ function FormHelper({
   }) {
     return (
       <div id="field" key={identifier}>
-        <label className="form-label" htmlFor={identifier}>
+        <label className="form-label left" htmlFor={identifier}>
           {labelText}
         </label>
         <input
