@@ -1,3 +1,5 @@
+import "./CartItem.css"
+
 function CartItem({listing, increaseQuantity, decreaseQuantity, deleteItem}) {
     // functions need to be in cart
     return (
@@ -7,7 +9,7 @@ function CartItem({listing, increaseQuantity, decreaseQuantity, deleteItem}) {
             <td>{listing.orderedQuantity}</td>
             <td>
             { (listing.orderedQuantity + 1 <= listing.quantity) ?
-                <button type="button" className="btn-small waves-effect waves-light" onClick={() => increaseQuantity(listing.id)}>+</button>:
+                <button id="increaseBtn" type="button" className="btn-small waves-effect waves-light" onClick={() => increaseQuantity(listing.id)}>+</button>:
                 <></>
             }
             </td>

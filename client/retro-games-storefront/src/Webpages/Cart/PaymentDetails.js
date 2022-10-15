@@ -1,5 +1,6 @@
 import {PaymentElement, useStripe, useElements} from "@stripe/react-stripe-js"
 import {Link} from 'react-router-dom';
+import "./PaymentDetails.css"
 
 function PaymentDetails() {
     const stripeHandle = useStripe();
@@ -30,8 +31,8 @@ function PaymentDetails() {
     return (
         <form onSubmit={purchaseHandler}>
             <PaymentElement/>
-            <button className="waves-effect waves-light btn-small">Pay Now</button>
-            <Link className="btn-small waves-effect waves-light " to="/">Cancel</Link> {
+            <button id="payNowBtn" className="waves-effect waves-light btn-small">Pay Now</button>
+            <Link id="cancelBtn" className="btn-small waves-effect waves-light red" to="/">Cancel</Link> {
                 // maybe make this pretty / make it a button; if button make sure not submit (default)
             }
         </form>

@@ -63,13 +63,16 @@ function Cart({stripePromise, cart, setCart}) {
             <p>This is the cart.</p>
             {//put header in table
             }
-            <table>
+            <table className="striped">
                 <tbody>
                     {cart.map(l => <CartItem listing={l} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} deleteItem={deleteItem}/>)}
                 </tbody>
             </table>
             {
-                // maybe total here
+                <div id="cartTotal">
+                <h3>Total: ${cart.map((listing) => (
+                    listing.orderedQuantity*listing.price)).reduce((a, b) => a + b, 0)}</h3>
+                </div>
             }
             {clientSecret ?
             <Elements stripe={stripePromise} options={{clientSecret}}>
