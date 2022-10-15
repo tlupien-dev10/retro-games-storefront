@@ -88,11 +88,6 @@ if (!restoreLoginAttemptCompleted) {
   return null;
 }
 
-const cart = {
-  listings: []
-  // addToCart: function(listing) {cart.listings.push(listing)}
-}
-
   return (
     <div className="App container">
       <AuthContext.Provider value={auth}>

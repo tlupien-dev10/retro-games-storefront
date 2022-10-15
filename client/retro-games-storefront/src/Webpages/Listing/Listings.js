@@ -7,7 +7,7 @@ import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
 import Buttons from "./FilterButton";
 function Listings({cartListings, setCartListings}) {
-  const [allListings, setallListings] = useState([]);
+  const [allListings, setAllListings] = useState([]);
   const [error, setError] = useState([]);
  // const type=[...new Set(data.map((listings) => listings.listingType))];
 
@@ -17,7 +17,7 @@ function Listings({cartListings, setCartListings}) {
   function getAllListings() {
     fetch("http://localhost:8080/api/listing")
       .then((response) => response.json())
-      .then((data) => setallListings(data))
+      .then((data) => setAllListings(data))
       .catch((err) => setError([...err]));
   }
 

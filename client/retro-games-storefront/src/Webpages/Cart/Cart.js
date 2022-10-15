@@ -12,6 +12,7 @@ function Cart({stripePromise, cart}) {
     // take in stripe promise
     // need to be able to get the client secret here
     const [clientSecret, setClientSecret] = useState("");
+    const [cartListings, setCartListings] = useState(cart);
     const auth = useAuth();
 
     function handlePurchase() {
@@ -41,17 +42,21 @@ function Cart({stripePromise, cart}) {
     }
 
     function increaseQuantity(id) {
-        // make these
+        const newCartListings = [...cartListings];
+        newCartListings.find(l => l.id === id).orderedQuantity ++;
+        setCartListings(newCartListings);
     }
 
     function decreaseQuantity(id) {
-
+        const newCartListings = [...cartListings];
+        newCartListings.find(l => l.id === id).orderedQuantity --;
+        setCartListings(newCartListings);
     }
 
     function deleteItem(id) {
-
+        const newCartListings = [...cartListings.filter(l => l.id != id)];
+        setCartListings(newCartListings);
     }
-
     // 
     console.log(cart)
     return (
@@ -61,7 +66,7 @@ function Cart({stripePromise, cart}) {
             }
             <table>
                 <tbody>
-                    {cart.map(l => <CartItem listing={l} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} deleteItem={deleteItem}/>)}
+                    {cartListings.map(l => <CartItem listing={l} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} deleteItem={deleteItem}/>)}
                 </tbody>
             </table>
             {
