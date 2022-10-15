@@ -63,7 +63,7 @@ function Listing({listingData, cartListings, setCartListings}) {
               max={listing.quantity}
               step={1}
             />
-              <button>Add to Cart</button>
+              <button className="waves-effect waves-light btn-large">Add to Cart</button>
             </form>
           </div>
         </div>
