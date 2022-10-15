@@ -1,1 +1,13 @@
+#orderCard{
+    width: 200px;
+    height: 500px;
+}
 
+#orderTitle {
+  text-align: center;
+    font-size: medium;
+}
+
+#orderData {
+text-align: left;
+}
