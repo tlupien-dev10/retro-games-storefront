@@ -2,6 +2,7 @@
     margin-top: 5%;
     border: 5px dashed #1C6EA4;
     padding: 3%;
+    background-color: royalblue;
     
 }
 #loginTitle{
@@ -11,8 +12,10 @@
 #username, #password{
     margin-top: 1%;
     margin-left: 2%;
+    margin-right: 10%;
     color: black;
     font-size: medium;
+    font-weight: bold;
    
 }
 #passwordInput{
@@ -28,22 +31,40 @@
 }
 
 #loginRegister {
-    margin-left: 10%;
     color: black;
     background-color: rgba(8, 180, 8, 0.7);
    margin-left: 60%;
    font-weight: bold;
+   text-align: right;
+   display: flex;
+   justify-content: right;
+   align-items: right;
+   margin: right;
 }
 
 #loginBtn{
     background-color: blue;
     font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+#loginCancelDiv{
+    margin-top: 3%;
 }
 
 #loginCancel{
     margin-top: 3%;
     min-width: 110px;
-    background-color: gray;
+    background-color: rgb(255, 17, 17);
     color: black;
     font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }

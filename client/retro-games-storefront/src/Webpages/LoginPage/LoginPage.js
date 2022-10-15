@@ -45,14 +45,22 @@ export default function Login() {
   return (
     <div id="loginForm">
       <h2 id="loginTitle">Login</h2>
+      
       <form onSubmit={handleSubmit}>
         <div>
+          
           <label id="username" htmlFor="username">Username:</label>
+          <Link to={"/register"}>
+        <button align-right className="btn btn-sm btn-success" id="loginRegister">
+          New User?
+        </button>
+        </Link>
           <input
             type="text"
             onChange={(event) => setUsername(event.target.value)}
             id="usernameInput"
           />
+          
         </div>
         <div>
           <label id="password" htmlFor="password">Password:</label>
@@ -66,16 +74,13 @@ export default function Login() {
         <button id="loginBtn" class="btn waves-effect waves-light" type="submit" name="action">Login
     <i class="material-icons right">send</i>
   </button>
-        <Link to={"/register"}>
-        <button className="btn btn-sm btn-success" id="loginRegister">
-          New User
-        </button>
-        </Link>
+    <div id="loginCancelDiv">
         <Link to={"/"}>
         <button className="btn btn-sm btn-success" id="loginCancel">
           Cancel
         </button>
         </Link>
+        </div>
         </div>
       </form>
       <PageErrors errors={error} />
