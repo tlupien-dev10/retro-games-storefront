@@ -16,7 +16,7 @@ function Listing({listingData, cartListings, setCartListings}) {
   const addToCart = function(evt) {
     evt.preventDefault();
     const newListing = {...listing};
-    listing.reviews = [];
+    newListing.reviews = [];
     const newCartListings = [...cartListings]
     if (newCartListings.map(nL => {return nL.id}).includes(listing.id)) {
       let qty = parseInt(newCartListings.find(l => l.id === newListing.id).orderedQuantity)
