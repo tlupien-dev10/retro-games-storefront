@@ -4,6 +4,9 @@ function FormHelper({
     inputType,
     newVal,
     onChangeHandler,
+    min,
+    max,
+    step
   }) {
     return (
       <div id="field">
@@ -17,6 +20,9 @@ function FormHelper({
           name={identifier}
           defaultValue={newVal}
           onChange={onChangeHandler}
+          min={min}
+          max={max}
+          step={step}
         />
       </div>
     );

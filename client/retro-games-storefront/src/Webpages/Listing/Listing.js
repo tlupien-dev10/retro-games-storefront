@@ -58,8 +58,9 @@ function Listing({listingData, cartListings, setCartListings}) {
               labelText="Qty:"
               newVal={listing.orderedQuantity}
               onChangeHandler={changeHandler}
-              min="0"
+              min={0}
               max={listing.quantity}
+              step={1}
             />
               <button>Add to Cart</button>
             </form>

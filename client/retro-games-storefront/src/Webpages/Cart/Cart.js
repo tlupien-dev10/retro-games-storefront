@@ -6,13 +6,12 @@ import PaymentDetails from './PaymentDetails';
 import useAuth from '../../Components/Hooks/useAuth';
 
 
-function Cart({stripePromise, cart}) {
+function Cart({stripePromise, cart, setCart}) {
     // const cart = useContext(CartContext);
 
     // take in stripe promise
     // need to be able to get the client secret here
     const [clientSecret, setClientSecret] = useState("");
-    const [cartListings, setCartListings] = useState(cart);
     const auth = useAuth();
 
     function handlePurchase() {
@@ -42,20 +41,20 @@ function Cart({stripePromise, cart}) {
     }
 
     function increaseQuantity(id) {
-        const newCartListings = [...cartListings];
-        newCartListings.find(l => l.id === id).orderedQuantity ++;
-        setCartListings(newCartListings);
+        const newCart = [...cart];
+        newCart.find(l => l.id === id).orderedQuantity ++;
+        setCart(newCart);
     }
 
     function decreaseQuantity(id) {
-        const newCartListings = [...cartListings];
-        newCartListings.find(l => l.id === id).orderedQuantity --;
-        setCartListings(newCartListings);
+        const newCart = [...cart];
+        newCart.find(l => l.id === id).orderedQuantity --;
+        setCart(newCart);
     }
 
     function deleteItem(id) {
-        const newCartListings = [...cartListings.filter(l => l.id != id)];
-        setCartListings(newCartListings);
+        const newCart = [...cart.filter(l => l.id != id)];
+        setCart(newCart);
     }
     // 
     console.log(cart)
@@ -66,7 +65,7 @@ function Cart({stripePromise, cart}) {
             }
             <table>
                 <tbody>
-                    {cartListings.map(l => <CartItem listing={l} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} deleteItem={deleteItem}/>)}
+                    {cart.map(l => <CartItem listing={l} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} deleteItem={deleteItem}/>)}
                 </tbody>
             </table>
             {

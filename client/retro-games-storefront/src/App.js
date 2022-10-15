@@ -66,11 +66,11 @@ const login = (token) => {
     hasRole: function(role) {
       return this.roles.includes("ROLE_" + role);
     }
-};
+  };
 
-setUser(user);
+  setUser(user);
 
-return user;
+  return user;
 };
 
 const logout = () => {
@@ -136,7 +136,7 @@ if (!restoreLoginAttemptCompleted) {
 
           <Route path = "/cart">
             {auth.user ?
-            <Cart stripePromise={stripePromise}  cart={cartListings}/> : <Redirect to="/login" />}
+            <Cart stripePromise={stripePromise}  cart={cartListings} setCart={setCartListings}/> : <Redirect to="/login" />}
           </Route>
 
           <Route>
