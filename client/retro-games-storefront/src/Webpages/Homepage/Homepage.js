@@ -12,7 +12,7 @@ function Homepage() {
 
   return (
     <div id="test">
-      <h1 id="homeTxt">Welcome to Retro-Games!</h1>
+      <h2 id="homeTxt">Welcome to Retro-Games!</h2>
       <h3 id="topTen">Featured Products!</h3>
 
 
