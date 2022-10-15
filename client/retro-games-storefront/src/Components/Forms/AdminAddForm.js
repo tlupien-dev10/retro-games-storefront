@@ -22,7 +22,8 @@ const DEFAULT_LISTING = {
   game: {
     genre: "",
     publisher: "",
-    releaseDate: "1970-01-01"
+    releaseDate: "1970-01-01",
+    consoles: []
   },
   merchandise: {
     category: ""
@@ -83,25 +84,25 @@ function AdminAddForm() {
 
     console.log(newListing);
 
-    // const init = {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${auth.user.token}`,
-    //   },
-    //   body: JSON.stringify(newListing),
-    // };
-    // fetch("http://localhost:8080/api/listing", init)
-    //   .then(async (response) => {
-    //     if (response.status === 201) {
-    //       return response.json();
-    //     }
-    //     return Promise.reject(await response.json());
-    //   })
-    //   .then((res) => {
-    //     history.push("/admin/item");
-    //   })
-    //   .catch((err) => setError([...err]));
+    const init = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${auth.user.token}`,
+      },
+      body: JSON.stringify(newListing),
+    };
+    fetch("http://localhost:8080/api/listing", init)
+      .then((res) => {
+        if (res.status === 201) {
+          return res.json();
+        }
+        return Promise.reject("error");
+      })
+      .then((res) => {
+        history.push("/admin/item");
+      })
+      .catch((err) => setError([...err]));
   };
 
   function getOtherForm() {

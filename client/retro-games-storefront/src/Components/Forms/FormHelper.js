@@ -9,7 +9,7 @@ function FormHelper({
     step
   }) {
     return (
-      <div id="field">
+      <div id="field" key={identifier}>
         <label className="form-label" htmlFor={identifier}>
           {labelText}
         </label>

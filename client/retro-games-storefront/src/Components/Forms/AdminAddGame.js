@@ -7,39 +7,81 @@ import useAuth from "../Hooks/useAuth";
 function AdminAddGame({listing, changeDetails}) {
     const [game, setGame] = useState(listing.game);
     const [error, setError] = useState([]);
+    const [consoles, setConsoles] = useState([]);
     const history = useHistory();
     const auth = useAuth();
 
-    const changeHandler = (event) => {
+    const changeHandler = (evt) => {
         const newGame = {...game};
-        newGame[event.target.name] = event.target.value;
+        if (evt.target.name==="consoles") {
+            let options = evt.target.options;
+            newGame.consoles = [];
+            for (let i = 0; i < options.length; i++) {
+              if (options[i].selected) {
+                console.log(consoles);
+                newGame.consoles.push(consoles.find(c => c.console.id == options[i].value).console);
+              }
+            }
+        } else {
+            newGame[evt.target.name] = evt.target.value;
+        }
         setGame(newGame);
         changeDetails(newGame);
     };
 
+    function getConsoles() {
+        fetch("http://localhost:8080/api/listing")
+          .then((response) => response.json())
+          .then((data) => {
+            setConsoles(data.filter(l => l.console));
+          })
+          .catch((err) => setError([...err]));
+      }
+
+    useEffect(() => getConsoles(), []);
+
     return (
         <div>
-        <FormHelper
-            inputType={"text"}
-            identifier={"genre"}
-            labelText={"Genre:"}
-            newVal={listing.game.genre}
-            onChangeHandler={changeHandler}
+            <FormHelper
+                inputType={"text"}
+                identifier={"genre"}
+                labelText={"Genre:"}
+                newVal={listing.game.genre}
+                onChangeHandler={changeHandler}
             />
             <FormHelper
-            inputType={"text"}
-            identifier={"publisher"}
-            labelText={"publisher"}
-            newVal={listing.game.publisher}
-            onChangeHandler={changeHandler}
+                inputType={"text"}
+                identifier={"publisher"}
+                labelText={"publisher"}
+                newVal={listing.game.publisher}
+                onChangeHandler={changeHandler}
             />
             <FormHelper
-            inputType={"date"}
-            identifier={"releaseDate"}
-            labelText={"Release Date:"}
-            newVal={listing.game.releaseDate}
-            onChangeHandler={changeHandler}
+                inputType={"date"}
+                identifier={"releaseDate"}
+                labelText={"Release Date:"}
+                newVal={listing.game.releaseDate}
+                onChangeHandler={changeHandler}
             />
+            <div>                
+                {
+                    //STYLE ME!
+                }
+                <label htmlFor="consoles">
+                    Consoles:
+                </label>
+                <select
+
+                    multiple={true}
+                    className="browser-default"
+                    id="consoles"
+                    name="consoles"
+                    defaultValue={listing.game.consoles}
+                    onChange={changeHandler}
+                >
+                    {consoles.map(c => <option key={c.console.id} value={c.console.id}>{c.name}</option>)}
+                </select>
+            </div>
         </div>
     );
 
