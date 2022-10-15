@@ -9,5 +9,6 @@
 }
 
 #adminItemTable{
-    background-color: rgb(225, 0, 255, 0.2);
+    background-color: rgba(17, 20, 243, 0.2);
+    font-weight: bold;
 }
