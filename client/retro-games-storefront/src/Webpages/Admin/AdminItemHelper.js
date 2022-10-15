@@ -9,7 +9,6 @@ import PageErrors from "../../Components/PageErrors/PageErrors";
 function AdminItemHelper() {
   const [allListings, setallListings] = useState([]);
   const [error, setError] = useState([]);
-  const { id } = useParams();
 
   const auth = useAuth();
   const history = useHistory();
@@ -73,7 +72,7 @@ function AdminItemHelper() {
             <td>{listing.quantity}</td>
             <td className="text-right">
             {canEdit && (
-              <Link to={"/edit/" + id}>
+              <Link to={"/admin/edit/" + listing.id}>
                 <button
                   className="float-start btn btn-sm btn-success"
                   id="editBtn"

@@ -30,8 +30,12 @@ const DEFAULT_LISTING = {
   }
 };
 
-function AdminAddForm({startingListing = DEFAULT_LISTING}) {
-  const [listing, setListing] = useState(startingListing);
+function AdminAddForm() {
+  const {editId} = useParams();
+  console.log(editId);
+  
+  const [listing, setListing] = useState(DEFAULT_LISTING);
+  // MAKE THIS FETCH BY ID IF IT'S THE ADD FORM!
   const [error, setError] = useState([]);
   const history = useHistory();
   const auth = useAuth();
@@ -58,7 +62,6 @@ function AdminAddForm({startingListing = DEFAULT_LISTING}) {
     setListing(newListing);
   }
 
-  // const onChangeValue
 
   const submitHandler = (evt) => {
     evt.preventDefault();

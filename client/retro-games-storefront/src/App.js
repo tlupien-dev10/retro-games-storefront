@@ -136,6 +136,11 @@ if (!restoreLoginAttemptCompleted) {
             <AdminAddForm /> : <Redirect to="/" />}
           </Route>
 
+          <Route exact path="/admin/edit/:editId">
+            {auth.user && auth.user.hasRole("ADMIN") ?
+            <AdminAddForm /> : <Redirect to="/" />}
+          </Route>
+
           <Route path = "/cart">
             {auth.user ?
             <Cart stripePromise={stripePromise}  cart={cartListings} setCart={setCartListings}/> : <Redirect to="/login" />}
