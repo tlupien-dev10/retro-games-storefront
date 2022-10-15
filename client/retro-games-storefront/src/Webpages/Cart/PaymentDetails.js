@@ -30,8 +30,8 @@ function PaymentDetails() {
     return (
         <form onSubmit={purchaseHandler}>
             <PaymentElement/>
-            <button>Pay Now</button>
-            <Link className="btn" to="/">Cancel</Link> {
+            <button className="waves-effect waves-light btn-small">Pay Now</button>
+            <Link className="btn-small waves-effect waves-light " to="/">Cancel</Link> {
                 // maybe make this pretty / make it a button; if button make sure not submit (default)
             }
         </form>
