@@ -15,7 +15,7 @@ function PaymentDetails() {
         const res = stripeHandle.confirmPayment({
             elements: elementHandle,
             confirmParams: {
-                return_url: window.location.origin // take us back to home page rn; should have purchase success confirm
+                return_url: "http://localhost:3000/payment/success" // take us back to home page rn; should have purchase success confirm
             }
         })
 
