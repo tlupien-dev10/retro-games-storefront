@@ -3,6 +3,7 @@ import './Cart.css';
 import {Elements} from '@stripe/react-stripe-js';
 import CartItem from './CartItem';
 import PaymentDetails from './PaymentDetails';
+import useAuth from '../../Components/Hooks/useAuth';
 
 
 function Cart({stripePromise, cart}) {
@@ -11,6 +12,7 @@ function Cart({stripePromise, cart}) {
     // take in stripe promise
     // need to be able to get the client secret here
     const [clientSecret, setClientSecret] = useState("");
+    const auth = useAuth();
 
     function handlePurchase() {
         // this retrieves the client secret (from the stripe part of our backend)
@@ -19,14 +21,20 @@ function Cart({stripePromise, cart}) {
         fetch("http://localhost:8080/api/payment", {
             method: "POST",
             body: JSON.stringify(cart),
-            header: {
+            headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${auth.user.token}`
             }
         }).then( res => {
             // text (the string of the client secret)
             // put error handling
-            return res.text();
+            if (res.status === 200) {
+                return res.text();
+            } else {
+                console.log(res);
+                return Promise.reject("Error");
+            }
+            
         }).then( clientSecret => {
             setClientSecret(clientSecret);
         }).catch(err => console.log(err)) // pls improve
@@ -45,6 +53,7 @@ function Cart({stripePromise, cart}) {
     }
 
     // 
+    console.log(cart)
     return (
         <div>
             <p>This is the cart.</p>
@@ -52,7 +61,7 @@ function Cart({stripePromise, cart}) {
             }
             <table>
                 <tbody>
-                    {cart.map(l => {<CartItem listing={l} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} deleteItem={deleteItem}/>})}
+                    {cart.map(l => <CartItem listing={l} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} deleteItem={deleteItem}/>)}
                 </tbody>
             </table>
             {

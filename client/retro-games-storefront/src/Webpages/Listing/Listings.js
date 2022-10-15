@@ -6,7 +6,7 @@ import Listing from "./Listing";
 import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
 import Buttons from "./FilterButton";
-function Listings() {
+function Listings({cartListings, setCartListings}) {
   const [allListings, setallListings] = useState([]);
   const [error, setError] = useState([]);
  // const type=[...new Set(data.map((listings) => listings.listingType))];
@@ -31,8 +31,8 @@ function Listings() {
             type={type}
           /> */}
       <PageErrors errors={error} />
-      {allListings.map((listings) => (
-        <Listing key={listings.id} allListing={listings} />
+      {allListings.map((listing) => (
+        <Listing key={listing.id} listingData={listing} cartListings={cartListings} setCartListings={setCartListings} />
       ))}
     </div>
   );

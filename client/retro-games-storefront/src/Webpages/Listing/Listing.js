@@ -6,12 +6,14 @@ import Cart from "../Cart/Cart";
 import CartContext from "../../Components/CartContext/CartContext";
 
 
-function Listing({allListing, cartListings, setCartListings}) {
+function Listing({listingData, cartListings, setCartListings}) {
 
   // const cart = useContext(CartContext);
 
   const addToCart = function(evt) {
-    const listing = "Test" // DELETE THIS (EVENTUALLY)
+    const listing = {...listingData};
+    listing.orderedQuantity = 1;
+    listing.reviews = [];
     // have a line here that hydrates orderedquantity (default 1)
     const newListings = [...cartListings]
     newListings.push(listing);
@@ -23,15 +25,15 @@ function Listing({allListing, cartListings, setCartListings}) {
       <div className="col s12 m7">
         <div className="card">
           <div className="card-image">
-            <Link to={"listing/" + allListing.id}>
-           <img src={"../../"+ allListing.imagePath} alt="" />
+            <Link to={"listing/" + listingData.id}>
+           <img src={"../../"+ listingData.imagePath} alt="" />
            </Link>
           </div>
      
           <div className="card-content">
-            <p>Name: {allListing.name}</p>
-            <p>Price: {allListing.price}</p>
-            <p>Type: {allListing.listingType}</p>
+            <p>Name: {listingData.name}</p>
+            <p>Price: {listingData.price}</p>
+            <p>Type: {listingData.listingType}</p>
           </div>
           <div className="card-action">
             {/* <a href={"listing/" + listing.id}>Additional Information</a> */}
