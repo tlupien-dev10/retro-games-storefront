@@ -22,6 +22,8 @@ import Cart from "./Webpages/Cart/Cart";
 import CartContext from "./Components/CartContext/CartContext";
 
 import {loadStripe} from '@stripe/stripe-js';
+import SuccessPurchase from "./Webpages/SuccessPurchase/SuccessPurchase";
+import FailedPayment from "./Webpages/FailedPayment/FailedPayment";
 
 
 
@@ -137,6 +139,16 @@ if (!restoreLoginAttemptCompleted) {
           <Route path = "/cart">
             {auth.user ?
             <Cart stripePromise={stripePromise}  cart={cartListings} setCart={setCartListings}/> : <Redirect to="/login" />}
+          </Route>
+
+          <Route path = "/payment/success">
+              {auth.user ?
+              <SuccessPurchase></SuccessPurchase> : <Redirect to="/" />}
+          </Route>
+
+          <Route path = "/payment/failure">
+            {auth.user ?
+            <FailedPayment></FailedPayment> : <Redirect to="/" />}
           </Route>
 
           <Route>
