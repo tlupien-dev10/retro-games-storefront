@@ -1,3 +1,11 @@
-.carousel .carousel-item {
-    
+.carousel  {
+    height: 600px
+}
+
+
+#c1, #c2, #c3, #c4, #c5 {
+    max-height: 400px;
+    min-height: 400px;
+    max-width: 350px;
+    min-width: 350px;
 }

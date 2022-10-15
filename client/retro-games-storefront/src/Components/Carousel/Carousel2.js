@@ -28,27 +28,27 @@ class Carousel2 extends Component {
       >
         <div className="carousel-item">
           <Link to={"/listing"}>
-          <img alt="1" src={"/ImageTest/1.jpg"} />
+          <img id="c1" alt="1" src={"/ImageTest/1.jpg"} />
           </Link>
         </div>
         <div className="carousel-item">
         <Link to={"/listing"}>
-          <img alt="2" src={"/ImageTest/2.jpg"} />
+          <img id="c2" alt="2" src={"/ImageTest/2.jpg"} />
           </Link>
         </div>
         <div className="carousel-item">
         <Link to={"/listing"}>
-          <img alt="3" src={"/ImageTest/3.jpg"} />
+          <img id="c3" alt="3" src={"/ImageTest/3.jpg"} />
           </Link>
         </div>
         <div className="carousel-item">
         <Link to={"/listing"}>
-          <img alt="4" src={"/ImageTest/4.jpg"} />
+          <img id="c4" alt="4" src={"/ImageTest/4.jpg"} />
           </Link>
         </div>
         <div className="carousel-item">
         <Link to={"/listing"}>
-          <img alt="5" src={"/ImageTest/5.jpg"} />
+          <img id="c5" alt="5" src={"/ImageTest/5.jpg"} />
         </Link>
         </div>
       </div>

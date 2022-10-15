@@ -16,7 +16,7 @@ function NavigationBar() {
       <li><Link to="/admin/orders">Admin-Orders</Link></li>
     </ul> */}
     <nav>
-      <div className="nav-wrapper">
+      <div className="nav-wrapper purple">
       <ul>
         <li>
           <Link to="/">Home</Link>
