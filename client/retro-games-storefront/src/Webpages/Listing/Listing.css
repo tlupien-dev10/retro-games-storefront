@@ -1,8 +1,8 @@
 .row {
     display: inline-block;
     text-align: left;
-    margin-top: 15%;
-    margin-left: 10em;
+    margin-top: 10%;
+    margin-left: 8em;
     width: 30%;
     margin-bottom: 1em;
   }
@@ -10,4 +10,12 @@
   .card-action{
     font-size: 10px;
     text-align: right;
+  }
+
+  .card-content{
+    width:300px;
+  }
+
+  .card {
+    width:300px;
   }
