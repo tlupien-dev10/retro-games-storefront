@@ -1,7 +1,7 @@
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 // import Carousel from "./Webpages/Homepage/Carousel";
-import Carousel2 from "../../Components/Carousel/Carousel2";
+import Carousel2 from "../../Components/./Carousel/Carousel2";
 import "./Homepage.css";
 
 import { Link } from "react-router-dom";
@@ -19,9 +19,8 @@ function Homepage() {
       <Carousel2 />
 
       <Link to={"/listing"}>
-        <button className="btn btn-sm btn-success" id="homeBtn">
-          Enter to begin shopping
-        </button>
+        <button className="btn btn-sm btn-success" id="homeBtn">i class="material-icons">shopping_cart</i>
+          Enter to begin shopping</button>
       </Link>
     </div>
 
