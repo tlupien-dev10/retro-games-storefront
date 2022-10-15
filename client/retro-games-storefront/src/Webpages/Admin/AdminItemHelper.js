@@ -28,6 +28,7 @@ function AdminItemHelper() {
   useEffect(() => getAllListings(), []);
 
   const handleDelete = (id) => {
+    // THIS NEEDS A CONFIRM!!
     fetch("http://localhost:8080/api/listing/" + id, {
       method: "DELETE",
       headers: {
@@ -37,6 +38,7 @@ function AdminItemHelper() {
       .then(async (response) => {
         if (response.status === 204) {
           history.push("/admin/items");
+          getAllListings();
         } else {
           console.log(response);
         }
@@ -75,6 +77,7 @@ function AdminItemHelper() {
                 <button
                   className="float-start btn btn-sm btn-success"
                   id="editBtn"
+                  type = "button"
                 >
                   Edit
                 </button>
@@ -84,6 +87,7 @@ function AdminItemHelper() {
               <button
                 className="float-end btn btn-sm btn-danger"
                 id="delBtn"
+                type="button"
                 onClick={() => handleDelete(listing.id)}>Delete
               </button>
               )}

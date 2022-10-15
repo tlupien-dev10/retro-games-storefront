@@ -30,10 +30,8 @@ const DEFAULT_LISTING = {
   }
 };
 
-function AdminAddForm() {
-  const [listing, setListing] = useState(DEFAULT_LISTING);
-  const [listingType, setListingType] = useState([]);
-  
+function AdminAddForm({startingListing = DEFAULT_LISTING}) {
+  const [listing, setListing] = useState(startingListing);
   const [error, setError] = useState([]);
   const history = useHistory();
   const auth = useAuth();
