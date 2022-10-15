@@ -19,7 +19,7 @@ function Homepage() {
       <Carousel2 />
 
       <Link to={"/listing"}>
-        <button className="btn btn-sm btn-success" id="homeBtn">i class="material-icons">shopping_cart</i>
+        <button className="btn btn-sm btn-success" id="homeBtn">
           Enter to begin shopping</button>
       </Link>
     </div>
