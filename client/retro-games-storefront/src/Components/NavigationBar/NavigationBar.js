@@ -42,10 +42,10 @@ function NavigationBar() {
         )}
       </ul>
       {auth.user && (
-        <div className="center">
+        <div id="welcome" className="center">
           Welcome {auth.user.username}!
-          <button onClick={() => auth.logout()}>Logout</button>
-          <Link to="/cart"><i className="material-icons right">shopping_cart</i></Link>
+          <button id="logout-button" onClick={() => auth.logout()}>Logout</button>
+          <Link id="cart-icon" to="/cart"><i className="material-icons right">shopping_cart</i></Link>
         </div>
         
       )}
