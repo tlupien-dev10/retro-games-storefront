@@ -41,6 +41,16 @@ function AdminAddForm() {
   const history = useHistory();
   const auth = useAuth();
 
+  const getToEdit = function() {
+    if (editId) {
+      fetch(`http://localhost:8080/api/listing/${editId}`)
+        .then(res => res.json())
+        .then(data => setListing(data))
+    }
+  }
+
+  useEffect(() => getToEdit(), [])
+
   const changeHandler = (event) => {
     const newListing = { ...listing };
     newListing[event.target.name] = event.target.value;
@@ -87,14 +97,14 @@ function AdminAddForm() {
     console.log(newListing);
 
     const init = {
-      method: "POST",
+      method: editId ? "PUT": "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${auth.user.token}`,
       },
       body: JSON.stringify(newListing),
     };
-    fetch("http://localhost:8080/api/listing", init)
+    fetch(`http://localhost:8080/api/listing${editId ? editId :""}`, init)
       .then((res) => {
         if (res.status === 201) {
           return res.json();
