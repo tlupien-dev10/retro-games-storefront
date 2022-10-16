@@ -31,7 +31,7 @@ public class OrderController {
         return service.getById(orderId);
     }
 
-    @PostMapping("/{orderId}")
+    @PostMapping
     public ResponseEntity<Object> add(@RequestBody Order order){
         Result<Order> result = service.add(order);
         if(result.isSuccess()){
