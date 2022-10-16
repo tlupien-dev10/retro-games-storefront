@@ -23,7 +23,7 @@ function Order({order, deleteOrder}){
                     listing.orderedQuantity*listing.price)).reduce((a, b) => a + b, 0)}
                 </p>
          
-                <button id="orderDelete" class="align-self-end" onClick={() => deleteOrder(order.id)}>Delete< i class="material-icons">clear</i></button>
+                <button id="orderDelete" class="align-self-end" onClick={() => deleteOrder(order.id)}>Delete</button>
         
               </div>
             </div>

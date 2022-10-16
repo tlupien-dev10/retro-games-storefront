@@ -52,7 +52,7 @@ export default function Login({hasCart}) {
       }
       
       <form onSubmit={handleSubmit}>
-        <div>
+        <div id="loginData">
           
           <label id="username" htmlFor="username">Username:</label>
           <Link to={"/register"}>

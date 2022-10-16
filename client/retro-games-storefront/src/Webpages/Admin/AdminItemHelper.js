@@ -58,7 +58,7 @@ function AdminItemHelper() {
           <Link to={"/admin/add"}>
                 <button
                   className="float-start btn btn-sm btn-success"
-                  id="editBtn"
+                  id="tableAddBtn"
                 >
                   Add New Listing
                 </button></Link>)}
@@ -68,14 +68,14 @@ function AdminItemHelper() {
           <tr key={listing.id}>
             <td>{listing.name}</td>
             <td><img id="tableImage" src={"../../"+ listing.imagePath} alt="" /></td>
-            <td>{listing.price}</td>
-            <td id="quantity">{listing.quantity}</td>
+            <td id="tablePrice">{listing.price}</td>
+            <td id="tableQuantity">{listing.quantity}</td>
             <td className="text-right">
             {canEdit && (
               <Link to={"/admin/edit/" + listing.id}>
                 <button
                   className="float-start btn btn-sm btn-success"
-                  id="editBtn"
+                  id="tableEditBtn"
                   type = "button"
                 >
                   Edit
@@ -85,7 +85,7 @@ function AdminItemHelper() {
               {canDelete && (
               <button
                 className="float-end btn btn-sm btn-danger"
-                id="delBtn"
+                id="tableDelBtn"
                 type="button"
                 onClick={() => handleDelete(listing.id)}>Delete
               </button>

@@ -76,7 +76,7 @@ function Cart({stripePromise, cart, setCart}) {
             }
             {clientSecret ?
             <Elements stripe={stripePromise} options={{clientSecret}}>
-                <PaymentDetails/>
+                <PaymentDetails cart={cart} cartSetter={setCart}/>
             </Elements>:
             <button type="button" className="btn-small waves-effect waves-light green" onClick={handlePurchase}>Purchase</button>
             }
