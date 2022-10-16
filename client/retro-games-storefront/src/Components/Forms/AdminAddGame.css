@@ -32,12 +32,6 @@
     color: #000;
 }
 
-#description{
-margin-top: 2%;
-    height: 90px;
-    width: 600px;
-    font-size: 20px;
-}
 
 #name, #imagePath{
     font-size: 20px;

@@ -36,15 +36,16 @@
 }
 
 #tableAddBtn{
-
+background-color: darkslateblue;
 }
 
 #tableEditBtn{
-
+background-color: darkgreen;
 }
 
 #tableDelBtn{
     float: right;
+    background-color: crimson;
 }
 
 

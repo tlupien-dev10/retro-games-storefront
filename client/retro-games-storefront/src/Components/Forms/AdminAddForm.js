@@ -138,7 +138,7 @@ function AdminAddForm() {
           newVal={listing.name}
           onChangeHandler={changeHandler}
         />
-          
+          <div id="descriptionDiv">
         <FormHelper
           inputType="textarea"
           identifier="description"
@@ -146,7 +146,7 @@ function AdminAddForm() {
           newVal={listing.description}
           onChangeHandler={changeHandler}
         />
-
+        </div>
         <FormHelper
           inputType="text"
           identifier="imagePath"
