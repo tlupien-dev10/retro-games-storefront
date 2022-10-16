@@ -1,0 +1,54 @@
+#adminAddForm{
+    margin-top: 5%;
+   background-color: rgba(0, 81, 255, 0.407); 
+   text-align: center;
+}
+
+#consoles{
+    background-color: rgb(99, 152, 250);
+    color: black;
+    font-size: 16px;
+    padding: 3%;
+    height: 100px;
+}
+
+#consoleSelectTitle{
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+
+#genre{
+    color: rgb(12, 11, 11);
+}
+
+#formHelper{
+    color: rgb(8, 3, 3);
+    font-size: 16px;
+
+}
+
+#releaseDate{
+    color: #000;
+}
+
+#description{
+margin-top: 2%;
+    height: 90px;
+    width: 600px;
+    font-size: 20px;
+}
+
+#name, #imagePath{
+    font-size: 20px;
+}
+
+#quantity, #price{
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+}
+
+
+
+

@@ -6,6 +6,7 @@ import useAuth from "../Hooks/useAuth";
 import AdminAddGame from "./AdminAddGame";
 import AdminAddConsole from "./AdminAddConsole";
 import AdminAddMerchandise from "./AdminAddMerchandise";
+import "./AdminAddForm.css";
 
 const DEFAULT_LISTING = {
   name: "",
@@ -118,7 +119,7 @@ function AdminAddForm() {
   }
 
   return (
-    <div className="container">
+    <div className="container" id="formHelperContainer">
       <form onSubmit={submitHandler}>
         <FormHelper
           inputType="text"
@@ -163,8 +164,8 @@ function AdminAddForm() {
           onChangeHandler={changeHandler}
         />
 
-        <div>
-          <label htmlFor="listingType">
+        <div id="listingContainer">
+          <label id="listing" htmlFor="listingType">
             Listing Type:
           </label>
           <select

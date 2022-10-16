@@ -3,6 +3,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import FormHelper from "./FormHelper";
 import PageErrors from "../PageErrors/PageErrors";
 import useAuth from "../Hooks/useAuth";
+import "./AdmingAddConsole.css";
 
 function AdminAddConsole({listing, changeDetails}) {
     const [console, setConsole] = useState(listing.console);
@@ -18,7 +19,7 @@ function AdminAddConsole({listing, changeDetails}) {
     };
 
     return (
-        <div>
+        <div id="consoleDiv">
             <FormHelper
                 inputType={"text"}
                 identifier={"version"}
@@ -29,7 +30,7 @@ function AdminAddConsole({listing, changeDetails}) {
                 <FormHelper
                 inputType={"text"}
                 identifier={"company"}
-                labelText={"Company"}
+                labelText={"Company:"}
                 newVal={listing.console.company}
                 onChangeHandler={changeHandler}
                 />

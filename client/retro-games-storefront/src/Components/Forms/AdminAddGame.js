@@ -3,6 +3,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import FormHelper from "./FormHelper";
 import PageErrors from "../PageErrors/PageErrors";
 import useAuth from "../Hooks/useAuth";
+import "./AdminAddGame.css";
 
 function AdminAddGame({listing, changeDetails}) {
     const [game, setGame] = useState(listing.game);
@@ -41,7 +42,7 @@ function AdminAddGame({listing, changeDetails}) {
     useEffect(() => getConsoles(), []);
 
     return (
-        <div>
+        <div id="gameDiv">
             <FormHelper
                 inputType={"text"}
                 identifier={"genre"}
@@ -52,7 +53,7 @@ function AdminAddGame({listing, changeDetails}) {
             <FormHelper
                 inputType={"text"}
                 identifier={"publisher"}
-                labelText={"publisher"}
+                labelText={"Publisher:"}
                 newVal={listing.game.publisher}
                 onChangeHandler={changeHandler}
             />
@@ -63,11 +64,11 @@ function AdminAddGame({listing, changeDetails}) {
                 newVal={listing.game.releaseDate}
                 onChangeHandler={changeHandler}
             />
-            <div>                
+            <div id="adminAddForm">                
                 {
                     //STYLE ME!
                 }
-                <label htmlFor="consoles">
+                <label htmlFor="consoles" id="consoleSelectTitle">
                     Consoles:
                 </label>
                 <select

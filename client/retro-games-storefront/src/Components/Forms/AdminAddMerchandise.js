@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import FormHelper from "./FormHelper";
+import "./AdmingAddMerchandise.css";
 import PageErrors from "../PageErrors/PageErrors";
 import useAuth from "../Hooks/useAuth";
 
@@ -18,7 +19,7 @@ function AdminAddMerchandise({listing, changeDetails}) {
     };
 
     return (
-        <div>
+        <div id="merchandiseDiv">
         <FormHelper
             inputType={"text"}
             identifier={"category"}

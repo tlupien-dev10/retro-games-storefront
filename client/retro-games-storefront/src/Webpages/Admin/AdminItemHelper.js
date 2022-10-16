@@ -49,7 +49,7 @@ function AdminItemHelper() {
       <div id="adminTable">
       <table className="striped" id="adminItemTable">
       <tbody>
-        <tr>
+        <tr id="adminItemTitle">
           <th>Item Name</th>
           <th>Display Image</th>
           <th>Price</th>
