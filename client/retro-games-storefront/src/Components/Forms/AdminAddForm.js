@@ -62,12 +62,21 @@ function AdminAddForm() {
     switch(listing.listingType) {
       case "GAME":
         newListing.game = details;
+        if (editId) {
+          newListing.game.id = listing.game.id;
+        }
         break;
       case "CONSOLE":
         newListing.console = details;
+        if (editId) {
+          newListing.console.id = listing.console.id;
+        }
         break;
       case "MERCHANDISE":
         newListing.merchandise = details;
+        if (editId) {
+          newListing.merchandise.id = listing.merchandise.id;
+        }
        break;
     }
     setListing(newListing);
@@ -77,6 +86,7 @@ function AdminAddForm() {
   const submitHandler = (evt) => {
     evt.preventDefault();
     const newListing = { ...listing };
+    newListing.reviews = [];
 
     // set stuff to null based on type here!
     switch(listing.listingType) {
@@ -104,7 +114,7 @@ function AdminAddForm() {
       },
       body: JSON.stringify(newListing),
     };
-    fetch(`http://localhost:8080/api/listing${editId ? editId :""}`, init)
+    fetch(`http://localhost:8080/api/listing${editId ? "/" + editId :""}`, init)
       .then((res) => {
         if (res.status === 201) {
           return res.json();
