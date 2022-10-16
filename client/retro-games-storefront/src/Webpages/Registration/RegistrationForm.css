@@ -8,9 +8,7 @@
 #registerDiv{
     margin-top: 5%;
     border: 5px dashed #1C6EA4;
-    padding: 3%;
-    background-color: rgba(88, 236, 229, 0.185);
-    
+    background-color: rgba(65, 105, 225, 0.671);
 }
 
 
@@ -22,11 +20,13 @@
 
 #username, #password{
     background-color: rgb(212, 212, 255);
-    width: 560px;
-    
+    width: 90%;
 }
 
-
+#registerText{
+    background-color: aliceblue;
+    color: rgb(245, 240, 250);
+}
 
 #register, #cancel{
     margin-top: 3%;

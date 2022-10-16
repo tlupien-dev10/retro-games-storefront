@@ -12,9 +12,9 @@
 
 #description{
     margin-top: 2%;
-    margin-bottom: 9%;
     height: 90px;
     width: 90%;
     font-size: 20px;
     display: inline-block;
+    background-color: snow;
 }
