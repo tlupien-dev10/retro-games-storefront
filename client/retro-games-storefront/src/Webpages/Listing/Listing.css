@@ -11,17 +11,30 @@
   .card-action{
     font-size: 10px;
     text-align: right;
+    color: red;
+  }
+
+  #orderQty{
+    color: rgb(238, 70, 70);
+    background-color: aqua;
   }
 
   .card-content{
     width:300px;
+    color: #000;
+    font-size: 16px;
   }
 
   .card {
     width:300px;
+    background-color: rgb(146, 196, 243);
+    height: 590px;
   }
 
   .card-image{
-    max-height: 400px;
+    max-height:400px;
     max-width: 400px;
+  }
+  #listingAddToCartBtn{
+    background-color: navy;
   }

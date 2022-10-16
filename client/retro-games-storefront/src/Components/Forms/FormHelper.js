@@ -1,3 +1,5 @@
+import "./FormHelper.css";
+
 function FormHelper({
     labelText,
     identifier,
@@ -10,7 +12,7 @@ function FormHelper({
   }) {
     return (
       <div id="field" key={identifier}>
-        <label className="form-label left" htmlFor={identifier}>
+        <label id ="formHelper" className="form-label left" htmlFor={identifier}>
           {labelText}
         </label>
         <input

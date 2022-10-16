@@ -38,7 +38,7 @@ function Listing({listingData, cartListings, setCartListings}) {
   return (
     <div className="row">
       <div className="col s12 m7">
-        <div className="card">
+        <div className="card" id="listingCard">
           <div className="card-image">
             <Link to={"listing/" + listingData.id}>
            <img src={"../../"+ listingData.imagePath} alt="" />
@@ -53,17 +53,17 @@ function Listing({listingData, cartListings, setCartListings}) {
           <div className="card-action">
             {/* <a href={"listing/" + listing.id}>Additional Information</a> */}
             <form onSubmit={addToCart}>
-            <FormHelper
+            <FormHelper id="orderQty"
               inputType="number"
               identifier="orderedQuantity"
-              labelText="Qty:"
+              labelText ="Qty:"
               newVal={listing.orderedQuantity}
               onChangeHandler={changeHandler}
               min={0}
               max={listing.quantity}
               step={1}
             />
-              <button className="waves-effect waves-light btn-large">Add to Cart</button>
+              <button id="listingAddToCartBtn" className="waves-effect waves-light btn-large">Add to Cart</button>
             </form>
           </div>
         </div>

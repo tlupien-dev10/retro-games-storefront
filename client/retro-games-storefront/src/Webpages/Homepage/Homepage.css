@@ -16,10 +16,15 @@
 
 #homeShopBtn{
     height: 4.5em;
-    padding-bottom: 5em;
-    margin-bottom: 3em;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: rgb(107, 41, 212);
 }
 
 #cartLogo{
-    height: 1em;
+    font-size: 35px;
 }

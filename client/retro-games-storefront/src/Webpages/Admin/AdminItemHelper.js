@@ -67,7 +67,7 @@ function AdminItemHelper() {
         {allListings.map((listing) => (
           <tr key={listing.id}>
             <td>{listing.name}</td>
-            <td> <img id="tableImage" src={"../../"+ listing.imagePath} alt="" /></td>
+            <td><img id="tableImage" src={"../../"+ listing.imagePath} alt="" /></td>
             <td>{listing.price}</td>
             <td>{listing.quantity}</td>
             <td className="text-right">

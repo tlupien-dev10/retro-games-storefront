@@ -1,3 +1,27 @@
 #increaseBtn {
     margin-right: -20px;
+    color: rgb(230, 230, 231);
+    background-color: rgb(56, 114, 116);
+    max-width: 2em;
+    max-height: 2em;
+    min-width: 2em;
+    min-height: 2em;
+}
+
+#decreaseBtn {
+    color: rgb(233, 35, 35);
+background-color: rgb(247, 175, 40);
+max-width: 2em;
+max-height: 2em;
+min-width: 2em;
+min-height: 2em;
+}
+
+#cartPrice{
+    color: rgb(247, 20, 20);
+    font-weight: bolder;
+}
+
+#cartProduct{
+    font-weight: bold;
 }

@@ -4,8 +4,14 @@ ul{
 
 #welcome{
     margin-right:1em;
+    color: rgb(243, 239, 4);
 }
 
 #logout-button{
     margin:10px;
+    background-color: rgb(28, 5, 131);
+    color: antiquewhite;
+}
+#cart-icon{
+    color: rgb(255, 24, 24);
 }

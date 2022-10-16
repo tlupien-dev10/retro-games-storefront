@@ -2,6 +2,9 @@ import "./Order.css";
 
 function Order({order, deleteOrder}){
 
+
+  // Should we change the Delete button to a small red X at the top right
+  //of the card so regardless of card contents, all would appear the same
     return (
         <div className="row">
           <div className="col s12 m6">
@@ -20,7 +23,7 @@ function Order({order, deleteOrder}){
                     listing.orderedQuantity*listing.price)).reduce((a, b) => a + b, 0)}
                 </p>
          
-                <button id="orderDelete" onClick={() => deleteOrder(order.id)}>Delete< i class="material-icons">clear</i></button>
+                <button id="orderDelete" class="align-self-end" onClick={() => deleteOrder(order.id)}>Delete< i class="material-icons">clear</i></button>
         
               </div>
             </div>

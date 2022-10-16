@@ -71,7 +71,7 @@ function Cart({stripePromise, cart, setCart}) {
             {
                 <div id="cartTotal">
                 <h3>Total: ${cart.map((listing) => (
-                    listing.orderedQuantity*listing.price)).reduce((a, b) => a + b, 0)}</h3>
+                    listing.orderedQuantity*listing.price)).reduce((a, b) => a + b, 0).toFixed(2)}</h3>
                 </div>
             }
             {clientSecret ?

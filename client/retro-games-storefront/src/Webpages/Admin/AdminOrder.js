@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
 import Order from "./Order";
+import "./AdminOrder.css";
 
 // import FormHelper from "../../Components/Forms/FormHelper"
 // import AuthContext from "../../Components/AuthContext/AuthContext";
@@ -49,7 +50,7 @@ function AdminOrder() {
     
 return (
     <div>
-        <h5>OrderHistory</h5>
+        <h5 id="adminOrderTitle">Order History</h5>
         <PageErrors errors={error} />
         {allOrders.map((orders) => (
             <Order key={orders.id} order={orders} deleteOrder={deleteOrder}/>

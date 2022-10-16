@@ -17,8 +17,8 @@ color: rgb(255, 239, 21);
 }
 
 #orderDelete {
-   margin-left: 85%;
-   margin-top: 5%;
+   float: right;
+  
     width: 50px;
     background-color: black;
     color: red;

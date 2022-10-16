@@ -1,3 +1,5 @@
+import "./PageErrors.css";
+
 function PageErrors({ errors }) {
   return (
     <ul id="errorList">
