@@ -1,7 +1,17 @@
 import "./Order.css";
+import {useState} from "react";
 
 function Order({order, deleteOrder}){
 
+  const doNotDelete = function(evt) {
+    setDeleteConfirm(false);
+  }
+
+  const showConfirmForm = function(evt) {
+    setDeleteConfirm(true);
+  }
+
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
 
   // Should we change the Delete button to a small red X at the top right
   //of the card so regardless of card contents, all would appear the same
@@ -23,7 +33,14 @@ function Order({order, deleteOrder}){
                     listing.orderedQuantity*listing.price)).reduce((a, b) => a + b, 0)}
                 </p>
          
-                <button id="orderDelete" className="align-self-end" onClick={() => deleteOrder(order.id)}>Delete</button>
+                {!deleteConfirm ?
+                <button id="orderDelete" className="align-self-end" onClick={showConfirmForm}>Delete</button>
+                :
+                <>
+                  <button id="yesDelete" className="align-self-end" onClick={() => deleteOrder(order.id)}>Yes</button>
+                  <button id="noDelete" className="align-self-end" onClick={doNotDelete}>No</button>
+                </>
+                }
         
               </div>
             </div>
