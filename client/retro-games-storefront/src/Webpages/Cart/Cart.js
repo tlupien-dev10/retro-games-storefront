@@ -53,7 +53,7 @@ function Cart({stripePromise, cart, setCart}) {
     }
 
     function deleteItem(id) {
-        const newCart = [...cart.filter(l => l.id != id)];
+        const newCart = [...cart.filter(l => l.id !== id)];
         setCart(newCart);
     }
     // 

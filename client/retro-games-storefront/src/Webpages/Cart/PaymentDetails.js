@@ -1,10 +1,12 @@
 import {PaymentElement, useStripe, useElements} from "@stripe/react-stripe-js"
 import {Link} from 'react-router-dom';
 import "./PaymentDetails.css"
+import {useState} from 'react';
 
 function PaymentDetails() {
     const stripeHandle = useStripe();
     const elementHandle = useElements();
+    const [errors, setErrors] = useState([]);
 
     async function purchaseHandler(evt) {
         evt.preventDefault();
@@ -15,20 +17,25 @@ function PaymentDetails() {
         const res = stripeHandle.confirmPayment({
             elements: elementHandle,
             confirmParams: {
-                return_url: "http://localhost:3000/payment/success" // take us back to home page rn; should have purchase success confirm
+                return_url: "http://localhost:3000/payment/success" 
             }
         })
 
-        if (res.error) {
-            console.log(res.error.message); //put error handling (show user pmt failed)
-            alert("Payment failed.");
+        if (res.error !== null) {
+            console.log((await res).error.message); 
+
+            setErrors([(await res).error.message]);
+            console.log(errors);
+            
         } else {
-            console.log(res); //TODO: update quantities here! (like the inventory quantities)
+             //TODO: update quantities here! (like the inventory quantities)
             // and create the orders object to send to backend
+            
         }
     }
 
     return (
+        <>
         <form onSubmit={purchaseHandler}>
             <PaymentElement/>
             <button id="payNowBtn" className="waves-effect waves-light btn-small">Pay Now</button>
@@ -36,6 +43,10 @@ function PaymentDetails() {
                 // maybe make this pretty / make it a button; if button make sure not submit (default)
             }
         </form>
+        <div id="cartErrors">
+            {errors.map(e => <p>{e}</p>)}
+        </div>
+        </>
     );
 }
 
