@@ -188,6 +188,7 @@ function AdminAddForm() {
             Listing Type:
           </label>
           <select
+            disabled={editId}
             className="browser-default"
             id="listingType"
             name="listingType"
