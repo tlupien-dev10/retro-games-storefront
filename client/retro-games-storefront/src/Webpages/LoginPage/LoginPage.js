@@ -5,7 +5,7 @@ import PageErrors from "../../Components/PageErrors/PageErrors";
 import useAuth from "../../Components/Hooks/useAuth";
 import "./LoginPage.css";
 
-export default function Login() {
+export default function Login({hasCart}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
@@ -45,6 +45,11 @@ export default function Login() {
   return (
     <div id="loginForm">
       <h2 id="loginTitle">Login</h2>
+
+      {hasCart ?
+      <p>Please log in or sign up to add items to your cart.</p>:
+      <></>
+      }
       
       <form onSubmit={handleSubmit}>
         <div id="loginData">

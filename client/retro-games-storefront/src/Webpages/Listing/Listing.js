@@ -1,15 +1,17 @@
 // import { Link, useHistory } from "react-router-dom";
 import {useContext, useState} from "react";
 import "./Listing.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 import Cart from "../Cart/Cart";
 import CartContext from "../../Components/CartContext/CartContext";
 import FormHelper from "../../Components/Forms/FormHelper";
+import useAuth from "../../Components/Hooks/useAuth";
 
 
 function Listing({listingData, cartListings, setCartListings}) {
 
-  // const cart = useContext(CartContext);
+  const auth = useAuth();
+  const history = useHistory();
 
   const [listing, setListing] = useState(listingData);
 
@@ -27,6 +29,9 @@ function Listing({listingData, cartListings, setCartListings}) {
       newCartListings.push(newListing);
     }
     setCartListings(newCartListings)
+    if (!auth.user) {
+      history.push('/login/cart')
+    }
   }
 
   const changeHandler = function(evt) {

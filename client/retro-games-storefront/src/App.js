@@ -104,8 +104,12 @@ if (!restoreLoginAttemptCompleted) {
             <Homepage />
           </Route>
 
-          <Route path ="/login">
+          <Route exact path ="/login">
             <Login />
+          </Route>
+
+          <Route exact path = "/login/cart">
+            <Login hasCart={true}/>
           </Route>
 
           <Route path="/register">
