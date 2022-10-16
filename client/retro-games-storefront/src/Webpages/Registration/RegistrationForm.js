@@ -69,7 +69,7 @@ function RegistrationForm() {
           onChangeHandler={handleChange}
         />
       
-        <button className="btn btn-success" id="save">
+        <button type="button" className="btn btn-success" id="save">
           Register
         </button>
         <Link to="/login" className="btn btn-danger" id="cncl">
