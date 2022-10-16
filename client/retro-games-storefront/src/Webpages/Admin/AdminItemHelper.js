@@ -60,7 +60,7 @@ function AdminItemHelper() {
                   className="float-start btn btn-sm btn-success"
                   id="tableAddBtn"
                 >
-                  Add New Listing
+                  New Listing
                 </button></Link>)}
                 </th>
         </tr>
