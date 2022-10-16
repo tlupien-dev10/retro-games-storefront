@@ -18,12 +18,33 @@
     margin-right: 1em;
 }
 
-#quantity{
-    text-align: center;
-}
 
 #adminItemTitle{
     font-size: 20px;
+}
+
+#tableQuantity {
+    text-align: center;
+    font-size: 16px;
+    color: rgb(89, 6, 107);
+}
+
+#tablePrice {
+    text-align: center;
+    font-size: 16px;
+    color: rgb(129, 13, 36);
+}
+
+#tableAddBtn{
+
+}
+
+#tableEditBtn{
+
+}
+
+#tableDelBtn{
+    float: right;
 }
 
 

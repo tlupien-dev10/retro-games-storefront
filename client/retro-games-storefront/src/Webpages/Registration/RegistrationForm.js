@@ -50,7 +50,7 @@ function RegistrationForm() {
   };
 
   return (
-    <div className="container">
+    <div className="container" id="registerDiv">
 
       <form onSubmit={handleSubmit}>
         <h3 id="formTitle">Register</h3>
@@ -69,10 +69,10 @@ function RegistrationForm() {
           onChangeHandler={handleChange}
         />
       
-        <button className="btn btn-success" id="save">
+        <button className="btn btn-success" id="register">
           Register
         </button>
-        <Link to="/login" className="btn btn-danger" id="cncl">
+        <Link to="/login" className="btn btn-danger" id="cancel">
           Cancel
         </Link>
       </form>

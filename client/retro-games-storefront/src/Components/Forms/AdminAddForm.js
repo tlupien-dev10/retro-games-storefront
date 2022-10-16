@@ -131,7 +131,6 @@ function AdminAddForm() {
           
         <FormHelper
           inputType="textarea"
-          // why is this textarea disturbingly tiny?
           identifier="description"
           labelText="Description:"
           newVal={listing.description}

@@ -2,8 +2,7 @@
     margin-top: 5%;
     border: 5px dashed #1C6EA4;
     padding: 3%;
-    background-color: rgba(65, 105, 225, 0.671);
-    
+    background-color: rgba(65, 105, 225, 0.671); 
 }
 #loginTitle{
     margin-bottom: 10%;
@@ -17,6 +16,7 @@
     color: black;
     font-size: medium;
     font-weight: bold;
+    background-color: rgba(65, 105, 225, 0.671);
    
 }
 #passwordInput{
@@ -51,6 +51,7 @@
 
 #loginCancelDiv{
     margin-top: 3%;
+
 }
 
 #loginCancel{

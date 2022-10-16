@@ -5,7 +5,13 @@
     margin-bottom: 5%;
 }
 
-
+#registerDiv{
+    margin-top: 5%;
+    border: 5px dashed #1C6EA4;
+    padding: 3%;
+    background-color: rgba(88, 236, 229, 0.185);
+    
+}
 
 
 #registerEmail{
@@ -14,19 +20,28 @@
 
 }
 
+#username, #password{
+    background-color: rgb(212, 212, 255);
+    width: 560px;
+    
+}
 
 
 
+#register, #cancel{
+    margin-top: 3%;
+
+}
 
 
 
-#save{
+#register{
 background-color: mediumblue;
 }
 
 
 
-#cncl{
+#cancel{
     background-color: rgb(255, 17, 17);
     float: right;
 }

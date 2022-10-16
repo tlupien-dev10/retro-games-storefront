@@ -47,7 +47,7 @@ export default function Login() {
       <h2 id="loginTitle">Login</h2>
       
       <form onSubmit={handleSubmit}>
-        <div>
+        <div id="loginData">
           
           <label id="username" htmlFor="username">Username:</label>
           <Link to={"/register"}>
