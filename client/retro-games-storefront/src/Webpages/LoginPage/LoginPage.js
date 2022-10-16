@@ -56,7 +56,7 @@ export default function Login({hasCart}) {
           
           <label id="username" htmlFor="username">Username:</label>
           <Link to={"/register"}>
-        <button align-right className="btn btn-sm btn-success" id="loginRegister">
+        <button align-right type="button" className="btn btn-sm btn-success" id="loginRegister">
           New User?
         </button>
         </Link>
