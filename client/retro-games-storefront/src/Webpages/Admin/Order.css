@@ -1,7 +1,7 @@
 #orderCard{
     width: 300px;
     height: 430px;
-    background-color: rgb(18, 120, 253, 0.4);
+    background-color: rgb(5, 112, 252);
 }
 
 #orderTitle {
@@ -14,7 +14,7 @@
 #orderData {
 text-align: left;
 color: rgb(255, 239, 21);
-background-color: rgba(4, 20, 34, 0.225);
+background-color: rgba(50, 19, 189, 0.225);
 }
 
 #orderDelete {

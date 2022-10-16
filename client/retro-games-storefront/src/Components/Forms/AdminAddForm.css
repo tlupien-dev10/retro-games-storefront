@@ -12,9 +12,18 @@
 
 #description{
     margin-top: 2%;
-    margin-bottom: 9%;
     height: 90px;
     width: 90%;
     font-size: 20px;
     display: inline-block;
+    background-color: snow;
+}
+
+#addListing{
+   background-color: rgb(19, 113, 255);
+   text-align: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: auto;
 }

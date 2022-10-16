@@ -4,6 +4,7 @@ import {Elements} from '@stripe/react-stripe-js';
 import CartItem from './CartItem';
 import PaymentDetails from './PaymentDetails';
 import useAuth from '../../Components/Hooks/useAuth';
+import PageErrors from '../../Components/PageErrors/PageErrors';
 
 
 function Cart({stripePromise, cart, setCart}) {
@@ -12,6 +13,7 @@ function Cart({stripePromise, cart, setCart}) {
     // take in stripe promise
     // need to be able to get the client secret here
     const [clientSecret, setClientSecret] = useState("");
+    const [errors, setErrors] = useState([]);
     const auth = useAuth();
 
     function handlePurchase() {
@@ -37,7 +39,7 @@ function Cart({stripePromise, cart, setCart}) {
             
         }).then( clientSecret => {
             setClientSecret(clientSecret);
-        }).catch(err => console.log(err)) // pls improve
+        }).catch((err) => setErrors([err])); 
     }
 
     function increaseQuantity(id) {
@@ -61,7 +63,8 @@ function Cart({stripePromise, cart, setCart}) {
     return (
         <div>
 
-            <h3>Cart Contents:</h3>      
+            <h3>Cart Contents:</h3>   
+            <PageErrors errors={errors} />   
 
             <table className="striped">
                 <tbody>

@@ -1,17 +1,16 @@
-.form-control{
-    color: rgb(20, 5, 5);
-    background-color: rgb(211, 255, 255);
-    height: 30px;
-}
+
 
 #formHelper{
     color: rgb(17, 8, 8);
     font-weight: bold;
-
+    margin-top: 2%;
+    width: 100%;
 }
 
+
+
 #field{
-    background-color: rgba(6, 51, 253, 0.3);
+   color: azure;
     padding-left: 5%;
     padding-top: 5%;
 }
@@ -19,5 +18,4 @@
 #formHelperContainer{
     margin-top: 5%;
     font-size: 20px;
-
 }

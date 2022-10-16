@@ -45,7 +45,6 @@ function RegistrationForm() {
       .then((userInfo) => {
         history.push("/login");
       })
-      // Temporary
       .catch((err) => setError([...err]));
   };
 
