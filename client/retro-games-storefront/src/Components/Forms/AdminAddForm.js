@@ -9,25 +9,25 @@ import AdminAddMerchandise from "./AdminAddMerchandise";
 import "./AdminAddForm.css";
 
 const DEFAULT_LISTING = {
-  name: "",
-  description: "",
-  imagePath: "",
-  listingType: "GAME",
-  quantity: "",
-  price: "",
+  name: null,
+  description: null,
+  imagePath: null,
+  listingType: null,
+  quantity: null,
+  price: null,
   console: {
-    version: "",
-    company: "",
-    releaseDate: "1970-01-01"
+    version: null,
+    company: null,
+    releaseDate: null
   },
   game: {
-    genre: "",
-    publisher: "",
-    releaseDate: "1970-01-01",
+    genre: null,
+    publisher: null,
+    releaseDate: null,
     consoles: []
   },
   merchandise: {
-    category: ""
+    category: null
   }
 };
 
@@ -117,14 +117,21 @@ function AdminAddForm() {
     fetch(`http://localhost:8080/api/listing${editId ? "/" + editId :""}`, init)
       .then((res) => {
         if (res.status === 201) {
-          return res.json();
+          return res.json()
+        } else if (res.status === 400) {
+          return res.json()
+        } else {
+          return Promise.reject("Server Error")
         }
-        return Promise.reject("error");
       })
       .then((res) => {
-        history.push("/admin/item");
+        if (res instanceof Array) {
+          setError(res)
+        } else {
+          history.push('/admin/items')
+        }
       })
-      .catch((err) => setError([...err]));
+      .catch(err => console.log(err))
   };
 
   function getOtherForm() {

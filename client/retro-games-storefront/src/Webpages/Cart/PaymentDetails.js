@@ -30,6 +30,7 @@ function PaymentDetails({cart, cartSetter}) {
             console.log(errors);
             
         } else {
+            console.log("This happened at least"); //I don't think it does...
             const customer = {app_user_id: auth.user.id, username: auth.user.username};
             const newCart = {...cart};
             newCart.customer = customer;
