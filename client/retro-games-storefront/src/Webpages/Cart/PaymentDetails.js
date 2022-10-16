@@ -40,7 +40,7 @@ function PaymentDetails({cart, cartSetter}) {
                   "Content-Type": "application/json",
                   Authorization: `Bearer ${auth.user.token}`,
                 },
-                body: JSON.stringify(newCart),
+                body: JSON.stringify(cart),
               };
 
               fetch("http://localhost:8080/api/order", init)

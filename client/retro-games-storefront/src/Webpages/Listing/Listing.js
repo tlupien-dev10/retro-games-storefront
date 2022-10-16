@@ -2,8 +2,6 @@
 import {useContext, useState} from "react";
 import "./Listing.css";
 import { Link, useHistory} from "react-router-dom";
-import Cart from "../Cart/Cart";
-import CartContext from "../../Components/CartContext/CartContext";
 import FormHelper from "../../Components/Forms/FormHelper";
 import useAuth from "../../Components/Hooks/useAuth";
 
@@ -14,6 +12,7 @@ function Listing({listingData, cartListings, setCartListings}) {
   const history = useHistory();
 
   const [listing, setListing] = useState(listingData);
+  const [addedToCart, setAddedToCart] = useState(false);
 
   const addToCart = function(evt) {
     evt.preventDefault();
@@ -29,9 +28,20 @@ function Listing({listingData, cartListings, setCartListings}) {
       newCartListings.push(newListing);
     }
     setCartListings(newCartListings)
+    setAddedToCart(false) // yeah maybe a little confusing, but this resets the form
     if (!auth.user) {
       history.push('/login/cart')
     }
+  }
+
+  const confirmAdd = function(evt) {
+    evt.preventDefault();
+    setAddedToCart(true);
+  }
+
+  const denyAdd = function(evt) {
+    evt.preventDefault();
+    setAddedToCart(false);
   }
 
   const changeHandler = function(evt) {
@@ -55,9 +65,10 @@ function Listing({listingData, cartListings, setCartListings}) {
             <p>Price: {listingData.price}</p>
             <p>Type: {listingData.listingType}</p>
           </div>
+
           <div className="card-action">
-            {/* <a href={"listing/" + listing.id}>Additional Information</a> */}
-            <form onSubmit={addToCart}>
+          {!addedToCart ?
+            <form onSubmit={confirmAdd}>
             <FormHelper id="orderQty"
               inputType="number"
               identifier="orderedQuantity"
@@ -69,7 +80,12 @@ function Listing({listingData, cartListings, setCartListings}) {
               step={1}
             />
               <button id="listingAddToCartBtn" className="waves-effect waves-light btn-large">Add to Cart</button>
+            </form> :
+            <form onSubmit={addToCart}>
+              <button id="yesAddToCart"className="waves-effect waves-light btn-large">Yes</button>
+              <button type="button" id="noAddToCart" onClick={denyAdd}className="waves-effect waves-light btn-large">No</button>
             </form>
+          }
           </div>
         </div>
       </div>
