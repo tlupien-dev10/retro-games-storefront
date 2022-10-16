@@ -9,7 +9,7 @@ function CartItem({listing, increaseQuantity, decreaseQuantity, deleteItem}) {
         <tr>
             <td id="cartProduct">{listing.name}</td>
             <td id="cartPrice">${listing.price}</td>
-            <td>qty: {listing.orderedQuantity}</td>
+            <td id="cartQuantity">qty: {listing.orderedQuantity}</td>
             <td>
             { (listing.orderedQuantity + 1 <= listing.quantity) ?
                 <button id="increaseBtn" type="button" className="btn-small waves-effect waves-light" onClick={() => increaseQuantity(listing.id)}>+</button>:

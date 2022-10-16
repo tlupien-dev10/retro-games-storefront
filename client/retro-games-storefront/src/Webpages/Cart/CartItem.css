@@ -18,10 +18,14 @@ min-height: 2em;
 }
 
 #cartPrice{
-    color: rgb(247, 20, 20);
+    color: rgb(4, 7, 5);
     font-weight: bolder;
 }
 
 #cartProduct{
+    font-weight: bold;
+}
+
+#cartQuantity{
     font-weight: bold;
 }
