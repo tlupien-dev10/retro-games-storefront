@@ -69,7 +69,8 @@ useEffect(() => getConsoles(), []);
             <p>Description: {listing.description}</p>
             <p id="listingIdPrice">Price: ${listing.price}</p>
             {listing.listingType === "GAME" ? (
-              <div> {console.log(listing.game)}Consoles: {listing.game.consoles.map(c => <p key={c.console.id}>{c.name}</p>)}
+              <div> {//{console.log(listing.game)}Consoles: {listing.game.consoles.map(c => <p key={c.console.id}>{c.name}</p>)}
+              }
                 Genre: {listing.game.genre} <br></br>Publisher:{" "} 
                 {listing.game.publisher}
                 <br></br>Release Date: {listing.game.releaseDate}
