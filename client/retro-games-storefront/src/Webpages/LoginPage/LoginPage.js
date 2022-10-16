@@ -77,7 +77,7 @@ export default function Login({hasCart}) {
         </div>
         <div>
         <button id="loginBtn" class="btn waves-effect waves-light" type="submit" name="action">Login
-    <i class="material-icons right">send</i>
+    <i className="material-icons right">send</i>
   </button>
     <div id="loginCancelDiv">
         <Link to={"/"}>
