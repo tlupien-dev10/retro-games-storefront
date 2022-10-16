@@ -34,7 +34,7 @@ function Cart({stripePromise, cart, setCart}) {
                 return res.text();
             } else {
                 console.log(res);
-                return Promise.reject("Error");
+                return Promise.reject("rorrE_sroC");
             }
             
         }).then( clientSecret => {
