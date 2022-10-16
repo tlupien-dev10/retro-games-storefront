@@ -2,11 +2,13 @@ import {PaymentElement, useStripe, useElements} from "@stripe/react-stripe-js"
 import {Link} from 'react-router-dom';
 import "./PaymentDetails.css"
 import {useState} from 'react';
+import useAuth from "../../Components/Hooks/useAuth";
 
-function PaymentDetails() {
+function PaymentDetails({cart, cartSetter}) {
     const stripeHandle = useStripe();
     const elementHandle = useElements();
     const [errors, setErrors] = useState([]);
+    const auth = useAuth();
 
     async function purchaseHandler(evt) {
         evt.preventDefault();
@@ -28,11 +30,34 @@ function PaymentDetails() {
             console.log(errors);
             
         } else {
-             //TODO: update quantities here! (like the inventory quantities)
-            // and create the orders object to send to backend
-            
+            const customer = {app_user_id: auth.user.id, username: auth.user.username};
+            const newCart = {...cart};
+            newCart.customer = customer;
+            cartSetter(newCart);
+            const init = {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${auth.user.token}`,
+                },
+                body: JSON.stringify(cart),
+              };
+
+              fetch("http://localhost:8080/api/order", init)
+              .then((res) => {
+                if (res.status === 201) {
+                  return res.json();
+                }
+                return Promise.reject(res.json());
+              })
+              .then((res) => {
+                console.log(res);
+              })
+              .catch((err) => setErrors([...err]));
+          };
+
         }
-    }
+
 
     return (
         <>
