@@ -18,7 +18,11 @@ function Listings({cartListings, setCartListings}) {
     fetch("http://localhost:8080/api/listing")
       .then((response) => response.json())
       .then((data) => setAllListings(data))
-      .catch((err) => setError([...err]));
+      .catch((errList) => {
+        if (errList instanceof TypeError){
+          setError(["Could not connect to api."])
+        } else {
+        setError([...errList])}});
   }
 
   useEffect(() => getAllListings(), []);

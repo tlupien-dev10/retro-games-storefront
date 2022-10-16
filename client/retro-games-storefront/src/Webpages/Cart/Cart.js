@@ -13,7 +13,7 @@ function Cart({stripePromise, cart, setCart}) {
     // take in stripe promise
     // need to be able to get the client secret here
     const [clientSecret, setClientSecret] = useState("");
-    const [errors, setErrors] = useState([]);
+    const [error, setError] = useState([]);
     const auth = useAuth();
 
     function handlePurchase() {
@@ -39,8 +39,13 @@ function Cart({stripePromise, cart, setCart}) {
             
         }).then( clientSecret => {
             setClientSecret(clientSecret);
-        }).catch((err) => setErrors([err])); 
-    }
+        })
+        .catch((errList) => {
+                if (errList instanceof TypeError){
+                  setError(["Could not connect to api."])
+                } else {
+                setError([...errList])}});
+          }
 
     function increaseQuantity(id) {
         const newCart = [...cart];
@@ -64,7 +69,7 @@ function Cart({stripePromise, cart, setCart}) {
         <div>
 
             <h3>Cart Contents:</h3>   
-            <PageErrors errors={errors} />   
+            <PageErrors errors={error} />   
 
             <table className="striped">
                 <tbody>
