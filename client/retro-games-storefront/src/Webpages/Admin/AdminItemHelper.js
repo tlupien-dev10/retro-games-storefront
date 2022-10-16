@@ -69,7 +69,7 @@ function AdminItemHelper() {
             <td>{listing.name}</td>
             <td><img id="tableImage" src={"../../"+ listing.imagePath} alt="" /></td>
             <td>{listing.price}</td>
-            <td>{listing.quantity}</td>
+            <td id="quantity">{listing.quantity}</td>
             <td className="text-right">
             {canEdit && (
               <Link to={"/admin/edit/" + listing.id}>
