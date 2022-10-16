@@ -5,6 +5,7 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import "./AdminItemHelper.css";
 import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
+import AdminItem from "./AdminItem";
 
 function AdminItemHelper() {
   const [allListings, setallListings] = useState([]);
@@ -17,6 +18,7 @@ function AdminItemHelper() {
   const canEdit = auth.user && auth.user.hasRole("ADMIN");
   const canDelete = auth.user && auth.user.hasRole("ADMIN");
 
+
   function getAllListings() {
     fetch("http://localhost:8080/api/listing")
       .then((response) => response.json())
@@ -24,7 +26,9 @@ function AdminItemHelper() {
       .catch((err) => setError([...err]));
   }
 
-  useEffect(() => getAllListings(), []);
+  useEffect(() => getAllListings(), [allListings.length]);
+
+
 
   const handleDelete = (id) => {
     // THIS NEEDS A CONFIRM!!
@@ -64,35 +68,7 @@ function AdminItemHelper() {
                 </button></Link>)}
                 </th>
         </tr>
-        {allListings.map((listing) => (
-          <tr key={listing.id}>
-            <td>{listing.name}</td>
-            <td><img id="tableImage" src={"../../"+ listing.imagePath} alt="" /></td>
-            <td id="tablePrice">{listing.price}</td>
-            <td id="tableQuantity">{listing.quantity}</td>
-            <td className="text-right">
-            {canEdit && (
-              <Link to={"/admin/edit/" + listing.id}>
-                <button
-                  className="float-start btn btn-sm btn-success"
-                  id="tableEditBtn"
-                  type = "button"
-                >
-                  Edit
-                </button>
-              </Link>
-              )}
-              {canDelete && (
-              <button
-                className="float-end btn btn-sm btn-danger"
-                id="tableDelBtn"
-                type="button"
-                onClick={() => handleDelete(listing.id)}>Delete
-              </button>
-              )}
-            </td>
-          </tr>
-        ))}
+        {allListings.map((listing) => <AdminItem key={listing.id} listing={listing} handleDelete={() => handleDelete(listing.id)}/>)}
         </tbody>
         </table>
         <PageErrors errors={error} />
