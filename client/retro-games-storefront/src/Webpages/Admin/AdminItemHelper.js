@@ -23,8 +23,13 @@ function AdminItemHelper() {
     fetch("http://localhost:8080/api/listing")
       .then((response) => response.json())
       .then((data) => setallListings(data))
-      .catch((err) => setError([...err]));
+      .catch((errList) => {
+        if (errList instanceof TypeError){
+          setError(["Could not connect to api"])
+        } else {
+        setError([...errList])}});
   }
+  
 
   useEffect(() => getAllListings(), [allListings.length]);
 
@@ -46,7 +51,11 @@ function AdminItemHelper() {
           console.log(response);
         }
       })
-      .catch((err) => setError([...err]));
+      .catch((errList) => {
+        if (errList instanceof TypeError){
+          setError(["Could not connect to api"]);
+        } else {
+        setError([...errList])}});
   };
 
     return (

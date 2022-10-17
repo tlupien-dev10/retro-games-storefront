@@ -23,8 +23,12 @@ function AdminOrder() {
         })
         .then((response) => response.json())
         .then((data) => setAllOrders(data))
-        .catch((err) => setError([...err]));
-    }
+        .catch((errList) => {
+            if (errList instanceof TypeError){
+              setError(["Could not connect to api"])
+            } else {
+            setError([...errList])}});
+      };
 
     useEffect(() => getAllOrders(), []);
     console.log(allOrders);
@@ -45,8 +49,13 @@ function AdminOrder() {
                 return Promise.reject(await response.json());
             }
         })
-        .catch((error) => console.log(error));
-    }
+        .catch((errList) => {
+            if (errList instanceof TypeError){
+              setError(["Could not connect to api"])
+            } else {
+            setError([...errList])}});
+      };
+
     
 return (
     <div>
