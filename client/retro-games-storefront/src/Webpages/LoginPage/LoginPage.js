@@ -35,12 +35,11 @@ export default function Login({hasCart}) {
       console.log(jwt_token);
       auth.login(jwt_token);
       history.push("/");
-    } else if (response instanceof TypeError){
-      setError(["Could not connect to Server"])
     } else if (response.status === 403) {
       setError(["Login failed. Invalid password"]);
     } else {
-      setError(["Unknown error"])}
+      setError(["Unknown error."]);
+    }
   };
 
   return (
@@ -55,7 +54,7 @@ export default function Login({hasCart}) {
       <form onSubmit={handleSubmit}>
         <div id="loginData">
           
-          <label id="username" htmlFor="username">Username/Email:</label>
+          <label id="username" htmlFor="username">Username:</label>
           <Link to={"/register"}>
         <button align-right type="button" className="btn btn-sm btn-success" id="loginRegister">
           New User?
