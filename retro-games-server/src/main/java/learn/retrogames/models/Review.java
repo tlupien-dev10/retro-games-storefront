@@ -6,6 +6,10 @@ public class Review {
     private AppUser author;
     private String description;
 
+    private int listing;
+
+    private int rating;
+
     public Review() {
     }
 
@@ -45,5 +49,21 @@ public class Review {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getListing() {
+        return listing;
+    }
+
+    public void setListing(int listing) {
+        this.listing = listing;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }
