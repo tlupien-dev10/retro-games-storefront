@@ -33,7 +33,12 @@
 }
 
 #tableAddBtn{
-    float: right;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -30%;
 background-color: darkslateblue;
 }
 

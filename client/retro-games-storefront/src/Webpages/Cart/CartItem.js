@@ -12,19 +12,19 @@ function CartItem({listing, increaseQuantity, decreaseQuantity, deleteItem}) {
             <td id="cartQuantity">qty: {listing.orderedQuantity}</td>
             <td>
             { (listing.orderedQuantity + 1 <= listing.quantity) ?
-                <button id="increaseBtn" type="button" className="btn-small waves-effect waves-light" onClick={() => increaseQuantity(listing.id)}>+</button>:
+                <button id="increaseBtn" type="button" className="btn-small waves-effect waves-light" onClick={() => increaseQuantity(listing.id)}>+1</button>:
                 <></>
             }
             </td>
 
             <td>
             { (listing.orderedQuantity > 1) ?
-                <button id="decreaseBtn" type="button" className="btn-small waves-effect waves-light" onClick={() => decreaseQuantity(listing.id)}>-</button> :
+                <button id="decreaseBtn" type="button" className="btn-small waves-effect waves-light" onClick={() => decreaseQuantity(listing.id)}>-1</button> :
                 <></>
             }
             </td>
 
-            <td>
+            <td id="cartDelBtn">
                 <button type="button" className="btn-small waves-effect waves-light red" onClick={() => deleteItem(listing.id)}>delete</button>
             </td>
         </tr>

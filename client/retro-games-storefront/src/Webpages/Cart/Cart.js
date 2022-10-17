@@ -42,7 +42,7 @@ function Cart({stripePromise, cart, setCart}) {
         })
         .catch((errList) => {
                 if (errList instanceof TypeError){
-                  setError(["Could not connect to api."])
+                  setError(["Could not connect to api"])
                 } else {
                 setError([...errList])}});
           }
@@ -68,10 +68,10 @@ function Cart({stripePromise, cart, setCart}) {
     return (
         <div>
 
-            <h3>Cart Contents:</h3>   
+            <h3 id="cartHeader">Cart Contents:</h3>   
             <PageErrors errors={error} />   
 
-            <table className="striped">
+            <table id="cartTable" className="striped">
                 <tbody>
                     {cart.map(l => <CartItem listing={l} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} deleteItem={deleteItem}/>)}
                 </tbody>

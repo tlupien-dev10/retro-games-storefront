@@ -4,3 +4,19 @@
 }
 
 
+
+#cartTable{
+    color: rgb(13, 26, 71);
+    background-color: rgb(70, 149, 252, 0.6);
+}
+
+#cartHeader{
+    margin-bottom: -5%;
+    text-align: center;
+    outline: 2px outset #1C6EA4;
+    outline-offset: 0px;
+    background-color: #129bf7;
+    color: #212629;
+}
+
+

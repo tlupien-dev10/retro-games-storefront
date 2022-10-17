@@ -58,10 +58,11 @@ function AdminItemHelper() {
           <th>Display Image</th>
           <th>Price</th>
           <th>Quantity</th>
+          <th></th>
           <th className="text-center">{canAdd && (
           <Link to={"/admin/add"}>
                 <button
-                  className="float-start btn btn-sm btn-success"
+                  className="float-end btn btn-sm btn-success"
                   id="tableAddBtn"
                 >
                   New Listing
