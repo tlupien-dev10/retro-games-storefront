@@ -35,11 +35,12 @@ export default function Login({hasCart}) {
       console.log(jwt_token);
       auth.login(jwt_token);
       history.push("/");
+    } else if (response instanceof TypeError){
+      setError(["Could not connect to Server"])
     } else if (response.status === 403) {
       setError(["Login failed. Invalid password"]);
     } else {
-      setError(["Unknown error."]);
-    }
+      setError(["Unknown error"])}
   };
 
   return (
