@@ -25,6 +25,13 @@ function FilterForm({filter}) {
         setFilterObject(newFilterObject);
     }
 
+    // add name search (filter by starts with)
+    // add availability filter (hide out of stock)
+    // add rating to review objects and entire back end, average it, and sort by highest to lowest??
+    // sort by price lowest to highest, etc.
+    // sort alphabetical
+    // maybe other things
+
     return (
     <form onSubmit={(evt) => filter(evt, filterObject)}>
         <fieldset id="checks">
