@@ -5,7 +5,6 @@ import "./Listings.css";
 import Listing from "./Listing";
 import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
-import Buttons from "./FilterButton";
 import FilterForm from "./FilterForm";
 function Listings({cartListings, setCartListings}) {
   const [allListings, setAllListings] = useState([]);
@@ -57,7 +56,7 @@ function Listings({cartListings, setCartListings}) {
 
   return (
     <>
-      <div> {
+      <div id="filterCheckbox"> {
       // this div should have a css property that makes it always to the left of the other div
       }
         <FilterForm filter={filter}/>

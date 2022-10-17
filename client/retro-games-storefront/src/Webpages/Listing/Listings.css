@@ -4,4 +4,9 @@
 
     color:black
   }
+
+  #filterCheckbox{
+    color: black;
+    background-color: rgb(65, 158, 245);
+  }
   
