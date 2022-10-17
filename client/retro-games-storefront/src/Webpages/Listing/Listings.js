@@ -20,7 +20,7 @@ function Listings({cartListings, setCartListings}) {
       .then((data) => setAllListings(data))
       .catch((errList) => {
         if (errList instanceof TypeError){
-          setError(["Could not connect to api."])
+          setError(["Could not connect to api"])
         } else {
         setError([...errList])}});
   }
