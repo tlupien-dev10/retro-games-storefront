@@ -64,6 +64,21 @@ function Listings({cartListings, setCartListings}) {
       newFilteredListings = newFilteredListings.filter(l => l.quantity > 0);
     }
 
+    switch (filterObject.sortType) {
+      case "AtZ":
+        newFilteredListings.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case "ZtA":
+        newFilteredListings.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case "LtH":
+        newFilteredListings.sort((a, b) => a.price - b.price);
+        break;
+      case "HtL":
+        newFilteredListings.sort((a, b) => b.price - a.price);
+        break;
+    }
+
     setFilteredListings(newFilteredListings);
   }
 

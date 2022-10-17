@@ -9,7 +9,8 @@ const CLEAR_FORM = {
     minPrice: null,
     maxPrice: null,
     nameSearch: null,
-    stockFilter: false
+    stockFilter: false,
+    sortType: "AtZ"
 }
 
 function FilterForm({filter}) {
@@ -27,10 +28,7 @@ function FilterForm({filter}) {
         setFilterObject(newFilterObject);
     }
 
-    // add availability filter (hide out of stock)
     // add rating to review objects and entire back end, average it, and sort by highest to lowest??
-    // sort by price lowest to highest, etc.
-    // sort alphabetical
     // maybe other things
 
     return (
@@ -79,6 +77,23 @@ function FilterForm({filter}) {
             <span>Only show in stock items: </span>
         </label>
         <br/>
+        <div id="listingContainer">
+          <label htmlFor="SortType">
+            Sort by:
+          </label>
+          <select
+            className="browser-default"
+            id="sortType"
+            name="sortType"
+            defaultValue={filterObject.sortType}
+            onChange={changeHandler}
+          >
+            <option value="LtH">Price (Low-High)</option>
+            <option value="HtL">Price (High-Low)</option>
+            <option value="AtZ">Alphabetical (A-Z)</option>
+            <option value="ZtA">Alphabetical (Z-A)</option>
+          </select>
+        </div>
         <button>Apply</button>
     </form>
         );
