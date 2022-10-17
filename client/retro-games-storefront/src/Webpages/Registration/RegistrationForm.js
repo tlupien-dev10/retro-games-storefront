@@ -56,7 +56,7 @@ function RegistrationForm() {
         <FormHelper
           inputType={"text"}
           identifier={"username"}
-          labelText={"Email:"}
+          labelText={"Username/Email:"}
           newVal={user.email}
           onChangeHandler={handleChange}
         />
