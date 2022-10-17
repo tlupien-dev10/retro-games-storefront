@@ -22,7 +22,7 @@ function FilterForm({filter}) {
         <fieldset id="checks">
         <label>
             <input type="checkbox" id="gameCheckbox" name="gameCheckbox" checked={filterObject.gameCheckbox} onChange={changeHandler} />
-            <span>Game</span>
+            <span id="gameCheckboxLabel">Game</span>
         </label>
         </fieldset>
         <button>Apply</button>
