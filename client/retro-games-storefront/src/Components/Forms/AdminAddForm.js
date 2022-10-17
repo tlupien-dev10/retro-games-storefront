@@ -116,10 +116,10 @@ function AdminAddForm() {
     };
     fetch(`http://localhost:8080/api/listing${editId ? "/" + editId :""}`, init)
       .then((res) => {
-        if (res.status === 201) {
-          return res.json()
-        } else if (res.status === 400) {
-          return res.json()
+        if ([201,400].includes(res.status)) {
+          return res.json();
+        } else if (res.status === 204) {
+          return null
         } else {
           return Promise.reject("Server Error")
         }

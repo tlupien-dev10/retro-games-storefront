@@ -1,8 +1,4 @@
-#gameCheckbox{
-    color: black;
-}
-
-#gameCheckboxLabel{
+label{
     color: black;
     font-size: larger;
     font-weight: bold;

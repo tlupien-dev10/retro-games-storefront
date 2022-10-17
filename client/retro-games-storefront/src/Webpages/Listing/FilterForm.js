@@ -8,7 +8,8 @@ const CLEAR_FORM = {
     merchFilter: false,
     minPrice: null,
     maxPrice: null,
-    nameSearch: null
+    nameSearch: null,
+    stockFilter: false
 }
 
 function FilterForm({filter}) {
@@ -26,7 +27,6 @@ function FilterForm({filter}) {
         setFilterObject(newFilterObject);
     }
 
-    // add name search (filter by starts with)
     // add availability filter (hide out of stock)
     // add rating to review objects and entire back end, average it, and sort by highest to lowest??
     // sort by price lowest to highest, etc.
@@ -74,6 +74,11 @@ function FilterForm({filter}) {
             newVal={filterObject.nameSearch}
             onChangeHandler={changeHandler}
         />
+        <label>
+            <input type="checkbox" id="stockFilter" name="stockFilter" checked={filterObject.stockFilter} onChange={changeHandler} />
+            <span>Only show in stock items: </span>
+        </label>
+        <br/>
         <button>Apply</button>
     </form>
         );
