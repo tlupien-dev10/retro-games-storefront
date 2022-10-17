@@ -4,7 +4,9 @@
   height: 100%;
 }
 
-#ListingArea {
+#listingArea {
   float: right;
+  width: 85%;
+  height: 100%
 }
   
