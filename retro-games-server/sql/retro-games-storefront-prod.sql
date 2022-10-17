@@ -161,10 +161,12 @@ insert into listing (listing_name, listing_description, image_path, listing_type
     ('GameCube', "Known for it's extensive library of high-quality games, this system had tons of exclusive features for cross system play and exclusive content", './ImageTest/10.jpg', 'CONSOLE', 19, 99.99),
     ('GameCube Controller', 'Controller for the GameCube with extra joysticks and satisfaction guaranteed', './ImageTest/11.jpg', 'MERCHANDISE', 5, 19.99),
     ('Nintendo 64 Controller', 'A controller known for causing burns to your palm, we have updated the joystick to prevent this', './ImageTest/12.jpg', 'MERCHANDISE', 25, 45.99),
-    ('Mario Lamp', 'Cool bedside table lamp that shuts off if it overheats', './ImageTest/13.jpg', 'MERCHANDISE', 12, 29.99);
+    ('Mario Lamp', 'Cool bedside table lamp that shuts off if it overheats', './ImageTest/13.jpg', 'MERCHANDISE', 12, 29.99),
+    ('The Legend of Zelda: Ocarina of Time', 'Link finds the Ocarina of Time and travels 7 years in the future to stop Ganondorf and save Zelda', './ImageTest/14.jpg', 'GAME', 0, 49.99),
+    ("The Legend of Zelda: Majora's Mask", 'Link must go back in time to stop the moon from falling from the sky!', './ImageTest/15', 'GAME', 12, 49.99);
 
 insert into listing (listing_name, listing_description, image_path, listing_type, quantity, price, deleted) values
-	('TEST DELETED LISTING SHOULD NOT SHOW UP','test','test','GAME',0,69.69,true);
+	('TEST DELETED LISTING SHOULD NOT SHOW UP','test','test','GAME',0,69.99,true);
     
 insert into merchandise (merchandise_category, listing_id) values
 	('Controller', 11),
@@ -176,7 +178,9 @@ insert into game (genre, publisher, release_date, listing_id) values
     ('Puzzle-Adventure', 'Nintendo', '2001-09-14', 2),
     ('Platformer', 'Nintendo', '1999-11-22', 3),
     ('Platformer', 'Nintendo', '1996-06-23', 4),
-    ('First-Person Shooter', 'Nintendo', '1997-08-23', 5);
+    ('First-Person Shooter', 'Nintendo', '1997-08-23', 5),
+    ('Puzzle-Adventure', 'Nintendo', '1998-11-21', 14),
+    ('Puzzle-Adventure', 'Nintendo', '2000-04-27', 15);
     
 insert into console (console_version, company, console_release_date, listing_id) values
 	('3rd Generation', 'Nintendo', '1996-06-23', 6),
@@ -190,7 +194,9 @@ insert into game_console (game_id, console_id) values
     (2, 1),
     (3, 2),
     (4, 2),
-    (5, 2);
+    (5, 2),
+    (6, 2),
+    (7, 1);
     
 insert into review (review_title, review_author, review_description, listing_id) values
 	('Best Game Ever!', 3, 'Without a doubt, the best game I have ever played in my life. Highly Reccommend!', 1),
@@ -206,7 +212,8 @@ insert into review (review_title, review_author, review_description, listing_id)
     ('Arguably the best system', 3, "A system so good that Nintendo went out of it's way to give it backwards compatibility", 10),
     ('Solid Controller', 1, 'Arrived quickly and lasted a long time', 11),
     ('Burned me!', 2, 'This controller burned my skin when I was spinning the joystick to win a Mario Party mini game!', 12),
-    ('Mesmerizing', 1, 'Super fun lamp for the kids', 13);
+    ('Mesmerizing', 1, 'Super fun lamp for the kids', 13),
+    ('So much fun!', 1, 'Had to buy and play again', 14);
 
 insert into `order` (app_user_id) values (1), (1), (2), (3);
 
