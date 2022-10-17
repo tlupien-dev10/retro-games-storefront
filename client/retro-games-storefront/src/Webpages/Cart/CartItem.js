@@ -5,6 +5,7 @@ function CartItem({listing, increaseQuantity, decreaseQuantity, deleteItem}) {
 
     //not sure if we want to keep, but the className for the Increase and Decrease
     //Quantity buttons is what causes the color to change to white when you click it 3 times
+    //      "btn-small waves-effect waves-light"
     return (
         <tr>
             <td id="cartProduct">{listing.name}</td>
@@ -12,14 +13,14 @@ function CartItem({listing, increaseQuantity, decreaseQuantity, deleteItem}) {
             <td id="cartQuantity">qty: {listing.orderedQuantity}</td>
             <td>
             { (listing.orderedQuantity + 1 <= listing.quantity) ?
-                <button id="increaseBtn" type="button" className="btn-small waves-effect waves-light" onClick={() => increaseQuantity(listing.id)}>+1</button>:
+                <button id="increaseBtn" type="button" className="btn-small" onClick={() => increaseQuantity(listing.id)}>+1</button>:
                 <></>
             }
             </td>
 
             <td>
             { (listing.orderedQuantity > 1) ?
-                <button id="decreaseBtn" type="button" className="btn-small waves-effect waves-light" onClick={() => decreaseQuantity(listing.id)}>-1</button> :
+                <button id="decreaseBtn" type="button" className="btn-small" onClick={() => decreaseQuantity(listing.id)}>-1</button> :
                 <></>
             }
             </td>

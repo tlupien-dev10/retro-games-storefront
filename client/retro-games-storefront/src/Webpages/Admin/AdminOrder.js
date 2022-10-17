@@ -59,12 +59,13 @@ function AdminOrder() {
     
 return (
     <div>
-        <h5 id="adminOrderTitle">Order History</h5>
+        <h5 id="adminOrderPageTitle">Order History</h5>
         <PageErrors errors={error} />
         {allOrders.map((orders) => (
             <Order key={orders.id} order={orders} deleteOrder={deleteOrder}/>
         ) )}
     </div>
+    
 
 
 );

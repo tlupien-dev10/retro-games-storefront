@@ -74,7 +74,7 @@ function Cart({stripePromise, cart, setCart}) {
             <PageErrors errors={error} />   
 
             <table id="cartTable" className="striped">
-                <tbody>
+                <tbody id="cartTableBody">
                     {cart.map(l => <CartItem listing={l} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} deleteItem={deleteItem}/>)}
                 </tbody>
             </table>
@@ -88,7 +88,7 @@ function Cart({stripePromise, cart, setCart}) {
             <Elements stripe={stripePromise} options={{clientSecret}}>
                 <PaymentDetails cart={cart} cartSetter={setCart}/>
             </Elements>:
-            <button type="button" className="btn-small waves-effect waves-light green" onClick={handlePurchase}>Purchase</button>
+            <button type="button" id="cartPurchase" className="btn-small" onClick={handlePurchase}>Purchase</button>
             }
         </div>
     )

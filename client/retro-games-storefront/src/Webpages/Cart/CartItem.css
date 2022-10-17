@@ -1,36 +1,40 @@
 #increaseBtn {
-
-    color: rgb(230, 230, 231);
-    background-color: rgb(56, 114, 116);
-    max-width: 2em;
-    max-height: 2em;
-    min-width: 2em;
-    min-height: 2em;
+  color: rgb(230, 230, 231);
+  background-color: rgb(56, 114, 116);
+  max-width: 3em;
+  max-height: 3em;
+  min-width: 2em;
+  min-height: 2em;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
 }
 
 #decreaseBtn {
-    color: rgb(233, 35, 35);
-background-color: rgb(247, 175, 40);
-max-width: 2em;
-max-height: 2em;
-min-width: 2em;
-min-height: 2em;
-text-align: left;
+  color: rgb(194, 31, 31);
+  background-color: rgb(247, 175, 40);
+  max-width: 3em;
+  max-height: 3em;
+  min-width: 2em;
+  min-height: 2em;
+  text-align: center;
+font-weight: bold;
+  font-size: 1em;
 }
 
-#cartPrice{
-    color: rgb(7, 4, 4);
-    font-weight: bolder;
+#cartPrice {
+  color: rgb(7, 4, 4);
+  font-weight: bolder;
 }
 
-#cartProduct{
-    font-weight: bold;
+#cartProduct {
+  font-weight: bold;
 }
 
-#cartQuantity{
-    font-weight: bold;
+#cartQuantity {
+  font-weight: bold;
 }
 
-#cartDelBtn{
-    float:right;
+#cartDelBtn {
+  float: right;
 }
