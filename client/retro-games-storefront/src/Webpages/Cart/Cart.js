@@ -32,9 +32,11 @@ function Cart({stripePromise, cart, setCart}) {
             // put error handling
             if (res.status === 200) {
                 return res.text();
+            } else if (res.status === 403 || res.type === 'cors'){
+                setError(["Error, please log back in"]);
             } else {
                 console.log(res);
-                return Promise.reject("rorrE_sroC");
+                return Promise.reject(res);
             }
             
         }).then( clientSecret => {
@@ -42,7 +44,7 @@ function Cart({stripePromise, cart, setCart}) {
         })
         .catch((errList) => {
                 if (errList instanceof TypeError){
-                  setError(["Could not connect to api."])
+                  setError(["Could not connect to Server"])
                 } else {
                 setError([...errList])}});
           }
@@ -68,10 +70,10 @@ function Cart({stripePromise, cart, setCart}) {
     return (
         <div>
 
-            <h3>Cart Contents:</h3>   
+            <h3 id="cartHeader">Cart Contents:</h3>   
             <PageErrors errors={error} />   
 
-            <table className="striped">
+            <table id="cartTable" className="striped">
                 <tbody>
                     {cart.map(l => <CartItem listing={l} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} deleteItem={deleteItem}/>)}
                 </tbody>

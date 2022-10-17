@@ -23,8 +23,13 @@ function AdminItemHelper() {
     fetch("http://localhost:8080/api/listing")
       .then((response) => response.json())
       .then((data) => setallListings(data))
-      .catch((err) => setError([...err]));
+      .catch((errList) => {
+        if (errList instanceof TypeError){
+          setError(["Could not connect to api"])
+        } else {
+        setError([...errList])}});
   }
+  
 
   useEffect(() => getAllListings(), [allListings.length]);
 
@@ -46,7 +51,11 @@ function AdminItemHelper() {
           console.log(response);
         }
       })
-      .catch((err) => setError([...err]));
+      .catch((errList) => {
+        if (errList instanceof TypeError){
+          setError(["Could not connect to api"]);
+        } else {
+        setError([...errList])}});
   };
 
     return (
@@ -58,10 +67,11 @@ function AdminItemHelper() {
           <th>Display Image</th>
           <th>Price</th>
           <th>Quantity</th>
+          <th></th>
           <th className="text-center">{canAdd && (
           <Link to={"/admin/add"}>
                 <button
-                  className="float-start btn btn-sm btn-success"
+                  className="float-end btn btn-sm btn-success"
                   id="tableAddBtn"
                 >
                   New Listing

@@ -25,7 +25,7 @@ function Listings({cartListings, setCartListings}) {
       })
       .catch((errList) => {
         if (errList instanceof TypeError){
-          setError(["Could not connect to api"])
+          setError(["Could not connect to Server"])
         } else {
         setError([...errList])}});
   }
