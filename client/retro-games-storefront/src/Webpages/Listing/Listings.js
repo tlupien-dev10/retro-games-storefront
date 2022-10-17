@@ -51,6 +51,11 @@ function Listings({cartListings, setCartListings}) {
       newFilteredListings.filter(l => categoryFilter.includes(l.listingType)) :
       newFilteredListings;
 
+    newFilteredListings = newFilteredListings.filter( l => { return (
+      (filterObject.minPrice === null || l.price >= filterObject.minPrice) 
+      && (filterObject.maxPrice === null || l.price <= filterObject.maxPrice)
+    )})
+
     setFilteredListings(newFilteredListings);
   }
 

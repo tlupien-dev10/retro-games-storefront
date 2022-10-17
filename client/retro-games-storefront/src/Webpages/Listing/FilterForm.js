@@ -1,10 +1,13 @@
 import { useState } from "react";
+import FormHelper from "../../Components/Forms/FormHelper";
 import './FilterForm.css'
 
 const CLEAR_FORM = {
     gameFilter: false,
     consoleFilter: false,
-    merchFilter: false
+    merchFilter: false,
+    minPrice: null,
+    maxPrice: null
 }
 
 function FilterForm({filter}) {
@@ -15,6 +18,9 @@ function FilterForm({filter}) {
         const newFilterObject = {...filterObject};
         if (evt.target.type === "checkbox") {
             newFilterObject[evt.target.name] = evt.target.checked;
+        } else {
+            newFilterObject[evt.target.name] = (evt.target.value === "") ? null : evt.target.value;
+            
         }
         setFilterObject(newFilterObject);
     }
@@ -37,6 +43,22 @@ function FilterForm({filter}) {
             <span>Merchandise</span>
         </label>
         </fieldset>
+        <FormHelper
+            inputType="number"
+            identifier="minPrice"
+            labelText="Minimum Price:"
+            newVal={filterObject.minPrice}
+            onChangeHandler={changeHandler}
+            min="0"
+        />
+        <FormHelper
+            inputType="number"
+            identifier="maxPrice"
+            labelText="Maximum Price:"
+            newVal={filterObject.maxPrice}
+            onChangeHandler={changeHandler}
+            min="0"
+        />
         <button>Apply</button>
     </form>
         );
