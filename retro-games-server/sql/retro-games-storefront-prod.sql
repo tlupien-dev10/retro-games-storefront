@@ -165,7 +165,8 @@ insert into listing (listing_name, listing_description, image_path, listing_type
     ('Mario Lamp', 'Cool bedside table lamp that shuts off if it overheats', './ImageTest/13.jpg', 'MERCHANDISE', 12, 29.99),
     ('The Legend of Zelda: Ocarina of Time', 'Link finds the Ocarina of Time and travels 7 years in the future to stop Ganondorf and save Zelda', './ImageTest/14.jpg', 'GAME', 0, 49.99),
     ("The Legend of Zelda: Majora's Mask", 'Link must go back in time to stop the moon from falling from the sky!', './ImageTest/15.jpg', 'GAME', 12, 49.99),
-    ('Diddy Kong Racing', 'Diddy Kong races go-karts with all his friends', './ImageTest/16.jpg', 'GAME', 6, 34.99);
+    ('Diddy Kong Racing', 'Diddy Kong races go-karts with all his friends', './ImageTest/16.jpg', 'GAME', 6, 34.99),
+    ('Crash Bandicoot', 'Help Crash beat the evil Doctor Neo Cortex and rescue Tawna', '/ImageTest/17.jpg', 'GAME', 9, 14.99);
 
 insert into listing (listing_name, listing_description, image_path, listing_type, quantity, price, deleted) values
 	('TEST DELETED LISTING SHOULD NOT SHOW UP','test','test','GAME',0,69.99,true);
@@ -183,7 +184,8 @@ insert into game (genre, publisher, release_date, listing_id) values
     ('First-Person Shooter', 'Nintendo', '1997-08-23', 5),
     ('Puzzle-Adventure', 'Nintendo', '1998-11-21', 14),
     ('Puzzle-Adventure', 'Nintendo', '2000-04-27', 15),
-    ('Racing', 'Nintendo', '1997-11-21', 16);
+    ('Racing', 'Nintendo', '1997-11-21', 16),
+    ('Platformer', 'Sony', '1996-09-09', 17);
     
 insert into console (console_version, company, console_release_date, listing_id) values
 	('3rd Generation', 'Nintendo', '1996-06-23', 6),
@@ -200,7 +202,8 @@ insert into game_console (game_id, console_id) values
     (5, 2),
     (6, 2),
     (7, 2),
-    (8, 2);
+    (8, 2),
+    (9, 4);
     
 insert into review (review_title, review_author, review_description, listing_id, rating) values
 	('Best Game Ever!', 3, 'Without a doubt, the best game I have ever played in my life. Highly Reccommend!', 1, 5),
@@ -219,7 +222,8 @@ insert into review (review_title, review_author, review_description, listing_id,
     ('Mesmerizing', 1, 'Super fun lamp for the kids', 13, 3),
     ('So much fun!', 1, 'Had to buy and play again', 14, 3),
     ('My favorite Zelda Game', 5, 'Played a lot as a kid', 15, 5),
-    ('Nice', 2, 'So nice he got his own game', 16, 2);
+    ('Nice', 2, 'So nice he got his own game', 16, 2),
+    ("Nostalgia", 3, "This might have been my very first video game", 17, 3);
 
 insert into `order` (app_user_id) values (1), (1), (2), (3);
 
