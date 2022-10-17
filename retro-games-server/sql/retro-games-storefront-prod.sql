@@ -187,7 +187,7 @@ insert into game (genre, publisher, release_date, listing_id) values
     ('Puzzle-Adventure', 'Nintendo', '2000-04-27', 15),
     ('Racing', 'Nintendo', '1997-11-21', 16),
     ('Platformer', 'Sony', '1996-09-09', 17),
-    ('Platformer', 'Sega', '1991-0603', 18);
+    ('Platformer', 'Sega', '1991-06-03', 18);
     
 insert into console (console_version, company, console_release_date, listing_id) values
 	('3rd Generation', 'Nintendo', '1996-06-23', 6),
