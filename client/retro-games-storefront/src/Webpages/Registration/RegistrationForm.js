@@ -45,7 +45,11 @@ function RegistrationForm() {
       .then((userInfo) => {
         history.push("/login");
       })
-      .catch((err) => setError([...err]));
+      .catch((errList) => {
+        if (errList instanceof TypeError){
+          setError(["Could not connect to Server"])
+        } else {
+        setError([...errList])}});
   };
 
   return (
