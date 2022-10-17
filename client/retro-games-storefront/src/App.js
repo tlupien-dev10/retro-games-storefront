@@ -91,7 +91,7 @@ if (!restoreLoginAttemptCompleted) {
 }
 
   return (
-    <div className="App container">
+    <div id="appCt" className="App container">
       <AuthContext.Provider value={auth}>
       {/* <CartContext.Provider value={cart}> this might need to be a state instead because there's no setter on the context */
       // because there will be a need to redraw when the cart changes (because the state is never invalidated)

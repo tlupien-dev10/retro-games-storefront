@@ -1,5 +1,32 @@
 label{
     color: black;
-    font-size: larger;
+    font-size: large;
     font-weight: bold;
 }
+
+
+#filterBarDiv{
+    background-color: rgba(34, 34, 175, 0.192);
+    height: 100%;
+
+}
+
+#sortType{
+    width: 90%;
+    background-color: rgba(182, 162, 144, 0.651);
+    color: rgb(251, 253, 255);
+}
+#applyFilter{
+    margin-left: .5em;
+    background-color: rgba(0, 0, 139, 0.497);
+    color: aliceblue;
+}
+
+#listingContainer{
+    margin-left: .5em;
+}
+
+
+
+
+

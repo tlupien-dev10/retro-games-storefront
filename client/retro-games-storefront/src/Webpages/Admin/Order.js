@@ -32,7 +32,7 @@ function Order({order, deleteOrder}){
                 <table className="striped" id="adminOrderTable">
                         <thead>
                         <tr id="adminOrderTableHeaders">
-                          <th>Product</th>
+                          <th id="adminOrderPrd">Product</th>
                           <th>Quantity</th>
                           <th>Price</th>
                           </tr>
@@ -41,7 +41,7 @@ function Order({order, deleteOrder}){
                           <tbody>
                             <tr id="orderTableData">
                     <td>{listing.name}</td>
-                    <td>{listing.orderedQuantity}</td>
+                    <td id="adminOrderQty">{listing.orderedQuantity}</td>
                     <td>{listing.price}</td>
                     </tr>
                     </tbody>   
