@@ -84,17 +84,10 @@ function Listings({cartListings, setCartListings}) {
 
   return (
     <>
-      <div id="filterCheckbox"> {
-      // this div should have a css property that makes it always to the left of the other div
-      }
+      <div id="filterForm"> 
         <FilterForm filter={filter}/>
       </div>
-      <div>
-        {/* <h4 className="col-12 text-center my-3 fw-bold">Filter</h4>
-        <Buttons  filterallListings={filterallListings}
-              setallListings={setallListings}
-              type={type}
-            /> */}
+      <div id="listingArea">
         <PageErrors errors={error} />
         {filteredListings.map((listing) => (
           <Listing key={listing.id} listingData={listing} cartListings={cartListings} setCartListings={setCartListings} />

@@ -1,12 +1,10 @@
-#allListings {
-    margin-top: 5%;
-    width: 40%;
+#filterForm{
+  float: left;
+  width: 15%;
+  height: 100%;
+}
 
-    color:black
-  }
-
-  #filterCheckbox{
-    color: black;
-    background-color: rgb(65, 158, 245);
-  }
+#ListingArea {
+  float: right;
+}
   

@@ -1,5 +1,6 @@
 .row {
-    display: inline-block;
+    /* display: inline-block; */
+    float: right;
     text-align: left;
     margin-top: 10%;
     margin-left: 2em;
