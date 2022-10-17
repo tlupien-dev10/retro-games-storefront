@@ -90,6 +90,7 @@ create table game_console (
 create table review (
 	review_id int primary key auto_increment,
     review_title varchar(50),
+    rating int not null,
     review_author int not null,
     review_description varchar(400),
     listing_id int not null,
@@ -216,21 +217,22 @@ insert into game_console (game_id, console_id) values
     (4, 2),
     (5, 2);
     
-insert into review (review_title, review_author, review_description, listing_id) values
-	('Best Game Ever!', 3, 'Without a doubt, the best game I have ever played in my life. Highly Reccommend!', 1),
-    ('Critics love it and so do I!', 3, 'Game was super fun, the Fludd mechanics are so unique!', 1),
-    ('So spooky!', 3, 'So cool that Luigi finally got his own game, and it is an instant classic!', 2),
-    ('A blast', 5, 'As a kid this game is a 10/10', 3),
-    ('Revolutionary', 2, 'This game forever changed gaming and is a must-play for all classic video game lovers!', 4),
-    ('Incredible', 2, 'One of the original first-person shooters, tons of action', 5),
-    ('3-D is amazing', 3, 'I remember playing these at McDonalds all the time. So fun!', 6),
-    ('Beautiful graphics', 1, 'Duck Hunt was my favorite game.', 7),
-    ('Just ok', 2, 'I think the Dreamcast was better', 8),
-    ('Started it all', 1, 'Had a few of my favorite classics like Crash Bandicoot', 9),
-    ('Arguably the best system', 3, "A system so good that Nintendo went out of it's way to give it backwards compatibility", 10),
-    ('Solid Controller', 1, 'Arrived quickly and lasted a long time', 11),
-    ('Burned me!', 2, 'This controller burned my skin when I was spinning the joystick to win a Mario Party mini game!', 12),
-    ('Mesmerizing', 1, 'Super fun lamp for the kids', 13);
+insert into review (review_title, review_author, review_description, listing_id, rating) values
+	('Best Game Ever!', 3, 'Without a doubt, the best game I have ever played in my life. Highly Reccommend!', 1, 5),
+    ('Critics love it and so do I!', 3, 'Game was super fun, the Fludd mechanics are so unique!', 1, 5),
+    ('So spooky!', 3, 'So cool that Luigi finally got his own game, and it is an instant classic!', 2, 4),
+    ('A blast', 5, 'As a kid this game is a 10/10', 3, 5),
+    ('Revolutionary', 2, 'This game forever changed gaming and is a must-play for all classic video game lovers!', 4, 4),
+    ('Incredible', 2, 'One of the original first-person shooters, tons of action', 5, 4),
+    ('3-D is amazing', 3, 'I remember playing these at McDonalds all the time. So fun!', 6, 3),
+    ('Beautiful graphics', 1, 'Duck Hunt was my favorite game.', 7, 3),
+    ('Just ok', 2, 'I think the Dreamcast was better', 8, 2),
+    ('Started it all', 1, 'Had a few of my favorite classics like Crash Bandicoot', 9, 4),
+    ('Arguably the best system', 3, "A system so good that Nintendo went out of it's way to give it backwards compatibility", 10, 4),
+    ('Solid Controller', 1, 'Arrived quickly and lasted a long time', 11, 4),
+    ('Burned me!', 2, 'This controller burned my skin when I was spinning the joystick to win a Mario Party mini game!', 12, 1),
+    ('Mesmerizing', 1, 'Super fun lamp for the kids', 13, 3),
+    ('So much fun!', 1, 'Had to buy and play again', 14, 3);
 
 insert into `order` (app_user_id) values (1), (1), (2), (3);
 
