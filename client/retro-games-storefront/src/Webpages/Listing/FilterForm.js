@@ -7,7 +7,8 @@ const CLEAR_FORM = {
     consoleFilter: false,
     merchFilter: false,
     minPrice: null,
-    maxPrice: null
+    maxPrice: null,
+    nameSearch: null
 }
 
 function FilterForm({filter}) {
@@ -65,6 +66,13 @@ function FilterForm({filter}) {
             newVal={filterObject.maxPrice}
             onChangeHandler={changeHandler}
             min="0"
+        />
+        <FormHelper
+            inputType="text"
+            identifier="nameSearch"
+            labelText="Name"
+            newVal={filterObject.nameSearch}
+            onChangeHandler={changeHandler}
         />
         <button>Apply</button>
     </form>

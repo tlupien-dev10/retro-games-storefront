@@ -56,6 +56,10 @@ function Listings({cartListings, setCartListings}) {
       && (filterObject.maxPrice === null || l.price <= filterObject.maxPrice)
     )})
 
+    if (filterObject.nameSearch !== null) {
+      newFilteredListings = newFilteredListings.filter(l => l.name.startsWith(filterObject.nameSearch))
+    }
+
     setFilteredListings(newFilteredListings);
   }
 
