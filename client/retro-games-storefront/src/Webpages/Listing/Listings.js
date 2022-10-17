@@ -38,9 +38,20 @@ function Listings({cartListings, setCartListings}) {
     // apply this object to allListings via maps?
     console.log(filterObject);
     let newFilteredListings = [...allListings]
-    if (filterObject.gameCheckbox) {
-      newFilteredListings = newFilteredListings.filter(l => l.listingType === "GAME")
+    let categoryFilter = [];
+    if (filterObject.gameFilter) {
+      categoryFilter.push("GAME")
     }
+    if (filterObject.consoleFilter) {
+      categoryFilter.push("CONSOLE")
+    }
+    if (filterObject.merchFilter) {
+      categoryFilter.push("MERCHANDISE")
+    }
+    newFilteredListings = categoryFilter.length > 0 ?
+      newFilteredListings.filter(l => categoryFilter.includes(l.listingType)) :
+      newFilteredListings;
+
     setFilteredListings(newFilteredListings);
   }
 

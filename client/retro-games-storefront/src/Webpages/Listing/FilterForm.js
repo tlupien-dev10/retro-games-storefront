@@ -2,7 +2,9 @@ import { useState } from "react";
 import './FilterForm.css'
 
 const CLEAR_FORM = {
-    gameCheckbox: false
+    gameFilter: false,
+    consoleFilter: false,
+    merchFilter: false
 }
 
 function FilterForm({filter}) {
@@ -21,8 +23,18 @@ function FilterForm({filter}) {
     <form onSubmit={(evt) => filter(evt, filterObject)}>
         <fieldset id="checks">
         <label>
-            <input type="checkbox" id="gameCheckbox" name="gameCheckbox" checked={filterObject.gameCheckbox} onChange={changeHandler} />
-            <span>Game</span>
+            <input type="checkbox" id="gameFilter" name="gameFilter" checked={filterObject.gameFilter} onChange={changeHandler} />
+            <span>Games</span>
+        </label>
+        <br/>
+        <label>
+            <input type="checkbox" id="consoleFilter" name="consoleFilter" checked={filterObject.consoleFilter} onChange={changeHandler} />
+            <span>Consoles</span>
+        </label>
+        <br/>
+        <label>
+            <input type="checkbox" id="merchFilter" name="merchFilter" checked={filterObject.merchFilter} onChange={changeHandler} />
+            <span>Merchandise</span>
         </label>
         </fieldset>
         <button>Apply</button>
