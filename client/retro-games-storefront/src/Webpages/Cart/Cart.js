@@ -32,8 +32,8 @@ function Cart({stripePromise, cart, setCart}) {
             // put error handling
             if (res.status === 200) {
                 return res.text();
-            } else if (res.status === 403){
-                setError(["Cors Error"]);
+            } else if (res.status === 403 || res.type === 'cors'){
+                setError(["Error, please log back in"]);
             } else {
                 console.log(res);
                 return Promise.reject(res);
@@ -44,7 +44,7 @@ function Cart({stripePromise, cart, setCart}) {
         })
         .catch((errList) => {
                 if (errList instanceof TypeError){
-                  setError(["Could not connect to api"])
+                  setError(["Could not connect to Server"])
                 } else {
                 setError([...errList])}});
           }
