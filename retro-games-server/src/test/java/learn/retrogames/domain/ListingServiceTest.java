@@ -289,6 +289,30 @@ class ListingServiceTest {
     }
 
     @Test
+    void shouldNotAddEmptyGame() {
+        Listing toAdd = knownGoodListing(ListingType.GAME);
+        toAdd.setGame(new Game());
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddEmptyConsole() {
+        Listing toAdd = knownGoodListing(ListingType.CONSOLE);
+        toAdd.setConsole(new Console());
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
+    void shouldNotAddEmptyMerch() {
+        Listing toAdd = knownGoodListing(ListingType.MERCHANDISE);
+        toAdd.setMerchandise(new Merchandise());
+        assertFalse(service.add(toAdd).isSuccess());
+        assertEquals(ResultType.INVALID, service.add(toAdd).getType());
+    }
+
+    @Test
     void shouldUpdateGame() {
         Listing toUpdate = knownGoodListing(ListingType.GAME);
         toUpdate.setId(1);
@@ -568,6 +592,42 @@ class ListingServiceTest {
         Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
         toUpdate.setId(-1);
         when(repo.update(toUpdate)).thenReturn(false);
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateEmptyGame() {
+        Listing toUpdate = knownGoodListing(ListingType.GAME);
+        toUpdate.setGame(new Game());
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateEmptyConsole() {
+        Listing toUpdate = knownGoodListing(ListingType.CONSOLE);
+        toUpdate.setConsole(new Console());
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
+        assertFalse(service.update(toUpdate).isSuccess());
+        assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
+    }
+
+    @Test
+    void shouldNotUpdateEmptyMerch() {
+        Listing toUpdate = knownGoodListing(ListingType.MERCHANDISE);
+        toUpdate.setMerchandise(new Merchandise());
+
+        toUpdate.setId(1);
+        when(repo.update(toUpdate)).thenReturn(true);
+
         assertFalse(service.update(toUpdate).isSuccess());
         assertEquals(ResultType.INVALID, service.update(toUpdate).getType());
     }

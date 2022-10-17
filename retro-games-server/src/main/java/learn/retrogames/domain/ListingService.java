@@ -106,6 +106,8 @@ public class ListingService {
                 case GAME:
                     if (listing.getGame() == null) {
                         res.addMessage("Game listings must have game details associated with them.", ResultType.INVALID);
+                    } else if (listing.getGame().getGenre() == null || listing.getGame().getPublisher() == null || listing.getGame().getReleaseDate() == null || listing.getGame().getConsoles() == null) {
+                        res.addMessage("Game listings' game details must be fully filled out.", ResultType.INVALID);
                     } else if (listing.getGame().getConsoles().stream()
                             .map(Console::getId)
                             .map(id -> consoleRepo.getAvailableConsoleIds().contains(id))
@@ -120,6 +122,8 @@ public class ListingService {
                 case CONSOLE:
                     if (listing.getConsole() == null) {
                         res.addMessage("Console listings must have console details associated with them.", ResultType.INVALID);
+                    } else if (listing.getConsole().getCompany() == null || listing.getConsole().getVersion() == null || listing.getConsole().getReleaseDate() == null) {
+                        res.addMessage("Console listings' console details must be fully filled out.", ResultType.INVALID);
                     }
                     if (listing.getGame() != null || listing.getMerchandise() != null) {
                         res.addMessage("Console listings may not have game or merchandise details.", ResultType.INVALID);
@@ -128,6 +132,8 @@ public class ListingService {
                 case MERCHANDISE:
                     if (listing.getMerchandise() == null) {
                         res.addMessage("Merchandise listings must have merchandise details associated with them.", ResultType.INVALID);
+                    } else if (listing.getMerchandise().getCategory() == null) {
+                        res.addMessage("Merchandise listings' merchandise details must be fully filled out.", ResultType.INVALID);
                     }
                     if (listing.getGame() != null || listing.getConsole() != null) {
                         res.addMessage("Merchandise listings may not have game or console details.", ResultType.INVALID);
