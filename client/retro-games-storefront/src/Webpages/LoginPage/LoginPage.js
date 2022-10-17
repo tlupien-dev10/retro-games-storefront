@@ -54,7 +54,7 @@ export default function Login({hasCart}) {
       <form onSubmit={handleSubmit}>
         <div id="loginData">
           
-          <label id="username" htmlFor="username">Username:</label>
+          <label id="username" htmlFor="username">Username/Email:</label>
           <Link to={"/register"}>
         <button align-right type="button" className="btn btn-sm btn-success" id="loginRegister">
           New User?
