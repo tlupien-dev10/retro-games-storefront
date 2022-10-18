@@ -82,8 +82,9 @@ function Listing({listingData, cartListings, setCartListings}) {
               <button id="listingAddToCartBtn" className="waves-effect waves-light btn-large">Add to Cart</button>
             </form> :
             <form onSubmit={addToCart}>
-              <button id="yesAddToCart"className="waves-effect waves-light btn-large">Yes</button>
-              <button type="button" id="noAddToCart" onClick={denyAdd}className="waves-effect waves-light btn-large">No</button>
+              <p id="confirmAddToCartMessage">Are you sure you want to add to cart?</p>
+              <button id="yesAddToCart"className="waves-effect waves-light btn-small">Yes</button>
+              <button type="button" id="noAddToCart" onClick={denyAdd}className="waves-effect waves-light btn-small">No</button>
             </form>
           }
           </div>

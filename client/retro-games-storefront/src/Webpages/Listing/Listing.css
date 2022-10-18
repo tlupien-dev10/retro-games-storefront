@@ -41,3 +41,18 @@
     background-color: navy;
     margin-top:1em;
   }
+
+  #yesAddToCart{
+    margin-right:1em;
+    background-color:rgb(66, 108, 70);
+    border-radius: 30%;
+  }
+
+  #noAddToCart{
+    background-color: rgb(245, 80, 80);
+    border-radius: 30%;
+  }
+
+  #confirmAddToCartMessage{
+    font-size: larger;
+  }
