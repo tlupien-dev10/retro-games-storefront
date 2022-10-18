@@ -1,5 +1,5 @@
 #adminOrderPageTitle{
-    margin-top: 10%;
+    margin-top: 5%;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -8,7 +8,8 @@
     font-weight: bold;
     color: yellow;
     outline: 11px outset #1C6EA4;
-outline-offset: 0px;
-padding: 3%;
-background-color: blueviolet;
+    outline-offset: 0px;
+    padding: 2%;
+    background-color: blueviolet;
+    margin-bottom:-3em;
 }
