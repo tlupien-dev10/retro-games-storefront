@@ -97,7 +97,7 @@ public class OrderJdbcTemplateRepositoryTest {
     @Test
     void shouldGetAvailableListingIds(){
         List<Integer> expected = new ArrayList<>();
-        for (int i = 1; i <= 13; i++){
+        for (int i = 1; i <= 18; i++){
             expected.add(i);
         }
         assertEquals(expected, orderJdbcTemplateRepository.getAvailableListingIds());

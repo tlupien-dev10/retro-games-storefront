@@ -36,7 +36,7 @@ class ListingJdbcTemplateRepositoryTest {
         BigDecimal cost = new BigDecimal("29.99");
 
         assertNotNull(listings);
-        assertEquals(listings.size(), 13);
+        assertEquals(listings.size(), 18);
 
         assertEquals(listings.get(1).getListingType(), ListingType.GAME);
         System.out.println(listings.get(12).getPrice());
@@ -86,7 +86,7 @@ class ListingJdbcTemplateRepositoryTest {
         Listing actual = listingJdbcTemplateRepository.add(toAdd);
 
         assertNotNull(actual);
-        assertTrue(actual.getId() >= 14 && actual.getId() <= 16);
+        assertTrue(actual.getId() >= 19 && actual.getId() <= 21);
     }
 
     @Test
@@ -110,7 +110,7 @@ class ListingJdbcTemplateRepositoryTest {
         Listing actual = listingJdbcTemplateRepository.add(toAdd);
 
         assertNotNull(actual);
-        assertTrue(actual.getId() >= 14 && actual.getId() <= 16);
+        assertTrue(actual.getId() >= 19 && actual.getId() <= 21);
     }
 
     @Test
@@ -130,7 +130,7 @@ class ListingJdbcTemplateRepositoryTest {
         toAdd.setMerchandise(toJoin);
         Listing actual = listingJdbcTemplateRepository.add(toAdd);
         assertNotNull(actual);
-        assertTrue(actual.getId() >= 14 && actual.getId() <= 16 );
+        assertTrue(actual.getId() >= 19 && actual.getId() <= 21 );
     }
 
     @Test
