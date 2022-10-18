@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import useAuth from "../../Components/Hooks/useAuth";
 import {useHistory} from "react-router-dom";
 import FormHelper from "../../Components/Forms/FormHelper";
+import "./ReviewForm.css";
 
 const EMPTY_REVIEW = {
     username : null,
@@ -93,7 +94,7 @@ function ReviewForm({listingId, clickFix, startingReview = EMPTY_REVIEW}) {
           newVal={review.description}
           onChangeHandler={changeHandler}
         />
-        <button>TEST</button>
+        <button id="submitReviewBtn">Submit<i id="reviewLogo" className="material-icons right">send</i></button>
     </form>
         )
 }

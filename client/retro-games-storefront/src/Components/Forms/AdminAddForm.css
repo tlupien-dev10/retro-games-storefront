@@ -7,8 +7,12 @@
 #listingContainer{
     margin-top: 5%;
     margin-bottom: 2%;
+    background-color: s;
 }
 
+#price{
+    background-color: snow;
+}
 
 #description{
     margin-top: 2%;
@@ -26,4 +30,18 @@
    justify-content: center;
    align-items: center;
    margin: auto;
+}
+
+#quantity{
+    background-color: snow;
+}
+
+#imagePath{
+    background-color: snow;
+}
+
+
+#name{
+    background-color: snow;
+    text-align: left 1px;
 }

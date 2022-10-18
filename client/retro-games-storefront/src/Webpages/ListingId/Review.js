@@ -1,3 +1,4 @@
+import "./Review.css";
 function Review({review}) {
 
     // needs an edit button only visible if author id = auth user id
@@ -5,10 +6,7 @@ function Review({review}) {
 
     return (
         <>
-        <p>{review.title}</p>
-        <p>{review.rating}</p>
-        <p>{review.author.username}</p>
-        <p>{review.description}</p>
+        <p id="review">{review.author.username + ": "}{review.title}{" " + review.rating}<br></br>{review.description}</p>
         </>
     )
 }

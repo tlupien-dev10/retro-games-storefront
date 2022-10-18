@@ -18,8 +18,8 @@
 
 }
 
-#username, #password{
-    background-color: rgb(212, 212, 255);
+#registerUser, #registerPass{
+background-color: snow;
     width: 90%;
 }
 
@@ -37,6 +37,7 @@
 
 #register{
 background-color: mediumblue;
+color: rgb(255, 255, 255); 
 }
 
 
