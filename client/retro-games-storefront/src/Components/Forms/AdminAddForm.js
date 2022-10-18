@@ -202,6 +202,7 @@ function AdminAddForm() {
             defaultValue={listing.listingType}
             onChange={changeHandler}
           >
+            <option value="">Select Listing Type</option>
             <option value="GAME">GAME</option>
             <option value="CONSOLE">CONSOLE</option>
             <option value="MERCHANDISE">MERCHANDISE</option>
