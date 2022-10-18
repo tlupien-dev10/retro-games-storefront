@@ -14,6 +14,9 @@ function SuccessPurchase(){
   console.log(newCart);
 
   function orderComplete(){
+    if (!localStorage.getItem('cart')) {
+      return;
+    }
     const init = {
         method: "POST",
         headers: {
@@ -26,9 +29,10 @@ function SuccessPurchase(){
       fetch("http://localhost:8080/api/order", init)
       .then((res) => {
         if (res.status === 201) {
+          localStorage.removeItem('cart');
           return res.json();
         }
-        return Promise.reject("bruh");
+        return Promise.reject("error");
       })
       .then((res) => {
         console.log(res);
