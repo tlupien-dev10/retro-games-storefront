@@ -32,23 +32,26 @@ function FilterForm({filter}) {
     // maybe other things
 
     return (
+        <div id="filterBarDiv">
     <form onSubmit={(evt) => filter(evt, filterObject)}>
-        <fieldset id="checks">
-        <label>
-            <input type="checkbox" id="gameFilter" name="gameFilter" checked={filterObject.gameFilter} onChange={changeHandler} />
+        
+        <label id="gameFilter">
+            
+            <input type="checkbox" className="filled-in checkbox-blue-grey" id="gameFilter" name="gameFilter" checked={filterObject.gameFilter} onChange={changeHandler} />
             <span>Games</span>
         </label>
         <br/>
-        <label>
+        <label id="consoleFilter">
             <input type="checkbox" id="consoleFilter" name="consoleFilter" checked={filterObject.consoleFilter} onChange={changeHandler} />
             <span>Consoles</span>
         </label>
         <br/>
-        <label>
+        <label id="merchFilter">
             <input type="checkbox" id="merchFilter" name="merchFilter" checked={filterObject.merchFilter} onChange={changeHandler} />
             <span>Merchandise</span>
         </label>
-        </fieldset>
+       
+        
         <FormHelper
             inputType="number"
             identifier="minPrice"
@@ -72,7 +75,7 @@ function FilterForm({filter}) {
             newVal={filterObject.nameSearch}
             onChangeHandler={changeHandler}
         />
-        <label>
+        <label id="stockFilter">
             <input type="checkbox" id="stockFilter" name="stockFilter" checked={filterObject.stockFilter} onChange={changeHandler} />
             <span>Only show in stock items: </span>
         </label>
@@ -93,9 +96,15 @@ function FilterForm({filter}) {
             <option value="AtZ">Alphabetical (A-Z)</option>
             <option value="ZtA">Alphabetical (Z-A)</option>
           </select>
+          
         </div>
-        <button>Apply</button>
+        <button id="applyFilter">Apply</button>
+        
+
+        
+ 
     </form>
+    </div>
         );
 }
 

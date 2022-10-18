@@ -48,8 +48,8 @@ text-align: center;
   color: black;
   background-color: rgb(127, 197, 255);
   font-weight: bold;
-  
 }
+
 #orderTotal{
   text-align: right;
   margin-right: 10%;
@@ -61,5 +61,4 @@ text-align: center;
 #adminOrderTable{
   width: 90%;
   margin-left: 5%;
-
 }
