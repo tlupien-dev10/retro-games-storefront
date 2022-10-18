@@ -5,6 +5,7 @@ import "./ListingId.css";
 import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
 import Review from "./Review";
+import AddReview from "./AddReview";
 
 function ListingId() {
   const [listing, setListing] = useState({ reviews: [] });
@@ -103,6 +104,7 @@ useEffect(() => getConsoles(), []);
             <Review review={r}/>
           ))}
         </div>
+        <AddReview listingId={listing.id} />
       </div>
     </div>
   );

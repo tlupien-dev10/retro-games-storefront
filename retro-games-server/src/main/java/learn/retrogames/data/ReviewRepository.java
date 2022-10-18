@@ -1,4 +1,4 @@
-package learn.retrogames.data.mappers;
+package learn.retrogames.data;
 
 import learn.retrogames.models.Review;
 import org.springframework.transaction.annotation.Transactional;

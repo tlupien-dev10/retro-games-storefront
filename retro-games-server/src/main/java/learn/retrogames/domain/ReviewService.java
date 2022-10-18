@@ -1,7 +1,6 @@
 package learn.retrogames.domain;
 
-import learn.retrogames.data.mappers.ReviewRepository;
-import learn.retrogames.models.Listing;
+import learn.retrogames.data.ReviewRepository;
 import learn.retrogames.models.Review;
 import org.springframework.stereotype.Service;
 
@@ -70,7 +69,7 @@ public class ReviewService {
             res.addMessage("Review must have content.", ResultType.INVALID);
         }
 
-        if (review.getAuthorId() <= 0) {
+        if (review.getUsername() == null) {
             res.addMessage("Review must have an author.", ResultType.INVALID);
         }
 
