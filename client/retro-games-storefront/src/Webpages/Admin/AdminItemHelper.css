@@ -43,12 +43,20 @@ background-color: darkslateblue;
 }
 
 #tableEditBtn{
-background-color: darkgreen;
+background-color: rgb(186, 173, 61);
 }
 
 #tableDelBtn{
     float: right;
-    background-color: crimson;
+    background-color: rgb(211, 48, 81);
+}
+
+#yesDelete{
+    background-color: rgb(66, 108, 70);
+}
+
+#deleteItemMessage{
+    font-size: small;
 }
 
 

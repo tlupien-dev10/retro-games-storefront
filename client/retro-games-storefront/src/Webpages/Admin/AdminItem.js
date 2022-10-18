@@ -23,7 +23,7 @@ return (
       <td className="text-right">
         <Link to={"/admin/edit/" + listing.id}>
           <button
-            className="float-start btn btn-sm btn-success"
+            className="float-start btn btn-sm"
             id="tableEditBtn"
             type = "button"
           >
@@ -44,15 +44,16 @@ return (
         </td>
         :
         <td>
+          <p id="deleteItemMessage">Delete Listing?</p>
           <button
-            className="float-end btn btn-sm btn-danger"
+            className="float-end btn btn-sm"
             id="yesDelete"
             type="button"
             onClick={() => handleDelete(listing.id)}>
             Yes
           </button>
           <button
-            className="float-end btn btn-sm btn-danger"
+            className="float-end btn btn-sm"
             id="tableDelBtn"
             type="button"
             onClick={doNotDelete}>
