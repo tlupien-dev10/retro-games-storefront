@@ -22,11 +22,13 @@ function Order({order, deleteOrder}){
               <div className="card-content" id="orderData">
                 <span className="card-title" id="orderTitle">Username: {order.customer.username}</span>
                  {!deleteConfirm ?
-                <button id="orderDelete" className="align-self-end" onClick={showConfirmForm}>Delete</button>
+                <button id="orderDelete" className="btn-small waves-effect waves-light" onClick={showConfirmForm}>Delete</button>
                 :
                 <>
-                  <button id="yesDelete" className="align-self-end" onClick={() => deleteOrder(order.id)}>Yes</button>
-                  <button id="noDelete" className="align-self-end" onClick={doNotDelete}>No</button>
+                <p id="deleteOrderConfirm">Are you sure you want to delete?</p>
+                <br></br>
+                  <button id="noDeleteOrder" className="align-self-end btn-small waves-effect waves-light" onClick={doNotDelete}>No</button>
+                  <button id="yesDeleteOrder" className="align-self-end btn-small waves-effect waves-light" onClick={() => deleteOrder(order.id)}>Yes</button>
                 </>
                 }
                 <table className="striped" id="adminOrderTable">

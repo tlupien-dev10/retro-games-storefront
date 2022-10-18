@@ -21,6 +21,38 @@
    float: right;
    margin-bottom: 1%;
   margin-right: 5%;
+  text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 30px;
+    background-color: rgb(189, 3, 3);
+    color: rgb(255, 241, 241);
+}
+
+#yesDeleteOrder {
+  float: right;
+   margin-bottom: 1%;
+  margin-right: 5%;
+  text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 30px;
+    background-color: rgb(122, 165, 79);
+    color: rgb(255, 241, 241);
+}
+
+#noDeleteOrder{
+  float: right;
+   margin-bottom: 1%;
+  margin-right: 5%;
+  text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 60px;
     height: 30px;
     background-color: rgb(189, 3, 3);
@@ -61,4 +93,8 @@ text-align: center;
 #adminOrderTable{
   width: 90%;
   margin-left: 5%;
+}
+
+#deleteOrderConfirm{
+  float:right;
 }
