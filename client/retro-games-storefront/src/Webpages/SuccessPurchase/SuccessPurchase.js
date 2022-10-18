@@ -7,8 +7,9 @@ function SuccessPurchase(){
     const[errors, setErrors] = useState([]);
     const auth = useAuth();
 
-    const cart = localStorage.getItem('myCart');
-    const customer = {username: auth.username};
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    console.log(localStorage.getItem("cart"));
+    const customer = {username: auth.user.username};
     const newCart = {...cart};
     newCart.customer = customer;
     console.log(newCart);
@@ -28,12 +29,12 @@ function SuccessPurchase(){
         if (res.status === 201) {
           return res.json();
         }
-        return Promise.reject(res.json());
+        return Promise.reject("bruh");
       })
       .then((res) => {
         console.log(res);
       })
-      .catch(setErrors(["Order Not recorded"])); //Should not ever hit this error unless server is off. But then card can't be charged anyways
+      .catch(err => console.log(err)); //Should not ever hit this error unless server is off. But then card can't be charged anyways
 };
 
 useEffect(() => orderComplete, []);

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import "./PaymentDetails.css"
 import {useState} from 'react';
 
-function PaymentDetails({cart, cartSetter}) {
+function PaymentDetails({cart, setCart}) {
     const stripeHandle = useStripe();
     const elementHandle = useElements();
     const [errors, setErrors] = useState([]);
@@ -14,7 +14,10 @@ function PaymentDetails({cart, cartSetter}) {
             return;
         }
 
-        localStorage.setItem('myCart', cart);
+        const newCart = {listings: [...cart]};
+        // this step is necessary to parse the json later, since it's (the cart) an array, not an object when passed in here
+
+        localStorage.setItem('cart', JSON.stringify(newCart));
 
         const res = stripeHandle.confirmPayment({
             elements: elementHandle,
