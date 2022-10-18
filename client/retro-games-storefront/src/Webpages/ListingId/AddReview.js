@@ -1,7 +1,7 @@
 import { useState } from "react"
 import ReviewForm from './ReviewForm';
 
-function AddReview({listingId}) {
+function AddReview({listingId, getListing}) {
     // button for add review
     // if clicked, swap in a form
     // form is controlled component updating a review
@@ -10,11 +10,16 @@ function AddReview({listingId}) {
     // makes you log in if not already logged in
     const [clicked, setClicked] = useState(false);
 
+    const setClickedFromSubmit = function() {
+        setClicked(false);
+        getListing();
+    }
+
     return (
         <>
             <button type="button" onClick={() => setClicked(!clicked)}>Add Review</button>
             {clicked ? 
-            <ReviewForm listingId={listingId}/> :
+            <ReviewForm listingId={listingId} clickFix={setClickedFromSubmit}/> :
             <></>}
         </>
     )

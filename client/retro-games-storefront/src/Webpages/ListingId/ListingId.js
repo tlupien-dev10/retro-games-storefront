@@ -104,7 +104,7 @@ useEffect(() => getConsoles(), []);
             <Review review={r}/>
           ))}
         </div>
-        <AddReview listingId={listing.id} />
+        <AddReview listingId={listing.id} getListing={getListing} />
       </div>
     </div>
   );

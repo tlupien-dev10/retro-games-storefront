@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import useAuth from "../../Components/Hooks/useAuth";
+import {useHistory} from "react-router-dom";
+import FormHelper from "../../Components/Forms/FormHelper";
 
 const EMPTY_REVIEW = {
     username : null,
@@ -9,9 +11,11 @@ const EMPTY_REVIEW = {
     title: null
 }
 
-function ReviewForm({listingId, startingReview = EMPTY_REVIEW}) {
+function ReviewForm({listingId, clickFix, startingReview = EMPTY_REVIEW}) {
 
     const [review, setReview] = useState(startingReview);
+    const [error, setError] = useState([]);
+    const history = useHistory();
 
     const auth = useAuth();
 
@@ -25,8 +29,73 @@ function ReviewForm({listingId, startingReview = EMPTY_REVIEW}) {
 
     useEffect(() => fillConstFields, [])
 
+    const changeHandler = (event) => {
+        const newReview = { ...review };
+        newReview[event.target.name] = event.target.value;
+        setReview(newReview);
+      };
 
-    return <p>Placeholder Text</p>
+    const addReview = function(evt) {
+        evt.preventDefault();
+        const init = {
+            method: review.id ? "PUT": "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${auth.user.token}`,
+            },
+            body: JSON.stringify(review),
+          };
+        fetch(`http://localhost:8080/api/review${review.id ? "/" + review.id :""}`, init)
+        .then((res) => {
+            if ([201,400].includes(res.status)) {
+                return res.json();
+            } else if (res.status === 204) {
+                return null
+            } else {
+                return Promise.reject("Server Error")
+            }
+        })
+        .then((res) => {
+            if (res instanceof Array) {
+            setError(res)
+            } else {
+            console.log(res);
+            clickFix();
+            history.push(`/listing/${review.listing}`)
+            }
+        })
+        .catch(err => console.log(err))
+    };
+
+    return (
+    <form onSubmit={addReview}>
+
+        <FormHelper
+          inputType="text"
+          identifier="title"
+          labelText="Title:"
+          newVal={review.title}
+          onChangeHandler={changeHandler}
+        />
+                <FormHelper
+          inputType="number"
+          identifier="rating"
+          labelText="Rating:"
+          newVal={review.rating}
+          onChangeHandler={changeHandler}
+          min="0"
+          step="1"
+        />
+        <FormHelper
+          inputType="textarea"
+          identifier="description"
+          labelText="Description:"
+          newVal={review.description}
+          onChangeHandler={changeHandler}
+        />
+        <button>TEST</button>
+    </form>
+        )
 }
 
 export default ReviewForm
