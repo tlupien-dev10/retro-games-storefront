@@ -1,6 +1,6 @@
 #submitReviewBtn{
 background-color: rgb(30, 203, 255);
-color: rgb(8, 4, 4);
+color: rgb(5, 1, 1);
 margin: 1%;
 margin-left: 5%
 }
@@ -10,4 +10,15 @@ margin-left: 5%
 font-size: 14px;
 color: rgb(247, 84, 9);
 margin-top: 2%;
+}
+
+#title{
+    background-color: snow;
+    width: 90%;
+    margin-top: 1%;
+}
+#rating{
+    background-color: snow;
+    width: 90%;
+    margin-top: 1%;
 }

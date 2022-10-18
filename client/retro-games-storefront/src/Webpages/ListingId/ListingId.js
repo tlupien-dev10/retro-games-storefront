@@ -105,7 +105,6 @@ useEffect(() => getConsoles(), []);
           {listing.reviews.map((r) => (
             <Review review={r} getListing={getListing}/>
           ))}
-        {/* <AddReview listingId={listing.id} getListing={getListing} /> */}
         </div>
       </div>
     </div>
