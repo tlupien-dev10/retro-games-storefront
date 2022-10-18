@@ -12,6 +12,8 @@ public class Review {
 
     private int authorId;
 
+    private String username;
+
     public Review() {
     }
 
@@ -75,5 +77,13 @@ public class Review {
 
     public void setAuthorId(int authorId) {
         this.authorId = authorId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

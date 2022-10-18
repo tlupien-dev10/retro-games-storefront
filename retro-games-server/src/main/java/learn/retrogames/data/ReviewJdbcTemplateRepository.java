@@ -20,13 +20,15 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository {
 
     @Override
     public Review add(Review review) {
+
         final String sql = "INSERT INTO review (review_title, review_author, review_description, listing_id, rating)" +
                 "VALUES (?,?,?,?,?);";
+        review.setAuthorId(getUserIdFromUsername(review.getUsername()));
         KeyHolder holder = new GeneratedKeyHolder();
         int nRowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1,review.getTitle());
-            ps.setInt(2,review.getAuthorId());
+            ps.setInt(2, review.getAuthorId());
             ps.setString(3,review.getDescription());
             ps.setInt(4,review.getListing());
             ps.setInt(5,review.getRating());
@@ -62,5 +64,11 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository {
     public boolean deleteById(int id) {
         final String sql = "UPDATE review SET deleted = 1 WHERE review_id = ?;";
         return (jdbcTemplate.update(sql, id) > 0);
+    }
+
+    private int getUserIdFromUsername(String username) {
+        final String sql = "SELECT app_user_id FROM app_user WHERE username LIKE ?;";
+        return jdbcTemplate.query(sql, (rs, row) -> rs.getInt("app_user_id"), username)
+                .stream().findFirst().orElse(0);
     }
 }

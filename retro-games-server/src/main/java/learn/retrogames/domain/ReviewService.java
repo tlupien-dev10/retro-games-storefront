@@ -69,7 +69,7 @@ public class ReviewService {
             res.addMessage("Review must have content.", ResultType.INVALID);
         }
 
-        if (review.getAuthorId() <= 0) {
+        if (review.getUsername() == null) {
             res.addMessage("Review must have an author.", ResultType.INVALID);
         }
 

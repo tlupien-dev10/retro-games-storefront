@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import useAuth from "../../Components/Hooks/useAuth";
 
 const EMPTY_REVIEW = {
-    authorId : null,
+    username : null,
     description: null,
     listing: null,
     rating: null,
@@ -17,9 +17,10 @@ function ReviewForm({listingId, startingReview = EMPTY_REVIEW}) {
 
     const fillConstFields = function() {
         const newReview = {...review};
-        console.log(auth.user)
+        newReview.username = auth.user.username;
         newReview.listing = listingId;
         setReview(newReview);
+        console.log(newReview);
     }
 
     useEffect(() => fillConstFields, [])

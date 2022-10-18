@@ -1,7 +1,7 @@
 import { useState } from "react"
 import ReviewForm from './ReviewForm';
 
-function AddReview() {
+function AddReview({listingId}) {
     // button for add review
     // if clicked, swap in a form
     // form is controlled component updating a review
@@ -14,7 +14,7 @@ function AddReview() {
         <>
             <button type="button" onClick={() => setClicked(!clicked)}>Add Review</button>
             {clicked ? 
-            <ReviewForm /> :
+            <ReviewForm listingId={listingId}/> :
             <></>}
         </>
     )
