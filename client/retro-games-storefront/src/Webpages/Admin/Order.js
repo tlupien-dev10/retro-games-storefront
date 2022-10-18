@@ -48,7 +48,7 @@ function Order({order, deleteOrder}){
                 ))}
                  </table>
                 <p id="orderTotal"> Order Total: ${order.listings.map((listing) => (
-                    listing.orderedQuantity*listing.price)).reduce((a, b) => a + b, 0)}
+                    listing.orderedQuantity*listing.price)).reduce((a, b) => a + b, 0).toFixed(2)}
                 </p>
               </div>
             </div> 

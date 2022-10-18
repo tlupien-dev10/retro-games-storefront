@@ -6,7 +6,7 @@ import FormHelper from "../../Components/Forms/FormHelper";
 import PageErrors from "../../Components/PageErrors/PageErrors";
 
 const DEFAULT_USER = {
-  username: "",
+  username: ""
 };
 
 function RegistrationForm() {
@@ -38,6 +38,7 @@ function RegistrationForm() {
     fetch("http://localhost:8080/api/auth/create_account", init)
       .then(async (response) => {
         if (response.status === 201) {
+          console.log(response)
           return response.json();
         }
         return Promise.reject(await response.json());
@@ -59,14 +60,14 @@ function RegistrationForm() {
         <h3 id="formTitle">Register</h3>
         <FormHelper
           inputType={"text"}
-          identifier={"registerUser"}
+          identifier={"username"}
           labelText={"Username/Email:"}
-          newVal={user.email}
+          newVal={user.username}
           onChangeHandler={handleChange}
         />
         <FormHelper
           inputType={"password"}
-          identifier={"registerPass"}
+          identifier={"password"}
           labelText={"Password:"}
           newVal={user.password}
           onChangeHandler={handleChange}
