@@ -1,8 +1,5 @@
 package learn.retrogames.data;
 
-import learn.retrogames.data.mappers.AppUserMapperLite;
-import learn.retrogames.data.mappers.ReviewRepository;
-import learn.retrogames.models.AppUser;
 import learn.retrogames.models.Review;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;

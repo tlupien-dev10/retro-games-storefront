@@ -1,7 +1,6 @@
 package learn.retrogames.domain;
 
-import learn.retrogames.data.mappers.ReviewRepository;
-import learn.retrogames.models.Listing;
+import learn.retrogames.data.ReviewRepository;
 import learn.retrogames.models.Review;
 import org.springframework.stereotype.Service;
 
