@@ -10,6 +10,8 @@ public class Review {
 
     private int rating;
 
+    private int authorId;
+
     public Review() {
     }
 
@@ -65,5 +67,13 @@ public class Review {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public int getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 }

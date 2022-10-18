@@ -24,12 +24,12 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository {
     @Override
     public Review add(Review review) {
         final String sql = "INSERT INTO review (review_title, review_author, review_description, listing_id, rating)" +
-                "VALUES (?,?,?,?,?,?);";
+                "VALUES (?,?,?,?,?);";
         KeyHolder holder = new GeneratedKeyHolder();
         int nRowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1,review.getTitle());
-            ps.setInt(2,review.getAuthor().getAppUserId());
+            ps.setInt(2,review.getAuthorId());
             ps.setString(3,review.getDescription());
             ps.setInt(4,review.getListing());
             ps.setInt(5,review.getRating());
@@ -39,17 +39,7 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository {
             return null;
         }
         review.setId(holder.getKey().intValue());
-        getAuthor(review);
         return review;
-    }
-
-    private void getAuthor(Review review) {
-        final String sql = "SELECT app_user_id, username FROM app_user WHERE app_user_id = (SELECT app_user_id FROM review WHERE review_id = ?) AND disabled = 0;";
-        AppUser author = jdbcTemplate.query(sql, new AppUserMapperLite(), review.getId()).stream()
-                .findFirst()
-                .orElse(null);
-
-        review.setAuthor(author);
     }
 
     @Override
@@ -63,7 +53,7 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository {
                 " WHERE review_id = ?;";
         return (jdbcTemplate.update(sql,
                 review.getTitle(),
-                review.getAuthor().getAppUserId(),
+                review.getAuthorId(),
                 review.getDescription(),
                 review.getListing(),
                 review.getRating(),
