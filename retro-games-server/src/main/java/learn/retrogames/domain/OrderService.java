@@ -82,7 +82,7 @@ public class OrderService {
             res.addMessage("Order cannot be null.", ResultType.INVALID);
             return res;
         }
-        if (order.getCustomer()==null) {
+        if (order.getCustomer()==null && order.getUsername()==null) {
             res.addMessage("Orders must be associated with a customer (user).", ResultType.INVALID);
         }
         if (order.getListings() == null || order.getListings().size() == 0) {

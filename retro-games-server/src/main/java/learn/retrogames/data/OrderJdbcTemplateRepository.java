@@ -50,6 +50,8 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
     public Order add(Order order) {
         final String sql = "INSERT INTO `order` (app_user_id) VALUES (?);";
 
+        order.setCustomer(getCustomerFromUsername(order.getUsername()));
+
         KeyHolder holder = new GeneratedKeyHolder();
         int nRowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -67,6 +69,11 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
         }
         return order;
 
+    }
+
+    private AppUser getCustomerFromUsername(String username) {
+        final String sql = "SELECT * FROM app_user WHERE username = ?;";
+        return jdbcTemplate.query(sql, new AppUserMapperLite(), username).stream().findFirst().orElse(null);
     }
 
     @Override

@@ -4,17 +4,16 @@ import PageErrors from "../../Components/PageErrors/PageErrors";
 
 function SuccessPurchase(){
 
-    const[errors, setErrors] = useState([]);
-    const auth = useAuth();
+  const[errors, setErrors] = useState([]);
+  const auth = useAuth();
 
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    console.log(localStorage.getItem("cart"));
-    const customer = {username: auth.user.username};
-    const newCart = {...cart};
-    newCart.customer = customer;
-    console.log(newCart);
+  const cart = JSON.parse(localStorage.getItem('cart'));
+  console.log(localStorage.getItem("cart"));
+  const newCart = {...cart};
+  newCart.username = auth.user.username;
+  console.log(newCart);
 
-    function orderComplete(){
+  function orderComplete(){
     const init = {
         method: "POST",
         headers: {
@@ -35,16 +34,16 @@ function SuccessPurchase(){
         console.log(res);
       })
       .catch(err => console.log(err)); //Should not ever hit this error unless server is off. But then card can't be charged anyways
-};
+  };
 
-useEffect(() => orderComplete, []);
+  useEffect(() => orderComplete, []);
 
 
     return (
-        <>
+      <>
         <h2>Purchase Successful!</h2>
         <PageErrors errors = {errors} />
-        </>
+      </>
     )
 
 }

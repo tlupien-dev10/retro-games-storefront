@@ -8,6 +8,8 @@ public class Order {
     private AppUser customer;
     private List<Listing> listings;
 
+    private String username;
+
     public Order() {
     }
 
@@ -33,5 +35,13 @@ public class Order {
 
     public void setListings(List<Listing> listings) {
         this.listings = listings;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
