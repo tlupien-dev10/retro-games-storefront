@@ -28,3 +28,16 @@
 #cartLogo{
     font-size: 35px;
 }
+
+.video-container{
+    margin-top: 10px;
+   padding-right: 10%;
+    max-height: 10%;
+    width:50%;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
