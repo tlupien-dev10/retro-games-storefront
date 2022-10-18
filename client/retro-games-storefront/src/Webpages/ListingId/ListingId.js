@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import "./ListingId.css";
 import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
+import Review from "./Review";
 
 function ListingId() {
   const [listing, setListing] = useState({ reviews: [] });
@@ -99,7 +100,7 @@ useEffect(() => getConsoles(), []);
         <div id="reviews">
           <h5>Reviews</h5>
           {listing.reviews.map((r) => (
-            <p key={r.id}>{r.title}</p>
+            <Review review={r}/>
           ))}
         </div>
       </div>
