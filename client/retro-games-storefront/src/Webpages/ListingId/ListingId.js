@@ -99,7 +99,7 @@ useEffect(() => getConsoles(), []);
           </figcaption>
         </figure>
         <div id="reviews">
-          <h5>Reviews</h5>
+          <h5>Reviews:</h5>
           {listing.reviews.map((r) => (
             <Review review={r}/>
           ))}

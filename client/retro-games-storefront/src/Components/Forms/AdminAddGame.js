@@ -77,10 +77,12 @@ function AdminAddGame({listing, changeDetails}) {
                     className="browser-default"
                     id="consoles"
                     name="consoles"
-                    defaultValue={listing.game.consoles}
+                    // defaultValue={listing.game.consoles}
                     onChange={changeHandler}
+                    defaultValue={listing.game.consoles.find(({value})=> value===listing.name)}
                 >
                     {consoles.map(c => <option key={c.console.id} value={c.console.id}>{c.name}</option>)}
+                  
                 </select>
             </div>
         </div>
