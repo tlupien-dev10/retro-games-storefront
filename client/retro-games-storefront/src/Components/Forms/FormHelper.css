@@ -1,4 +1,7 @@
-
+.form-control{
+    color: rgb(8, 7, 5);
+  background-color: snow;
+}
 
 #formHelper{
     color: rgb(17, 8, 8);
@@ -10,7 +13,7 @@
 
 
 #field{
-   color: azure;
+   color: snow;
     padding-left: 5%;
     padding-top: 5%;
 }
@@ -18,4 +21,9 @@
 #formHelperContainer{
     margin-top: 5%;
     font-size: 20px;
+    padding-left: 1%;
+    padding-right: 1%;
+    outline: 1px solid #e6ff02;
+outline-offset: 0px;
+background-color: rgba(16, 116, 247, 0.336);
 }

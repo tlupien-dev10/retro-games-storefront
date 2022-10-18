@@ -59,14 +59,14 @@ function RegistrationForm() {
         <h3 id="formTitle">Register</h3>
         <FormHelper
           inputType={"text"}
-          identifier={"username"}
+          identifier={"registerUser"}
           labelText={"Username/Email:"}
           newVal={user.email}
           onChangeHandler={handleChange}
         />
         <FormHelper
           inputType={"password"}
-          identifier={"password"}
+          identifier={"registerPass"}
           labelText={"Password:"}
           newVal={user.password}
           onChangeHandler={handleChange}

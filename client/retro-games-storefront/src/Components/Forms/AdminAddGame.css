@@ -5,7 +5,7 @@
 }
 
 #consoles{
-    background-color: rgb(99, 152, 250);
+    background-color: snow;
     color: black;
     font-size: 16px;
     padding: 3%;
@@ -21,6 +21,7 @@
 
 #genre{
     color: rgb(12, 11, 11);
+    background-color: snow;
 }
 
 #formHelper{
@@ -31,17 +32,23 @@
 
 #releaseDate{
     color: #000;
+    background-color: snow;
 }
 
 
 #name, #imagePath{
     font-size: 20px;
+    background-color: snow;
 }
 
 #quantity, #price{
     font-size: 20px;
     color: red;
     font-weight: bold;
+}
+
+#publisher{
+    background-color: snow;
 }
 
 

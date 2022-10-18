@@ -1,5 +1,6 @@
 import { useState } from "react"
 import ReviewForm from './ReviewForm';
+import "./AddReview.css";
 
 function AddReview({listingId, getListing}) {
     // button for add review
@@ -17,7 +18,7 @@ function AddReview({listingId, getListing}) {
 
     return (
         <>
-            <button type="button" onClick={() => setClicked(!clicked)}>Add Review</button>
+            <button id="addReviewBtn" type="button" onClick={() => setClicked(!clicked)}>Add Review</button>
             {clicked ? 
             <ReviewForm listingId={listingId} clickFix={setClickedFromSubmit}/> :
             <></>}
