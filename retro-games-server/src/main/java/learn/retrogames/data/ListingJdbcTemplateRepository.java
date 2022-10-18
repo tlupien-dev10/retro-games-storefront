@@ -165,7 +165,7 @@ public class ListingJdbcTemplateRepository implements ListingRepository {
     }
 
     private void getAuthorsForReviews(Review review) {
-        final String sql = "SELECT app_user_id, username FROM app_user WHERE app_user_id = ? AND disabled = 0;";
+        final String sql = "SELECT app_user_id, username FROM app_user WHERE (SELECT app_user_id FROM review WHERE review_id = ?) AND disabled = 0;";
         AppUser author = jdbcTemplate.query(sql, new AppUserMapperLite(), review.getId()).stream()
                 .findFirst()
                 .orElse(null);

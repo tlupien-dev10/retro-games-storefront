@@ -1,6 +1,8 @@
 package learn.retrogames.data;
 
+import learn.retrogames.data.mappers.AppUserMapperLite;
 import learn.retrogames.data.mappers.ReviewRepository;
+import learn.retrogames.models.AppUser;
 import learn.retrogames.models.Review;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -37,7 +39,17 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository {
             return null;
         }
         review.setId(holder.getKey().intValue());
+        getAuthor(review);
         return review;
+    }
+
+    private void getAuthor(Review review) {
+        final String sql = "SELECT app_user_id, username FROM app_user WHERE app_user_id = (SELECT app_user_id FROM review WHERE review_id = ?) AND disabled = 0;";
+        AppUser author = jdbcTemplate.query(sql, new AppUserMapperLite(), review.getId()).stream()
+                .findFirst()
+                .orElse(null);
+
+        review.setAuthor(author);
     }
 
     @Override
@@ -61,7 +73,7 @@ public class ReviewJdbcTemplateRepository implements ReviewRepository {
     @Override
     @Transactional
     public boolean deleteById(int id) {
-        final String sql = "UPDATE review SET deleted = 1 WHERE listing_id = ?;";
+        final String sql = "UPDATE review SET deleted = 1 WHERE review_id = ?;";
         return (jdbcTemplate.update(sql, id) > 0);
     }
 }

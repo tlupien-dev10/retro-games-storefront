@@ -13,6 +13,8 @@ public class ReviewMapper implements RowMapper<Review> {
         review.setId(resultSet.getInt("review_id"));
         review.setTitle(resultSet.getString("review_title"));
         review.setDescription(resultSet.getString("review_description"));
+        review.setListing(resultSet.getInt("listing_id"));
+        review.setRating(resultSet.getInt("rating"));
         return review;
     }
 }

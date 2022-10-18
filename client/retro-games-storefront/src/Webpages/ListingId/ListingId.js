@@ -20,7 +20,7 @@ function ListingId() {
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
-        // console.log(data.reviews);
+        console.log(data.reviews);
         return setListing(data);
       })
       .catch((err) => setError([...err]));
