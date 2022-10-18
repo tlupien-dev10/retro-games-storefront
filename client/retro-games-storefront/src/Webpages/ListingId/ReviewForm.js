@@ -23,6 +23,7 @@ function ReviewForm({listingId, clickFix, startingReview = EMPTY_REVIEW}) {
         const newReview = {...review};
         newReview.username = auth.user.username;
         newReview.listing = listingId;
+        newReview.author = null;
         setReview(newReview);
         console.log(newReview);
     }

@@ -101,7 +101,7 @@ useEffect(() => getConsoles(), []);
         <div id="reviews">
           <h5>Reviews:</h5>
           {listing.reviews.map((r) => (
-            <Review review={r}/>
+            <Review review={r} getListing={getListing}/>
           ))}
         </div>
         <AddReview listingId={listing.id} getListing={getListing} />
