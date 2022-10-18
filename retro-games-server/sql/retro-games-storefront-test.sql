@@ -154,7 +154,7 @@ begin
     delete from listing;
     alter table listing auto_increment = 1;
     
-    insert into app_role (`name`) values
+   insert into app_role (`name`) values
 	('USER'),
     ('ADMIN');
     
@@ -183,13 +183,21 @@ insert into listing (listing_name, listing_description, image_path, listing_type
     ('Super Mario 64', "Bowser has hidden Princess Peach somewhere in her castle and it is up to you in Mario's first 3-D game to jump through painting and collect stars to save her!", './ImageTest/4.jpg', 'GAME', 4, 89.99),
     ('GoldenEye 007', "When a powerful satellite falls into the wrong hands, it is up to you as James Bond to stop 006 from destroying the world!", './ImageTest/5.jpg', 'GAME', 23, 49.99),
     ('Nintendo 64', "The successor to the Super NES, this system revolutionized gaming with it's amazing 3-D capabilities", './ImageTest/6.jpg', 'CONSOLE', 14, 149.99),
-    ('Super Nintendo Entertainment System', 'The successor to the NES, this system introduced advanced graphics compared to other systems at the time. The most popular games it supports are Super Mario World, Super Metroid, Donkey Kong Country, and more!', './ImageTest/6.jpg', 'CONSOLE', 5, 114.99),
+    ('Super Nintendo Entertainment System', 'The successor to the NES, this system introduced advanced graphics compared to other systems at the time. The most popular games it supports are Super Mario World, Super Metroid, Donkey Kong Country, and more!', './ImageTest/7.jpg', 'CONSOLE', 5, 114.99),
     ('Sega Genesis', 'The Console that helped start the console War in 1991 in the U.S. and Europe. This system can play classics such as Sonic the Hedgehog and Mortal Kombat', './ImageTest/8.jpg', 'CONSOLE', 1, 79.99),
     ('PlayStation', 'Created as as CD-ROM peripheral for the Super NES, this system has many premier franchises including Crash Bandicoot, Tomb Raider, and Final Fantasy', './ImageTest/9.jpg', 'CONSOLE', 26, 149.99),
     ('GameCube', "Known for it's extensive library of high-quality games, this system had tons of exclusive features for cross system play and exclusive content", './ImageTest/10.jpg', 'CONSOLE', 19, 99.99),
     ('GameCube Controller', 'Controller for the GameCube with extra joysticks and satisfaction guaranteed', './ImageTest/11.jpg', 'MERCHANDISE', 5, 19.99),
     ('Nintendo 64 Controller', 'A controller known for causing burns to your palm, we have updated the joystick to prevent this', './ImageTest/12.jpg', 'MERCHANDISE', 25, 45.99),
-    ('Mario Lamp', 'Cool bedside table lamp that shuts off if it overheats', './ImageTest/13.jpg', 'MERCHANDISE', 13, 29.99);
+    ('Mario Lamp', 'Cool bedside table lamp that shuts off if it overheats', './ImageTest/13.jpg', 'MERCHANDISE', 12, 29.99),
+    ('The Legend of Zelda: Ocarina of Time', 'Link finds the Ocarina of Time and travels 7 years in the future to stop Ganondorf and save Zelda', './ImageTest/14.jpg', 'GAME', 0, 49.99),
+    ("The Legend of Zelda: Majora's Mask", 'Link must go back in time to stop the moon from falling from the sky!', './ImageTest/15.jpg', 'GAME', 12, 49.99),
+    ('Diddy Kong Racing', 'Diddy Kong races go-karts with all his friends', './ImageTest/16.jpg', 'GAME', 6, 34.99),
+    ('Crash Bandicoot', 'Help Crash beat the evil Doctor Neo Cortex and rescue Tawna', '/ImageTest/17.jpg', 'GAME', 9, 14.99),
+    ('Sonic the Hedgehog', 'Sonic spins his way through stages to beat Dr. Eggman', './ImageTest/18.jpg', 'GAME', 4, 54.99);
+
+insert into listing (listing_name, listing_description, image_path, listing_type, quantity, price, deleted) values
+	('TEST DELETED LISTING SHOULD NOT SHOW UP','test','test','GAME',0,69.99,true);
     
 insert into merchandise (merchandise_category, listing_id) values
 	('Controller', 11),
@@ -201,7 +209,12 @@ insert into game (genre, publisher, release_date, listing_id) values
     ('Puzzle-Adventure', 'Nintendo', '2001-09-14', 2),
     ('Platformer', 'Nintendo', '1999-11-22', 3),
     ('Platformer', 'Nintendo', '1996-06-23', 4),
-    ('First-Person Shooter', 'Nintendo', '1997-08-23', 5);
+    ('First-Person Shooter', 'Nintendo', '1997-08-23', 5),
+    ('Puzzle-Adventure', 'Nintendo', '1998-11-21', 14),
+    ('Puzzle-Adventure', 'Nintendo', '2000-04-27', 15),
+    ('Racing', 'Nintendo', '1997-11-21', 16),
+    ('Platformer', 'Sony', '1996-09-09', 17),
+    ('Platformer', 'Sega', '1991-06-03', 18);
     
 insert into console (console_version, company, console_release_date, listing_id) values
 	('3rd Generation', 'Nintendo', '1996-06-23', 6),
@@ -215,7 +228,12 @@ insert into game_console (game_id, console_id) values
     (2, 1),
     (3, 2),
     (4, 2),
-    (5, 2);
+    (5, 2),
+    (6, 2),
+    (7, 2),
+    (8, 2),
+    (9, 4),
+    (10, 3);
     
 insert into review (review_title, review_author, review_description, listing_id, rating) values
 	('Best Game Ever!', 3, 'Without a doubt, the best game I have ever played in my life. Highly Reccommend!', 1, 5),
@@ -232,7 +250,11 @@ insert into review (review_title, review_author, review_description, listing_id,
     ('Solid Controller', 1, 'Arrived quickly and lasted a long time', 11, 4),
     ('Burned me!', 2, 'This controller burned my skin when I was spinning the joystick to win a Mario Party mini game!', 12, 1),
     ('Mesmerizing', 1, 'Super fun lamp for the kids', 13, 3),
-    ('So much fun!', 1, 'Had to buy and play again', 14, 3);
+    ('So much fun!', 1, 'Had to buy and play again', 14, 3),
+    ('My favorite Zelda Game', 5, 'Played a lot as a kid', 15, 5),
+    ('Nice', 2, 'So nice he got his own game', 16, 2),
+    ("Nostalgia", 3, "This might have been my very first video game", 17, 3),
+    ('Classic', 1, "Sega's response to Mario, an instant hit", 18, 4);
 
 insert into `order` (app_user_id) values (1), (1), (2), (3);
 
