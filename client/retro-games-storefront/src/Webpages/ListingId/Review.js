@@ -42,7 +42,11 @@ function Review({review, getListing}) {
         {review.rating + "/5"}</p>
        
         <p>{review.description}</p>
-        <button id="editReviewBtn" type="button" onClick={() => setClicked(true)}>Edit</button>
+        {auth.user && auth.user.username == review.author.username ?
+            <button id="editReviewBtn" type="button" onClick={() => setClicked(true)}>Edit</button> :
+            <></>
+        }
+
         {clicked ?
         <ReviewForm listingId={review.listing} clickFix={setClickedFromSubmit} startingReview={review}/> :
         <></>}
