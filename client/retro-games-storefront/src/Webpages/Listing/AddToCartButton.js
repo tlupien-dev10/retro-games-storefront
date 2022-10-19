@@ -50,7 +50,7 @@ function AddToCartButton({listing, setListing,  cartListings, setCartListings}) 
 
     return (
         <div id="addToCartDiv">
-        { listing.quantity != 0 ?
+        { listing.quantity !== 0 ?
             <>
             {!addedToCart ?
                 <form onSubmit={confirmAdd}>
