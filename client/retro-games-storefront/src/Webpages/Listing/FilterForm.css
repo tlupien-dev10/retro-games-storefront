@@ -13,8 +13,8 @@ label{
 
 #sortType{
     width: 90%;
-    background-color: rgba(182, 162, 144, 0.651);
-    color: rgb(251, 253, 255);
+    background-color: rgba(247, 164, 92, 0.651);
+    color: rgb(14, 55, 97);
 }
 #applyFilter{
     margin-left: .5em;
@@ -27,6 +27,14 @@ label{
 
 #listingContainer{
     margin-left: .5em;
+}
+
+#minPrice, #maxPrice, #nameSearch{
+    color: crimson;
+    background-color: snow;
+    width: 80%;
+    height: 1.5em;
+    margin-left: 9%;
 }
 
 

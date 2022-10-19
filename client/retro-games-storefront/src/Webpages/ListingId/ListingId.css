@@ -2,7 +2,9 @@
     outline: 5px groove #1C6EA4;
 outline-offset: 8px;
 color: yellow;
+background-color: rgba(0, 0, 128, 0.507);
 width: 100%;
+margin-left: 1%;
 
 
 justify-content: center;
@@ -12,7 +14,7 @@ margin: auto;
 
 #listingIdPrice{
     font-weight: bold;
-    color:rgb(153, 15, 5);
+    color: yellow;
 }
 
 #reviews{

@@ -20,6 +20,7 @@ function Order({order, deleteOrder}){
           <div id="order2" className="col s12 m6">
             <div className="card" id="orderCard">
               <div className="card-content" id="orderData">
+                <p id="orderNum">Order: {order.id}</p>
                 <span className="card-title" id="orderTitle">Username: {order.customer.username}</span>
                  {!deleteConfirm ?
                 <button id="orderDelete" className="btn-small waves-effect waves-light" onClick={showConfirmForm}>Delete</button>

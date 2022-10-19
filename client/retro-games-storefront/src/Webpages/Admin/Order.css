@@ -100,3 +100,9 @@ text-align: center;
 #deleteOrderConfirm{
   float:right;
 }
+
+#orderNum{
+  text-align: right;
+  color: yellow;
+  font-weight: bold;
+}
