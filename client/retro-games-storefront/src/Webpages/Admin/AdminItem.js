@@ -15,7 +15,7 @@ function AdminItem({listing, handleDelete}) {
     const [deleteConfirm, setDeleteConfirm] = useState(false);
 
 return (
-    <tr key={listing.id}>
+    <tr id="adminItemTableData" key={listing.id}>
       <td>{listing.name}</td>
       <td><img id="tableImage" src={"../../"+ listing.imagePath} alt="" /></td>
       <td id="tablePrice">{listing.price}</td>
