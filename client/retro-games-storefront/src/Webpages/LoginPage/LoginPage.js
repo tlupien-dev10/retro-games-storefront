@@ -5,7 +5,7 @@ import PageErrors from "../../Components/PageErrors/PageErrors";
 import useAuth from "../../Components/Hooks/useAuth";
 import "./LoginPage.css";
 
-export default function Login({hasCart}) {
+export default function Login({hasCart, toReview}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
@@ -34,7 +34,7 @@ export default function Login({hasCart}) {
       const { jwt_token } = await response.json();
       console.log(jwt_token);
       auth.login(jwt_token);
-      history.push("/");
+      history.goBack();
     } else if (response.status === 403) {
       setError(["Login failed. Invalid password"]);
     } else {
@@ -50,6 +50,10 @@ export default function Login({hasCart}) {
       <p>Please log in or sign up to add items to your cart.</p>:
       <></>
       }
+
+      {toReview ?
+      <p>Please log in or sign up to leave a review.</p>:
+      <></>}
       
       <form onSubmit={handleSubmit}>
         <div id="loginData">

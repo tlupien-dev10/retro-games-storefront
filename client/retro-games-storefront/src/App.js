@@ -112,6 +112,10 @@ if (!restoreLoginAttemptCompleted) {
             <Login hasCart={true}/>
           </Route>
 
+          <Route exact path = "/login/review">
+            <Login toReview={true}/>
+          </Route>
+
           <Route path="/register">
             <RegistrationForm />
           </Route>
