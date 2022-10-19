@@ -28,8 +28,6 @@ function FilterForm({filter}) {
         setFilterObject(newFilterObject);
     }
 
-    // add rating to review objects and entire back end, average it, and sort by highest to lowest??
-    // maybe other things
 
     return (
         <div id="filterBarDiv">

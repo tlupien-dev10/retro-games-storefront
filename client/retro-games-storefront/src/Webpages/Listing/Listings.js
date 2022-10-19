@@ -10,7 +10,7 @@ function Listings({cartListings, setCartListings}) {
   const [allListings, setAllListings] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
   const [error, setError] = useState([]);
- // const type=[...new Set(data.map((listings) => listings.listingType))];
+
 
   const auth = useAuth();
   const history = useHistory();
@@ -33,8 +33,7 @@ function Listings({cartListings, setCartListings}) {
 
   const filter = function(evt, filterObject) {
     evt.preventDefault();
-    // expect an object with a bunch of booleans and ranges
-    // apply this object to allListings via maps?
+
     console.log(filterObject);
     let newFilteredListings = [...allListings]
     let categoryFilter = [];
