@@ -51,7 +51,7 @@ function Review({review, getListing}) {
         <ReviewForm listingId={review.listing} clickFix={setClickedFromSubmit} startingReview={review}/> :
         <></>}
 
-        { auth.user && auth.user.hasRole("ADMIN") ?
+        { auth.user && (auth.user.hasRole("ADMIN") || auth.user.username == review.author.username)?
             <>
                 {!deleteClicked ?
                 <button id="delReviewBtn" type="button" onClick={() => setDeleteClicked(true)}>Delete</button> :
