@@ -10,9 +10,18 @@ ul{
 
 #logout-button{
     margin-left:3%;
-    background-color: rgb(28, 5, 131);
-    color: antiquewhite;
+     background-color: rgba(247, 164, 92, 0.651);
+    color: black;
+    font-weight: bold;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 #cart-icon{
     color: rgb(255, 220, 24);
+}
+
+#navBarRow{
+
+    color: rgb(243, 239, 4);
+    font-size: 16px;
+   background-color: darkslateblue;
 }

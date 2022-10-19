@@ -10,13 +10,13 @@ function NavigationBar() {
   
 
   return (
-    <div>
+    <div id="navBarRow">
      {/* <ul id="dropdown1" className="dropdown-content">
       <li><Link to="/admin/items">Admin-Items</Link></li>
       <li><Link to="/admin/orders">Admin-Orders</Link></li>
     </ul> */}
-    <nav>
-      <div className="nav-wrapper purple">
+    <nav id="navBarRow">
+      <div>
       <ul>
         <li>
           <Link to="/">Home</Link>

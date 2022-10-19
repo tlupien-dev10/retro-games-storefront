@@ -67,7 +67,7 @@ function AdminItemHelper() {
           <th>Item Name</th>
           <th>Display Image</th>
           <th>Price</th>
-          <th>Quantity</th>
+          <th id="quantityHeader">Quantity</th>
           <th></th>
           <th className="text-center">{canAdd && (
           <Link to={"/admin/add"}>

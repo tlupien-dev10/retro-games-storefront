@@ -76,12 +76,14 @@ width:100%;
 color: rgb(255, 239, 21);
 background-color: rgba(50, 19, 189, 0.39);
 text-align: center;
+border: 2px solid #070808;
 }
 
 #orderTableData{
   color: black;
- background-color: rgba(81, 170, 253, 0.664);
+  background-color: rgb(146, 196, 243);
   font-weight: bold;
+  border: 2px solid #070808;
 }
 
 #orderTotal{

@@ -7,12 +7,14 @@
 
 #adminTable{
     margin-top: 5%;
-    background-color: rgba(29, 141, 247, 0.712);
+    background-color: rgba(4, 131, 250, 0.438);
 }
 
 #adminItemTable{
     background-color: rgba(17, 20, 243, 0.2);
     font-weight: bold;
+    outline: 1px;
+    
 }
 
 
@@ -21,10 +23,11 @@
     font-size: 18px;
     background-color: darkslateblue;
     color: yellow;
+    text-align: center;
 }
 
 #tableQuantity {
-text-align: left;
+text-align: center;
 margin-left: 1%;
     font-size: 16px;
     color: rgb(89, 6, 107);
