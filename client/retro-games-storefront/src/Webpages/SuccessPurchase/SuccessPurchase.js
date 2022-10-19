@@ -5,7 +5,9 @@ import PageErrors from "../../Components/PageErrors/PageErrors";
 function SuccessPurchase(){
 
   const[errors, setErrors] = useState([]);
+  const[orderId, setOrderId] = useState(0);
   const auth = useAuth();
+
 
   const cart = JSON.parse(localStorage.getItem('cart'));
   console.log(localStorage.getItem("cart"));
@@ -35,7 +37,7 @@ function SuccessPurchase(){
         return Promise.reject("error");
       })
       .then((res) => {
-        console.log(res);
+        setOrderId(res.id);
       })
       .catch(err => console.log(err)); //Should not ever hit this error unless server is off. But then card can't be charged anyways
   };
@@ -46,6 +48,7 @@ function SuccessPurchase(){
     return (
       <>
         <h2>Purchase Successful!</h2>
+        <h4>Thank you for your purchase. Your Order ID is {orderId} and should arrive in 1-14 business days.</h4>
         <PageErrors errors = {errors} />
       </>
     )
