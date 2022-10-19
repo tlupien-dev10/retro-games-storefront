@@ -42,10 +42,10 @@ function Review({review, getListing}) {
         {review.rating + "/5"} { auth.user && (auth.user.hasRole("ADMIN") || auth.user.username == review.author.username)?
             <>
                 {!deleteClicked ?
-                <button id="delReviewBtn" type="button" onClick={() => setDeleteClicked(true)}>Delete</button> :
+                <button id="delReviewBtn" type="button" className = "waves-effect waves-light btn-small" onClick={() => setDeleteClicked(true)}>Delete</button> :
                 <>
-                    <button id="delConfirmNo" type="button" onClick={() => setDeleteClicked(false)}>Cancel</button>
-                    <button id="delConfirmYes" type="button" onClick={deleteIt}>Yes</button>
+                    <button id="delConfirmNo" type="button" className = "waves-effect waves-light btn-small" onClick={() => setDeleteClicked(false)}>Cancel</button>
+                    <button id="delConfirmYes" type="button" className = "waves-effect waves-light btn-small" onClick={deleteIt}>Yes</button>
                 </>
                 }
             </> :
@@ -53,8 +53,9 @@ function Review({review, getListing}) {
         }</p>
        
         <p>{review.description}</p>
+        <br></br>
         {auth.user && auth.user.username == review.author.username ?
-            <button id="editReviewBtn" type="button" onClick={() => setClicked(true)}>Edit</button> :
+            <button id="editReviewBtn" type="button" className = "waves-effect waves-light btn-small" onClick={() => setClicked(true)}>Edit</button> :
             <></>
         }
 

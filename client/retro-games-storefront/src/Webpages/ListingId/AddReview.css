@@ -1,7 +1,7 @@
 #addReviewBtn{
-    background-color: aquamarine;
-    color: rgb(5, 5, 116);
+    background-color: darkslateblue;
+    color: yellow;
     float: right;
-    border-radius: 20%;
+    border-radius: 10%;
     margin: .5em;
 }

@@ -95,7 +95,7 @@ function ReviewForm({listingId, clickFix, startingReview = EMPTY_REVIEW}) {
           newVal={review.description}
           onChangeHandler={changeHandler}
         />
-        <button id="submitReviewBtn">Submit<i id="reviewLogo" className="material-icons right">send</i></button>
+        <button id="submitReviewBtn" className="btn waves-effect waves-light">Submit<i id="reviewLogo" className="material-icons right">send</i></button>
     </form>
         )
 }

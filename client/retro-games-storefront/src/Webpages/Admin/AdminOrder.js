@@ -48,13 +48,14 @@ function AdminOrder() {
                 Authorization: `Bearer ${auth.user.token}`,
             },
         })
-        .then(async response => {
-            if (response.status === 204) {
+        .then(async res => {
+            if (res.status === 204) {
                 console.log("success");
                 getAllOrders();
-                
+            } else if (res.status === 403) {
+                history.push("/forbidden")
             } else {
-                return Promise.reject(await response.json());
+                return Promise.reject(await res.json());
             }
         })
         .catch((errList) => {
