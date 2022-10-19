@@ -51,7 +51,7 @@ function SuccessPurchase(){
     return (
       <div id="purchaseSuccess">
         <h2>Purchase Successful!</h2>
-        <h4 id="purchaseId">Thank you for your purchase. Your Order ID is {orderId} and should arrive in 1-14 business days.</h4>
+        <h5 id="purchaseId">Thank you for your purchase. Your Order ID is {orderId} and should arrive in 1-14 business days.</h5>
         <PageErrors errors = {errors} />
       </div>
     )
