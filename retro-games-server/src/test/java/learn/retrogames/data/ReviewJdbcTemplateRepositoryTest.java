@@ -27,9 +27,7 @@ public class ReviewJdbcTemplateRepositoryTest {
 
     private Review makeReview(){
         Review review = new Review();
-        AppUser reviewer = new AppUser(2, "sally@jones.com");
-        review.setAuthor(reviewer);
-        review.setAuthorId(2);
+        review.setUsername("sally@jones.com");
         review.setDescription("Coolio");
         review.setRating(3);
         review.setListing(14);

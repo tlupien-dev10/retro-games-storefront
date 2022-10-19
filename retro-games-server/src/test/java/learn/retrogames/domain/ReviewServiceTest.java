@@ -22,9 +22,7 @@ public class ReviewServiceTest {
 
     private Review makeKnownGoodReview(){
         Review review = new Review();
-        AppUser reviewer = new AppUser(2, "sally@jones.com");
-        review.setAuthor(reviewer);
-        review.setAuthorId(2);
+        review.setUsername("sally@jones.com");
         review.setDescription("Coolio");
         review.setRating(3);
         review.setListing(14);
@@ -63,9 +61,9 @@ public class ReviewServiceTest {
     }
 
     @Test
-    void shouldNotAddReviewWithoutAuthorId(){
+    void shouldNotAddReviewWithoutUsername(){
         Review toAdd = makeKnownGoodReview();
-        toAdd.setAuthorId(0);
+        toAdd.setUsername(null);
         assertFalse(service.add(toAdd).isSuccess());
         assertEquals(ResultType.INVALID, service.add(toAdd).getType());
     }

@@ -42,10 +42,7 @@ public class OrderJdbcTemplateRepositoryTest {
         List<Listing> orderListings = new ArrayList<>();
         orderListings.add(toPopulate);
         order.setListings(orderListings);
-        List<String> roles = new ArrayList<>();
-        roles.add("ADMIN");
-        AppUser customer = new AppUser(3, "tyler@bencs.com", "$2a$10$ntB7CsRKQzuLoKY3rfoAQen5nNyiC/U60wBsWnnYrtQQi8Z3IZzQa", true, roles);
-        order.setCustomer(customer);
+        order.setUsername("tyler@bencs.com");
         return order;
     }
 
