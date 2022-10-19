@@ -1,7 +1,6 @@
-#consoleDiv{
-   background-color: rgba(0, 255, 200, 0.211);
-}
+
 
 #version, #company, #releaseDate{
     font-size: 18px;
+    background-color: snow;
 }

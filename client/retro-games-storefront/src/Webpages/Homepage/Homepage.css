@@ -1,12 +1,15 @@
 #homeTxt {
     margin-top: 10px;
     margin-bottom:-15px;
-    color: yellow;
+    color: rgb(3, 40, 248);
+
+    text-align: center;
 }
 
 #topTen {
     margin-bottom:-5em;
-    color: yellow;
+    color: darkslateblue;
+    text-align: center;
 }
 
 #homeShopDiv{
