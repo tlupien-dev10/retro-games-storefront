@@ -7,8 +7,8 @@
 
 #registerDiv{
     margin-top: 5%;
-    border: 5px dashed #1C6EA4;
-    background-color: rgba(65, 105, 225, 0.671);
+    border: 5px dashed #0f3c5a;
+    background-color: rgba(61, 101, 221, 0.671);
 }
 
 
@@ -18,7 +18,7 @@
 
 }
 
-#registerUser, #registerPass{
+#username, #password{
 background-color: snow;
     width: 90%;
 }
