@@ -30,7 +30,6 @@ function PaymentDetails({cart, setCart}) {
             console.log((await res).error.message); 
 
             setErrors([(await res).error.message]);
-            localStorage.clear();
             
         } 
     
