@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/api/order/*").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/payment").hasAnyRole("USER","ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/api/order/*").hasRole("ADMIN")
-                .antMatchers("/api/review", "/api/review/*").permitAll() // for now
+                .antMatchers("/api/review", "/api/review/*").hasAnyRole("USER","ADMIN")
 
                 .anyRequest().denyAll()
                 .and()
