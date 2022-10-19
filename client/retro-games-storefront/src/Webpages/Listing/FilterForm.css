@@ -20,6 +20,8 @@ label{
     margin-left: .5em;
     background-color: rgba(0, 0, 139, 0.497);
     color: aliceblue;
+    margin-bottom: 5%;
+    margin-top: 5%;
 }
 
 #listingContainer{

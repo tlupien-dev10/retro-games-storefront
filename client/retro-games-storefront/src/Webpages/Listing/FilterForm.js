@@ -98,7 +98,7 @@ function FilterForm({filter}) {
           </select>
           
         </div>
-        <button id="applyFilter">Apply</button>
+        <button id="applyFilter" className="btn-small waves-effect waves-light">Apply</button>
         
 
         
