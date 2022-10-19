@@ -1,19 +1,13 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import "./Listings.css";
 import Listing from "./Listing";
-import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
 import FilterForm from "./FilterForm";
 function Listings({cartListings, setCartListings}) {
   const [allListings, setAllListings] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
   const [error, setError] = useState([]);
-
-
-  const auth = useAuth();
-  const history = useHistory();
 
   function getAllListings() {
     fetch("http://localhost:8080/api/listing")
