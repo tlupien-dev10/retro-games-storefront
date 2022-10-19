@@ -1,7 +1,7 @@
 #orderCard{
     width: 100%;
     height: 100%;
-    background-color: rgba(5, 112, 252, 0.438);
+    background-color: rgb(146, 196, 243);
     margin-bottom:-2em;
     margin-left:-2em;
 }
@@ -74,13 +74,13 @@ width:100%;
 #adminOrderTableHeaders{
   text-align: left;
 color: rgb(255, 239, 21);
-background-color: rgba(50, 19, 189, 0.225);
+background-color: rgba(50, 19, 189, 0.39);
 text-align: center;
 }
 
 #orderTableData{
   color: black;
-  background-color: rgb(127, 197, 255);
+ background-color: rgba(81, 170, 253, 0.664);
   font-weight: bold;
 }
 

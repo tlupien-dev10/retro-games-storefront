@@ -7,9 +7,9 @@
     font-size: 40px;
     font-weight: bold;
     color: yellow;
-    outline: 11px outset #1C6EA4;
+    outline: 8px outset #0c93ec;
     outline-offset: 0px;
     padding: 2%;
-    background-color: blueviolet;
+    background-color: rgba(50, 19, 189, 0.39);
     margin-bottom:-3em;
 }

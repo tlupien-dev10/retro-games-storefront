@@ -2,12 +2,15 @@
   float: left;
   width: 20%;
   height:100%;
+  margin-right: -3%;
 }
 
 #listingArea {
   float: right;
+  margin-left: -3%;
   width: 80%;
   height: 100%;
-  background-color: rgba(0, 153, 255, 0.144);
+  /* background-color: rgba(0, 153, 255, 0.144); */
+  
 }
   

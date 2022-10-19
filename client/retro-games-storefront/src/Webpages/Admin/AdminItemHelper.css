@@ -6,7 +6,8 @@
 }
 
 #adminTable{
-    margin-top: 5%
+    margin-top: 5%;
+    background-color: rgba(29, 141, 247, 0.712);
 }
 
 #adminItemTable{
@@ -18,6 +19,7 @@
 
 #adminItemTitle{
     font-size: 18px;
+    background-color: rgba(50, 4, 255, 0.952);
 }
 
 #tableQuantity {

@@ -1,8 +1,8 @@
 #listingIdText{
     outline: 5px groove #1C6EA4;
 outline-offset: 8px;
-color: yellow;
-background-color: rgba(0, 0, 128, 0.507);
+color: black;
+background-color: rgb(146, 196, 243);
 width: 100%;
 margin-left: 1%;
 
@@ -14,7 +14,7 @@ margin: auto;
 
 #listingIdPrice{
     font-weight: bold;
-    color: yellow;
+    color: crimson;
 }
 
 #reviews{
