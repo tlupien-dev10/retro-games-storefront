@@ -46,15 +46,21 @@ function Review({review, getListing}) {
         {clicked ?
         <ReviewForm listingId={review.listing} clickFix={setClickedFromSubmit} startingReview={review}/> :
         <></>}
-        {!deleteClicked ?
-        <button id="delReviewBtn" type="button" onClick={() => setDeleteClicked(true)}>Delete</button> :
-        <>
-            <button id="delConfirmNo" type="button" onClick={() => setDeleteClicked(false)}>Cancel</button>
-            <button id="delConfirmYes" type="button" onClick={deleteIt}>Yes</button>
-        </>
+
+        { auth.user && auth.user.hasRole("ADMIN") ?
+            <>
+                {!deleteClicked ?
+                <button id="delReviewBtn" type="button" onClick={() => setDeleteClicked(true)}>Delete</button> :
+                <>
+                    <button id="delConfirmNo" type="button" onClick={() => setDeleteClicked(false)}>Cancel</button>
+                    <button id="delConfirmYes" type="button" onClick={deleteIt}>Yes</button>
+                </>
+                }
+            </> :
+            <></>
         }
         </div>
-    )
+     )
 }
 
 export default Review;

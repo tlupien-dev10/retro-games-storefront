@@ -67,25 +67,31 @@ function Listing({listingData, cartListings, setCartListings}) {
           </div>
 
           <div className="card-action">
-          {!addedToCart ?
-            <form onSubmit={confirmAdd}>
-            <FormHelper id="orderQty"
-              inputType="number"
-              identifier="orderedQuantity"
-              labelText ="Qty:"
-              newVal={listing.orderedQuantity}
-              onChangeHandler={changeHandler}
-              min={0}
-              max={listing.quantity}
-              step={1}
-            />
-              <button id="listingAddToCartBtn" className="waves-effect waves-light btn-large">Add to Cart</button>
-            </form> :
-            <form onSubmit={addToCart}>
-              <p id="confirmAddToCartMessage">Are you sure you want to add to cart?</p>
-              <button id="yesAddToCart"className="waves-effect waves-light btn-small">Yes</button>
-              <button type="button" id="noAddToCart" onClick={denyAdd}className="waves-effect waves-light btn-small">No</button>
-            </form>
+          { listing.quantity != 0 ?
+          <>
+            {!addedToCart ?
+              <form onSubmit={confirmAdd}>
+              <FormHelper id="orderQty"
+                inputType="number"
+                identifier="orderedQuantity"
+                labelText ="Qty:"
+                newVal={listing.orderedQuantity}
+                onChangeHandler={changeHandler}
+                min={0}
+                max={listing.quantity}
+                step={1}
+              />
+                <button id="listingAddToCartBtn" className="waves-effect waves-light btn-large">Add to Cart</button>
+              </form> :
+              <form onSubmit={addToCart}>
+                <p id="confirmAddToCartMessage">Are you sure you want to add to cart?</p>
+                <button id="yesAddToCart"className="waves-effect waves-light btn-small">Yes</button>
+                <button type="button" id="noAddToCart" onClick={denyAdd}className="waves-effect waves-light btn-small">No</button>
+              </form>
+            }
+          </> :
+          <p>Out of Stock</p>
+
           }
           </div>
         </div>
