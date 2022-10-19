@@ -21,7 +21,15 @@ function AdminOrder() {
             Authorization: `Bearer ${auth.user.token}`
             }
         })
-        .then((response) => response.json())
+        .then(res => {
+            if (res.status === 200) {
+                return res.json()
+            } else if (res.status === 403) {
+                history.push("/forbidden")
+            } else {
+                return Promise.reject("Could not connect to api");
+            }
+        })
         .then((data) => setAllOrders(data))
         .catch((errList) => {
             if (errList instanceof TypeError){

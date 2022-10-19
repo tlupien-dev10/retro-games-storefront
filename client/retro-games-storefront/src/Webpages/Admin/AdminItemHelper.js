@@ -36,19 +36,20 @@ function AdminItemHelper() {
 
 
   const handleDelete = (id) => {
-    // THIS NEEDS A CONFIRM!!
     fetch("http://localhost:8080/api/listing/" + id, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${auth.user.token}`,
       },
     })
-      .then(async (response) => {
-        if (response.status === 204) {
+      .then(async (res) => {
+        if (res.status === 204) {
           history.push("/admin/items");
           getAllListings();
+        } else if (res.status === 403) {
+          history.push("/forbidden")
         } else {
-          console.log(response);
+          console.log(res);
         }
       })
       .catch((errList) => {

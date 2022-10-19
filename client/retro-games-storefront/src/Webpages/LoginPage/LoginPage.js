@@ -5,7 +5,7 @@ import PageErrors from "../../Components/PageErrors/PageErrors";
 import useAuth from "../../Components/Hooks/useAuth";
 import "./LoginPage.css";
 
-export default function Login({hasCart, toReview}) {
+export default function Login({hasCart, toReview, forbidden}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
@@ -34,7 +34,11 @@ export default function Login({hasCart, toReview}) {
       const { jwt_token } = await response.json();
       console.log(jwt_token);
       auth.login(jwt_token);
-      history.goBack();
+      if (forbidden) {
+        history.go(-2);
+      } else {
+        history.goBack();
+      }
     } else if (response.status === 403) {
       setError(["Login failed. Invalid password"]);
     } else {

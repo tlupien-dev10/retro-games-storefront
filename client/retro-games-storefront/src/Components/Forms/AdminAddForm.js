@@ -120,6 +120,8 @@ function AdminAddForm() {
           return res.json();
         } else if (res.status === 204) {
           return null
+        } else if (res.status === 403) {
+          history.push("/forbidden");
         } else {
           return Promise.reject("Server Error")
         }

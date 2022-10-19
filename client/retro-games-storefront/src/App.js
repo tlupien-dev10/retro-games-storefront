@@ -20,6 +20,7 @@ import Cart from "./Webpages/Cart/Cart";
 
 import {loadStripe} from '@stripe/stripe-js';
 import SuccessPurchase from "./Webpages/SuccessPurchase/SuccessPurchase";
+import Forbidden from "./Webpages/Forbidden/Forbidden";
 
 
 
@@ -109,8 +110,16 @@ if (!restoreLoginAttemptCompleted) {
             <Login toReview={true}/>
           </Route>
 
+          <Route exact path = "/login/forbidden">
+            <Login forbidden={true}/>
+          </Route>
+
           <Route path="/register">
             <RegistrationForm />
+          </Route>
+
+          <Route path="/forbidden">
+            <Forbidden />
           </Route>
 
           <Route exact path="/listing">
