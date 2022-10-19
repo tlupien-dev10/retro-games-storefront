@@ -19,16 +19,13 @@ function Homepage() {
       <div id="homeShopDiv">
       <Link to={"/listing"}>
         <button className="btn btn-sm btn-success" id="homeShopBtn">
-          Enter to begin shopping<i class="material-icons" id="cartLogo">shopping_cart</i></button>
+          Enter to begin shopping<i className="material-icons" id="cartLogo">shopping_cart</i></button>
       </Link>
       <div className="video-container responsive-video" controls>
         <iframe id="homepageVideo" src="https://www.youtube.com/embed/ULMOcdlHH1s"></iframe>
       </div>
       </div>
-      
-      {/* <div class="video-container">
-        <iframe  src="https://www.youtube.com/embed/ULMOcdlHH1s" frameBorder="0" allowFullScreen></iframe>
-      </div> */}
+    
   </div>
 
   );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
+import "./SuccessPurchase.css";
 
 function SuccessPurchase(){
 
@@ -48,11 +49,11 @@ function SuccessPurchase(){
 
 
     return (
-      <>
+      <div id="purchaseSuccess">
         <h2>Purchase Successful!</h2>
-        <h4>Thank you for your purchase. Your Order ID is {orderId} and should arrive in 1-14 business days.</h4>
+        <h4 id="purchaseId">Thank you for your purchase. Your Order ID is {orderId} and should arrive in 1-14 business days.</h4>
         <PageErrors errors = {errors} />
-      </>
+      </div>
     )
 
 }
