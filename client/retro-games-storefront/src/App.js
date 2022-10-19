@@ -23,7 +23,6 @@ import CartContext from "./Components/CartContext/CartContext";
 
 import {loadStripe} from '@stripe/stripe-js';
 import SuccessPurchase from "./Webpages/SuccessPurchase/SuccessPurchase";
-import FailedPayment from "./Webpages/FailedPayment/FailedPayment";
 
 
 
