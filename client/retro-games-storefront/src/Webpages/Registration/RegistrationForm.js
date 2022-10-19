@@ -60,7 +60,7 @@ function RegistrationForm() {
         <h3 id="formTitle">Register</h3>
         <FormHelper
           inputType={"text"}
-          identifier={"username"}
+          identifier={"username"}zz
           labelText={"Username/Email:"}
           newVal={user.username}
           onChangeHandler={handleChange}

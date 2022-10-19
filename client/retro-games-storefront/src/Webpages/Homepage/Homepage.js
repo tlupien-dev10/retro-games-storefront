@@ -22,7 +22,7 @@ function Homepage() {
           Enter to begin shopping<i class="material-icons" id="cartLogo">shopping_cart</i></button>
       </Link>
       <div className="video-container responsive-video" controls>
-        <iframe src="https://www.youtube.com/embed/ULMOcdlHH1s"></iframe>
+        <iframe id="homepageVideo" src="https://www.youtube.com/embed/ULMOcdlHH1s"></iframe>
       </div>
       </div>
       
