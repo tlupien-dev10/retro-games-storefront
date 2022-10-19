@@ -159,11 +159,6 @@ if (!restoreLoginAttemptCompleted) {
               <SuccessPurchase></SuccessPurchase> : <Redirect to="/" />}
           </Route>
 
-          <Route path = "/payment/failure">
-            {auth.user ?
-            <FailedPayment></FailedPayment> : <Redirect to="/" />}
-          </Route>
-
           <Route>
             <NotFound />
           </Route>
