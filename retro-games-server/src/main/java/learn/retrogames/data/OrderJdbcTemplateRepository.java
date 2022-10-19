@@ -66,6 +66,7 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
         order.setId(holder.getKey().intValue());
         for (int i = 0; i < order.getListings().size(); i++) {
             addListingOrderRelationship(order, i);
+            updateInventory(order, i);
         }
         return order;
 
@@ -143,6 +144,13 @@ public class OrderJdbcTemplateRepository  implements OrderRepository{
             ps.setInt(3, order.getListings().get(i).getOrderedQuantity());
             return ps;
         }, holder);
+    }
+
+    private void updateInventory(Order order, int i) {
+        final String sql = "UPDATE listing SET quantity = ? WHERE listing_id = ?;";
+        jdbcTemplate.update(sql,
+                order.getListings().get(i).getQuantity() - order.getListings().get(i).getOrderedQuantity(),
+                order.getListings().get(i).getId());
     }
     private void resetListingOrderRelationship(int id) {
         final String sql = "DELETE FROM order_listing WHERE order_id = ?;";
