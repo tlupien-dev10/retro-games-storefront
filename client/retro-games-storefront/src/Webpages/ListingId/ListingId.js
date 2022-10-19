@@ -6,8 +6,9 @@ import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
 import Review from "./Review";
 import AddReview from "./AddReview";
+import AddToCartButton from "../Listing/AddToCartButton";
 
-function ListingId() {
+function ListingId({cartListings, setCartListings}) {
   const [listing, setListing] = useState({ reviews: [] });
   const [error, setError] = useState([]);
   const { id } = useParams();
@@ -96,7 +97,7 @@ useEffect(() => getConsoles(), []);
             ) : (
               <></>
             )}
-
+            <AddToCartButton listing={listing} setListing={setListing} cartListings={cartListings} setCartListings={setCartListings} />
           </figcaption>
         </figure>
         <div id="reviews">

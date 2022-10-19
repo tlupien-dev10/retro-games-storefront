@@ -125,7 +125,7 @@ if (!restoreLoginAttemptCompleted) {
           </Route>
           
           <Route path="/listing/:id">
-            <ListingId />
+            <ListingId cartListings={cartListings} setCartListings={setCartListings}/>
           </Route>
 
 
