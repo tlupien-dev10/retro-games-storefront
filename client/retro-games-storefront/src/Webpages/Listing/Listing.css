@@ -40,7 +40,7 @@
   #listingAddToCartBtn{
     background-color: navy;
     margin-top:1em;
-    border-radius: 30%;
+    border-radius: 10%;
 
 
     
@@ -49,12 +49,12 @@
   #yesAddToCart{
     margin-right:1em;
     background-color:rgb(66, 108, 70);
-    border-radius: 30%;
+    border-radius: 10%;
   }
 
   #noAddToCart{
     background-color: rgb(245, 80, 80);
-    border-radius: 30%;
+    border-radius: 10%;
   }
 
   #confirmAddToCartMessage{
