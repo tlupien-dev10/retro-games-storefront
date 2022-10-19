@@ -50,7 +50,7 @@ function Listings({cartListings, setCartListings}) {
     )})
 
     if (filterObject.nameSearch) {
-      newFilteredListings = newFilteredListings.filter(l => l.name.startsWith(filterObject.nameSearch))
+      newFilteredListings = newFilteredListings.filter(l => l.name.toLowerCase().startsWith(filterObject.nameSearch.toLowerCase()))
     }
 
     if (filterObject.stockFilter) {
