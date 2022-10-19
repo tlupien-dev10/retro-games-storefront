@@ -39,7 +39,18 @@ function Review({review, getListing}) {
         <div id="reviewInfo">
         <p>{review.author.username}
         {": " + review.title + " "}
-        {review.rating + "/5"}</p>
+        {review.rating + "/5"} { auth.user && (auth.user.hasRole("ADMIN") || auth.user.username == review.author.username)?
+            <>
+                {!deleteClicked ?
+                <button id="delReviewBtn" type="button" onClick={() => setDeleteClicked(true)}>Delete</button> :
+                <>
+                    <button id="delConfirmNo" type="button" onClick={() => setDeleteClicked(false)}>Cancel</button>
+                    <button id="delConfirmYes" type="button" onClick={deleteIt}>Yes</button>
+                </>
+                }
+            </> :
+            <></>
+        }</p>
        
         <p>{review.description}</p>
         {auth.user && auth.user.username == review.author.username ?
@@ -51,18 +62,7 @@ function Review({review, getListing}) {
         <ReviewForm listingId={review.listing} clickFix={setClickedFromSubmit} startingReview={review}/> :
         <></>}
 
-        { auth.user && (auth.user.hasRole("ADMIN") || auth.user.username == review.author.username)?
-            <>
-                {!deleteClicked ?
-                <button id="delReviewBtn" type="button" onClick={() => setDeleteClicked(true)}>Delete</button> :
-                <>
-                    <button id="delConfirmNo" type="button" onClick={() => setDeleteClicked(false)}>Cancel</button>
-                    <button id="delConfirmYes" type="button" onClick={deleteIt}>Yes</button>
-                </>
-                }
-            </> :
-            <></>
-        }
+       
         </div>
      )
 }

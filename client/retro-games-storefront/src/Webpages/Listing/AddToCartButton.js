@@ -2,6 +2,7 @@ import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import FormHelper from "../../Components/Forms/FormHelper";
 import useAuth from "../../Components/Hooks/useAuth";
+import "./AddToCartButton.css";
 
 
 function AddToCartButton({listing, setListing,  cartListings, setCartListings}) {
@@ -48,7 +49,7 @@ function AddToCartButton({listing, setListing,  cartListings, setCartListings}) 
     }
 
     return (
-        <>
+        <div id="addToCartDiv">
         { listing.quantity != 0 ?
             <>
             {!addedToCart ?
@@ -75,7 +76,7 @@ function AddToCartButton({listing, setListing,  cartListings, setCartListings}) 
             <p>Out of Stock</p>
 
         }
-        </>
+        </div>
     );
 }
 
