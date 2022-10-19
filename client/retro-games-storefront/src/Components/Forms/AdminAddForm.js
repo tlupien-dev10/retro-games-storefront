@@ -214,7 +214,7 @@ function AdminAddForm() {
         }
 
         <button type="submit" className="btn btn-success" id="addListing">
-          Add Listing
+          {!editId ? "Add Listing" : "Edit Listing"}
         </button>
 
         <PageErrors errors={error} />
