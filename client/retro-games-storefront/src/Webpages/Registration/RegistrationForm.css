@@ -28,9 +28,14 @@ background-color: snow;
     color: rgb(245, 240, 250);
 }
 
-#register, #cancel{
+#register {
     margin-top: 3%;
+    margin-left:5%
+}
 
+#cancel {
+    margin-top:3%;
+    margin-right:5%;
 }
 
 

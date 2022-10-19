@@ -39,7 +39,9 @@ function SuccessPurchase(){
       .then((res) => {
         setOrderId(res.id);
       })
-      .catch(err => console.log(err)); //Should not ever hit this error unless server is off. But then card can't be charged anyways
+      .catch(err => {
+        setErrors(err);
+        console.log(err)}); //Should not ever hit this error unless server is off. But then card can't be charged anyways
   };
 
   useEffect(() => orderComplete, []);

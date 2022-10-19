@@ -3,9 +3,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch, Redirect  } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
-import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
-// import Carousel from "./Webpages/Homepage/Carousel";
 
 import RegistrationForm from "./Webpages/Registration/RegistrationForm";
 import NavigationBar from "./Components/NavigationBar/NavigationBar";
@@ -19,11 +17,9 @@ import AdminOrder from "./Webpages/Admin/AdminOrder";
 import AuthContext from "./Components/AuthContext/AuthContext";
 import AdminAddForm from "./Components/Forms/AdminAddForm";
 import Cart from "./Webpages/Cart/Cart";
-import CartContext from "./Components/CartContext/CartContext";
 
 import {loadStripe} from '@stripe/stripe-js';
 import SuccessPurchase from "./Webpages/SuccessPurchase/SuccessPurchase";
-import FailedPayment from "./Webpages/FailedPayment/FailedPayment";
 
 
 
@@ -93,10 +89,7 @@ if (!restoreLoginAttemptCompleted) {
   return (
     <div id="appCt" className="App container">
       <AuthContext.Provider value={auth}>
-      {/* <CartContext.Provider value={cart}> this might need to be a state instead because there's no setter on the context */
-      // because there will be a need to redraw when the cart changes (because the state is never invalidated)
-      // so there needs to be state-tracking in the app (go to line 38)
-  }
+
       <BrowserRouter>
         <NavigationBar />
         <Switch>
@@ -164,7 +157,7 @@ if (!restoreLoginAttemptCompleted) {
           </Route>
         </Switch>
       </BrowserRouter>
-      {/* </CartContext.Provider> */}
+
       </AuthContext.Provider>
       
       </div> 

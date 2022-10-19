@@ -1,0 +1,13 @@
+#orderedQuantity{
+    width: 50%;
+    background-color: snow;
+    color: red;
+    text-align: right;
+    margin-top: 1%;
+}
+
+#addToCartDiv{
+    text-align: right;
+    width: 80%;
+    margin-left: 20%;
+}

@@ -97,6 +97,7 @@ useEffect(() => getConsoles(), []);
             ) : (
               <></>
             )}
+       
             <AddToCartButton listing={listing} setListing={setListing} cartListings={cartListings} setCartListings={setCartListings} />
           </figcaption>
         </figure>
@@ -107,6 +108,7 @@ useEffect(() => getConsoles(), []);
             <Review review={r} getListing={getListing}/>
           ))}
         </div>
+      
       </div>
     </div>
   );
