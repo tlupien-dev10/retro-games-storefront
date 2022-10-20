@@ -49,7 +49,10 @@ function SuccessPurchase(){
       }); //Should not ever hit this error unless server is off. But then card can't be charged anyways
   };
 
-  useEffect(() => orderComplete, []);
+  useEffect(() => {
+    return orderComplete
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
 
     return (

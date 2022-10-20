@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 import "./ListingId.css";
-import useAuth from "../../Components/Hooks/useAuth";
 import PageErrors from "../../Components/PageErrors/PageErrors";
 import Review from "./Review";
 import AddReview from "./AddReview";
@@ -12,11 +10,7 @@ function ListingId({cartListings, setCartListings}) {
   const [listing, setListing] = useState({ reviews: [] });
   const [error, setError] = useState([]);
   const { id } = useParams();
-  const [game, setGame] = useState([]);
-  const [consoles, setConsoles] = useState([]);
 
-  const auth = useAuth();
-  const history = useHistory();
 
   function getListing() {
     fetch("http://localhost:8080/api/listing/" + id)
@@ -29,29 +23,10 @@ function ListingId({cartListings, setCartListings}) {
       .catch((err) => setError([...err]));
   }
 
-  useEffect(() => getListing(), []);
-
-  function getGame() {
-    fetch("http://localhost:8080/api/listing")
-      .then((response) => response.json())
-      .then((data) => {
-        return setGame(data);
-      })
-      .catch((err) => setError([...err]));
-  }
-
-  useEffect(() => getGame(), []);
-
-  function getConsoles() {
-    fetch("http://localhost:8080/api/listing")
-      .then((response) => response.json())
-      .then((data) => {
-        setConsoles(data.filter(l => l.console));
-      })
-      .catch((err) => setError([...err]));
-  }
-
-useEffect(() => getConsoles(), []);
+  useEffect(() => {
+    return getListing()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>

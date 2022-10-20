@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 
 import "./AdminItemHelper.css";
@@ -15,8 +15,6 @@ function AdminItemHelper() {
   const history = useHistory();
 
   const canAdd = auth.user && auth.user.hasRole("ADMIN");
-  const canEdit = auth.user && auth.user.hasRole("ADMIN");
-  const canDelete = auth.user && auth.user.hasRole("ADMIN");
 
 
   function getAllListings() {

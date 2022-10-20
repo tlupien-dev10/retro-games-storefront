@@ -70,6 +70,8 @@ function Listings({cartListings, setCartListings}) {
       case "HtL":
         newFilteredListings.sort((a, b) => b.price - a.price);
         break;
+      default:
+        console.log("Not sorted");
     }
 
     setFilteredListings(newFilteredListings);

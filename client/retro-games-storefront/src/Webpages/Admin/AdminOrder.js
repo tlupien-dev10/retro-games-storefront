@@ -38,7 +38,10 @@ function AdminOrder() {
             setError([...errList])}});
       };
 
-    useEffect(() => getAllOrders(), []);
+    useEffect(() => {
+        return getAllOrders()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     
 
     function deleteOrder(orderId){

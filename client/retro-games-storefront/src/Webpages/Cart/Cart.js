@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import './Cart.css';
 import {Elements} from '@stripe/react-stripe-js';
 import CartItem from './CartItem';

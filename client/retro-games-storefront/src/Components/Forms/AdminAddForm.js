@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import FormHelper from "./FormHelper";
 import PageErrors from "../PageErrors/PageErrors";
 import useAuth from "../Hooks/useAuth";
@@ -48,7 +48,9 @@ function AdminAddForm() {
     }
   }
 
-  useEffect(() => getToEdit(), [])
+  useEffect(() => {return getToEdit()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const changeHandler = (event) => {
     const newListing = { ...listing };
@@ -77,6 +79,8 @@ function AdminAddForm() {
           newListing.merchandise.id = listing.merchandise.id;
         }
        break;
+       default:
+        console.log("No listing type selected");
     }
     setListing(newListing);
   }
@@ -101,6 +105,8 @@ function AdminAddForm() {
        newListing.game = null;
        newListing.console = null;
        break;
+      default:
+        console.log("No listing type selected.");
     }
 
     
@@ -144,11 +150,13 @@ function AdminAddForm() {
   function getOtherForm() {
     switch(listing.listingType) {
       case "GAME":
-        return <AdminAddGame listing={listing} changeDetails={changeDetails}/>;
+        return <AdminAddGame listing={listing} changeDetails={changeDetails} setError={setError}/>;
       case "CONSOLE":
         return <AdminAddConsole listing={listing} changeDetails={changeDetails}/>
       case "MERCHANDISE":
         return <AdminAddMerchandise listing={listing} changeDetails={changeDetails}/>;
+      default:
+        return <></>;
     }
   }
 

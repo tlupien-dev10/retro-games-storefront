@@ -45,7 +45,7 @@ function Review({review, getListing, setError}) {
         <div id="reviewInfo">
         <p>{review.author.username}
         {": " + review.title + " "}
-        {review.rating + "/5"} { auth.user && (auth.user.hasRole("ADMIN") || auth.user.username == review.author.username)?
+        {review.rating + "/5"} { auth.user && (auth.user.hasRole("ADMIN") || auth.user.username === review.author.username)?
             <>
                 {!deleteClicked ?
                 <button id="delReviewBtn" type="button" className = "waves-effect waves-light btn-small" onClick={() => setDeleteClicked(true)}>Delete</button> :
@@ -60,7 +60,7 @@ function Review({review, getListing, setError}) {
        
         <p>{review.description}</p>
         <br></br>
-        {auth.user && auth.user.username == review.author.username ?
+        {auth.user && auth.user.username === review.author.username ?
             <button id="editReviewBtn" type="button" className = "waves-effect waves-light btn-small" onClick={() => setClicked(true)}>Edit</button> :
             <></>
         }

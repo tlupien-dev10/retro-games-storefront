@@ -12,10 +12,9 @@ const EMPTY_REVIEW = {
     title: null
 }
 
-function ReviewForm({listingId, clickFix, startingReview = EMPTY_REVIEW}) {
+function ReviewForm({listingId, clickFix, startingReview = EMPTY_REVIEW, setError}) {
 
     const [review, setReview] = useState(startingReview);
-    const [error, setError] = useState([]);
     const history = useHistory();
 
     const auth = useAuth();
@@ -29,7 +28,10 @@ function ReviewForm({listingId, clickFix, startingReview = EMPTY_REVIEW}) {
         
     }
 
-    useEffect(() => fillConstFields, [])
+    useEffect(() => {
+      return fillConstFields()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const changeHandler = (event) => {
         const newReview = { ...review };

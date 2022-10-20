@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
 import FormHelper from "./FormHelper";
-import PageErrors from "../PageErrors/PageErrors";
-import useAuth from "../Hooks/useAuth";
 import "./AdminAddGame.css";
 
-function AdminAddGame({listing, changeDetails}) {
+function AdminAddGame({listing, changeDetails, setError}) {
     const [game, setGame] = useState(listing.game);
-    const [error, setError] = useState([]);
     const [consoles, setConsoles] = useState([]);
-    const history = useHistory();
-    const auth = useAuth();
 
     const changeHandler = (evt) => {
         // 
@@ -21,7 +15,7 @@ function AdminAddGame({listing, changeDetails}) {
             for (let i = 0; i < options.length; i++) {
               if (options[i].selected) {
                 
-                newGame.consoles.push(consoles.find(c => c.console.id == options[i].value).console);
+                newGame.consoles.push(consoles.find(c => c.console.id === parseInt(options[i].value)).console);
               }
             }
         } else {
@@ -52,14 +46,20 @@ function AdminAddGame({listing, changeDetails}) {
         if (options.length >= 1) {
             for (let i = 0; i < game.consoles.length; i++) {
                 
-                options.find(o => o.value==game.consoles[i].id).selected = true;
+                options.find(o => parseInt(o.value) === game.consoles[i].id).selected = true;
                 // 
             }
         }
     }
 
-    useEffect(() => getConsoles(), []);
-    useEffect(() => fillSelect(), [consoles]);
+    useEffect(() => {
+        return getConsoles()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    useEffect(() => {
+        return fillSelect()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [consoles]);
 
     return (
         <div id="gameDiv">
