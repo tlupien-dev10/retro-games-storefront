@@ -10,6 +10,7 @@ function ListingId({cartListings, setCartListings}) {
   const [listing, setListing] = useState({ reviews: [] });
   const [error, setError] = useState([]);
   const { id } = useParams();
+  const [consoles, setConsoles] = useState([]);
 
 
   function getListing() {
@@ -22,6 +23,20 @@ function ListingId({cartListings, setCartListings}) {
       })
       .catch((err) => setError([...err]));
   }
+
+  function getConsoles() {
+    fetch("http://localhost:8080/api/listing")
+      .then((response) => response.json())
+      .then((data) => {
+        setConsoles(data.filter(l => l.console));
+      })
+      .catch((err) => setError([...err]));
+  }
+
+  useEffect(() => {
+    return getConsoles()
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
   useEffect(() => {
     return getListing()
@@ -52,6 +67,8 @@ function ListingId({cartListings, setCartListings}) {
                 Genre: {listing.game.genre} <br></br>Publisher:{" "} 
                 {listing.game.publisher}
                 <br></br>Release Date: {listing.game.releaseDate}
+                <br/>
+                Available On: {consoles.filter(c => listing.game.consoles.map(c2 => c2.id).includes(c.console.id)).map(c3 => <span className="chip">{c3.name} </span>)}
               </div>
             ) : (
               <></>

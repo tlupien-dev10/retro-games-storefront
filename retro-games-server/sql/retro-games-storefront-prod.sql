@@ -190,21 +190,21 @@ insert into game (genre, publisher, release_date, listing_id) values
     ('Platformer', 'Sega', '1991-06-03', 18);
     
 insert into console (console_version, company, console_release_date, listing_id) values
-	('3rd Generation', 'Nintendo', '1996-06-23', 6),
-	('2nd Generation', 'Nintendo', '1990-11-21', 7),
-    ('3rd Generation', 'Sega', '1988-10-29', 8),
-    ('1st Generation', 'Sony', '1994-12-03', 9),
-    ('4th Generation', 'Nintendo', '2001-09-14', 10);
+	('3rd Generation', 'Nintendo', '1996-06-23', 6), -- N64
+	('2nd Generation', 'Nintendo', '1990-11-21', 7), -- SNES
+    ('3rd Generation', 'Sega', '1988-10-29', 8), -- sega
+    ('1st Generation', 'Sony', '1994-12-03', 9), -- PS1
+    ('4th Generation', 'Nintendo', '2001-09-14', 10); -- Gcube
     
 insert into game_console (game_id, console_id) values 
-	(1, 1),
-    (2, 1),
-    (3, 2),
-    (4, 2),
-    (5, 2),
-    (6, 2),
-    (7, 2),
-    (8, 2),
+	(1, 5),
+    (2, 5),
+    (3, 1),
+    (4, 1),
+    (5, 1),
+    (6, 1),
+    (7, 5),
+    (8, 1),
     (9, 4),
     (10, 3);
     
