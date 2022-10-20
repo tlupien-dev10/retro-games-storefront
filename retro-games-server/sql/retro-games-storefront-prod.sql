@@ -229,7 +229,7 @@ insert into review (review_title, review_author, review_description, listing_id,
     ("Nostalgia", 3, "This might have been my very first video game", 17, 3),
     ('Classic', 1, "Sega's response to Mario, an instant hit", 18, 4);
 
-insert into `order` (app_user_id) values (1), (1), (2), (3);
+insert into `order` (app_user_id) values (1), (1), (2);
 
 insert into order_listing (order_id, listing_id, quantity) values
 	(1, 6, 2),
