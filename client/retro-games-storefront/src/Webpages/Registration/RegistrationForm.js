@@ -44,7 +44,7 @@ function RegistrationForm() {
         return Promise.reject(await response.json());
       })
       .then((userInfo) => {
-        history.push("/login");
+        history.push("/login/registered");
       })
       .catch((errList) => {
         if (errList instanceof TypeError){
@@ -76,7 +76,7 @@ function RegistrationForm() {
         <button className="btn btn-success" id="register">
           Register
         </button>
-        <Link to="/login" className="btn btn-danger" id="cancel">
+        <Link to="/login/registered" className="btn btn-danger" id="cancel">
           Cancel
         </Link>
       </form>

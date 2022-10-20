@@ -5,7 +5,7 @@ import PageErrors from "../../Components/PageErrors/PageErrors";
 import useAuth from "../../Components/Hooks/useAuth";
 import "./LoginPage.css";
 
-export default function Login({hasCart, toReview, forbidden}) {
+export default function Login({hasCart, toReview, forbidden, registered}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
@@ -36,6 +36,8 @@ export default function Login({hasCart, toReview, forbidden}) {
       auth.login(jwt_token);
       if (forbidden) {
         history.go(-2);
+      } else if (registered) {
+        history.push("/")
       } else {
         history.goBack();
       }

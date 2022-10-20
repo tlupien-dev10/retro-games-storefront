@@ -114,6 +114,10 @@ if (!restoreLoginAttemptCompleted) {
             <Login forbidden={true}/>
           </Route>
 
+          <Route exact path = "/login/registered">
+            <Login registered={true}/>
+          </Route>
+          
           <Route path="/register">
             <RegistrationForm />
           </Route>
