@@ -35,7 +35,7 @@ function Cart({stripePromise, cart, setCart}) {
             } else if (res.status === 403 || res.type === 'cors'){
                 setError(["Error, please log back in"]);
             } else {
-                console.log(res);
+                
                 return Promise.reject(res);
             }
             
@@ -66,7 +66,7 @@ function Cart({stripePromise, cart, setCart}) {
         setCart(newCart);
     }
     // 
-    console.log(cart)
+    
     return (
         <div>
 

@@ -33,7 +33,6 @@ const DEFAULT_LISTING = {
 
 function AdminAddForm() {
   const {editId} = useParams();
-  console.log(editId);
   
   const [listing, setListing] = useState(DEFAULT_LISTING);
   // MAKE THIS FETCH BY ID IF IT'S THE ADD FORM!
@@ -104,7 +103,7 @@ function AdminAddForm() {
        break;
     }
 
-    console.log(newListing);
+    
 
     const init = {
       method: editId ? "PUT": "POST",
@@ -133,7 +132,13 @@ function AdminAddForm() {
           history.push('/admin/items')
         }
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        if (err instanceof TypeError) {
+          setError("Could not connect to api");
+        } else {
+          setError(err);
+        }
+      })
   };
 
   function getOtherForm() {

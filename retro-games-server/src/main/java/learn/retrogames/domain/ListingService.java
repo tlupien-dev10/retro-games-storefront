@@ -87,7 +87,7 @@ public class ListingService {
             return res;
         }
 
-        if (listing.getName() == null) {
+        if (listing.getName() == null || listing.getName().isBlank()) {
             res.addMessage("Listing must have a name.", ResultType.INVALID);
         }
 

@@ -27,7 +27,7 @@ function PaymentDetails({cart, setCart}) {
         })
 
         if (res.error !== null) {
-            console.log((await res).error.message); 
+            
 
             setErrors([(await res).error.message]);
             

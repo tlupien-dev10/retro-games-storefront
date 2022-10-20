@@ -49,7 +49,7 @@ function AdminItemHelper() {
         } else if (res.status === 403) {
           history.push("/forbidden")
         } else {
-          console.log(res);
+          
         }
       })
       .catch((errList) => {

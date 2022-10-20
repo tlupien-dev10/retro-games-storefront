@@ -13,14 +13,14 @@ function AdminAddGame({listing, changeDetails}) {
     const auth = useAuth();
 
     const changeHandler = (evt) => {
-        // console.log("event selected options", evt.target.options);
+        // 
         const newGame = {...game};
         if (evt.target.name==="consoles") {
             let options = evt.target.options;
             newGame.consoles = [];
             for (let i = 0; i < options.length; i++) {
               if (options[i].selected) {
-                console.log(newGame.consoles);
+                
                 newGame.consoles.push(consoles.find(c => c.console.id == options[i].value).console);
               }
             }
@@ -46,14 +46,14 @@ function AdminAddGame({listing, changeDetails}) {
         }
 
         const options = [...document.getElementById("consoles").options];
-        console.log(options);
-        // console.log(game.consoles);
+        
+        // 
 
         if (options.length >= 1) {
             for (let i = 0; i < game.consoles.length; i++) {
                 
                 options.find(o => o.value==game.consoles[i].id).selected = true;
-                // console.log("statement reached");
+                // 
             }
         }
     }

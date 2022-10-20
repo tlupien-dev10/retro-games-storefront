@@ -26,7 +26,7 @@ function ReviewForm({listingId, clickFix, startingReview = EMPTY_REVIEW}) {
         newReview.listing = listingId;
         newReview.author = null;
         setReview(newReview);
-        console.log(newReview);
+        
     }
 
     useEffect(() => fillConstFields, [])
@@ -61,12 +61,18 @@ function ReviewForm({listingId, clickFix, startingReview = EMPTY_REVIEW}) {
             if (res instanceof Array) {
             setError(res)
             } else {
-            console.log(res);
+            
             clickFix();
             history.push(`/listing/${review.listing}`)
             }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          if (err instanceof TypeError) {
+            setError("Could not connect to api");
+          } else {
+            setError(err);
+          }
+        })
     };
 
     return (

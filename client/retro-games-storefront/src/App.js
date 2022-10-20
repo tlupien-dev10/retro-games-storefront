@@ -56,7 +56,7 @@ const login = (token) => {
 
   const roles = authoritiesString.split(',');
 
-  console.log(roles);
+  
 
   const user = {
     username,

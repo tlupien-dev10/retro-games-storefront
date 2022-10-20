@@ -2,7 +2,7 @@ import ReviewForm from "./ReviewForm";
 import {useState} from "react";
 import useAuth from "../../Components/Hooks/useAuth";
 import "./Review.css";
-function Review({review, getListing}) {
+function Review({review, getListing, setError}) {
 
     // needs an edit button only visible if author id = auth user id
     // needs delete button only visible for author id match + admin
@@ -12,7 +12,7 @@ function Review({review, getListing}) {
     const [deleteClicked, setDeleteClicked] = useState(false);
 
     const deleteIt = function() {
-        console.log(review.id)
+        
         fetch(`http://localhost:8080/api/review/${review.id}`, {
             method: "DELETE",
             headers: {
@@ -21,13 +21,19 @@ function Review({review, getListing}) {
         })
         .then(res => {
             if (res.status === 204) {
-                console.log("success");
+                
                 getListing();
             } else {
                 return Promise.reject(res.json());
             }
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            if (err instanceof TypeError) {
+              setError("Could not connect to api");
+            } else {
+              setError(err);
+            }
+          });
       };
 
     const setClickedFromSubmit = function() {

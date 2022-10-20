@@ -38,7 +38,7 @@ function RegistrationForm() {
     fetch("http://localhost:8080/api/auth/create_account", init)
       .then(async (response) => {
         if (response.status === 201) {
-          console.log(response)
+          
           return response.json();
         }
         return Promise.reject(await response.json());

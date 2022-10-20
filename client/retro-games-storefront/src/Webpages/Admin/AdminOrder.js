@@ -39,7 +39,7 @@ function AdminOrder() {
       };
 
     useEffect(() => getAllOrders(), []);
-    console.log(allOrders);
+    
 
     function deleteOrder(orderId){
         fetch("http://localhost:8080/api/order/" + orderId, {
@@ -50,7 +50,7 @@ function AdminOrder() {
         })
         .then(async res => {
             if (res.status === 204) {
-                console.log("success");
+                
                 getAllOrders();
             } else if (res.status === 403) {
                 history.push("/forbidden")

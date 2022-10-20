@@ -28,7 +28,7 @@ function Listings({cartListings, setCartListings}) {
   const filter = function(evt, filterObject) {
     evt.preventDefault();
 
-    console.log(filterObject);
+    
     let newFilteredListings = [...allListings]
     let categoryFilter = [];
     if (filterObject.gameFilter) {

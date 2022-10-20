@@ -22,8 +22,8 @@ function ListingId({cartListings, setCartListings}) {
     fetch("http://localhost:8080/api/listing/" + id)
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
-        console.log(data.reviews);
+        // 
+        
         return setListing(data);
       })
       .catch((err) => setError([...err]));
@@ -72,7 +72,7 @@ useEffect(() => getConsoles(), []);
             <p>Description: {listing.description}</p>
             <p id="listingIdPrice">Price: ${listing.price}</p>
             {listing.listingType === "GAME" ? (
-              <div> {//{console.log(listing.game)}Consoles: {listing.game.consoles.map(c => <p key={c.console.id}>{c.name}</p>)}
+              <div> {//{
               }
                 Genre: {listing.game.genre} <br></br>Publisher:{" "} 
                 {listing.game.publisher}
@@ -105,7 +105,7 @@ useEffect(() => getConsoles(), []);
         <AddReview listingId={listing.id} getListing={getListing} />
           <h5>Reviews:</h5>
           {listing.reviews.map((r) => (
-            <Review review={r} getListing={getListing}/>
+            <Review review={r} getListing={getListing} setError={setError}/>
           ))}
         </div>
       

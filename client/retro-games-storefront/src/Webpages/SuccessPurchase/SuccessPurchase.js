@@ -11,10 +11,10 @@ function SuccessPurchase(){
 
 
   const cart = JSON.parse(localStorage.getItem('cart'));
-  console.log(localStorage.getItem("cart"));
+  
   const newCart = {...cart};
   newCart.username = auth.user.username;
-  console.log(newCart);
+  
 
   function orderComplete(){
     if (!localStorage.getItem('cart')) {
@@ -41,8 +41,12 @@ function SuccessPurchase(){
         setOrderId(res.id);
       })
       .catch(err => {
-        setErrors(err);
-        console.log(err)}); //Should not ever hit this error unless server is off. But then card can't be charged anyways
+        if (err instanceof TypeError) {
+          setErrors("Could not connect to api");
+        } else {
+          setErrors(err);
+        }
+      }); //Should not ever hit this error unless server is off. But then card can't be charged anyways
   };
 
   useEffect(() => orderComplete, []);

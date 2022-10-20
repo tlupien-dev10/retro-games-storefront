@@ -32,7 +32,7 @@ export default function Login({hasCart, toReview, forbidden}) {
     // This code executes if the request is successful
     if (response.status === 200) {
       const { jwt_token } = await response.json();
-      console.log(jwt_token);
+      
       auth.login(jwt_token);
       if (forbidden) {
         history.go(-2);
